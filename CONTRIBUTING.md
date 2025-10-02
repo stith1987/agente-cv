@@ -24,27 +24,32 @@ Este proyecto y todos los participantes están regidos por nuestro [Código de C
 Hay muchas formas de contribuir al proyecto:
 
 ### 🐛 Reportar Bugs
+
 - Usa la plantilla de bug report
 - Incluye pasos para reproducir
 - Proporciona información del entorno
 
 ### 💡 Sugerir Nuevas Características
+
 - Abre un issue con la etiqueta `enhancement`
 - Describe el problema que resuelve
 - Propón una solución detallada
 
 ### 📖 Mejorar Documentación
+
 - Corregir errores tipográficos
 - Mejorar explicaciones
 - Agregar ejemplos
 
 ### 💻 Contribuir con Código
+
 - Corregir bugs
 - Implementar nuevas características
 - Optimizar rendimiento
 - Agregar tests
 
 ### 🧪 Testing
+
 - Escribir tests unitarios
 - Realizar pruebas de integración
 - Reportar casos edge
@@ -204,17 +209,17 @@ faq_sql.py
 def search_faqs(self, query: str, limit: int = 5) -> List[FAQResult]:
     """
     Buscar preguntas frecuentes por similitud.
-    
+
     Args:
         query: Consulta de búsqueda
         limit: Número máximo de resultados
-        
+
     Returns:
         Lista de resultados FAQ ordenados por relevancia
-        
+
     Raises:
         DatabaseError: Si hay problemas con la conexión
-        
+
     Example:
         >>> faq_tool = FAQSQLTool()
         >>> results = faq_tool.search_faqs("tecnologías")
@@ -234,27 +239,33 @@ def search_faqs(self, query: str, limit: int = 5) -> List[FAQResult]:
 
 ```markdown
 ## 🐛 Descripción del Bug
+
 Descripción clara y concisa del problema.
 
 ## 🔄 Pasos para Reproducir
+
 1. Ir a '...'
 2. Hacer click en '...'
 3. Scroll hasta '...'
 4. Ver error
 
 ## ✅ Comportamiento Esperado
+
 Descripción de lo que esperabas que pasara.
 
 ## 🔍 Comportamiento Actual
+
 Descripción de lo que realmente pasó.
 
 ## 📊 Información del Entorno
+
 - OS: [Windows 10, macOS, Ubuntu 20.04]
 - Python: [3.9.0]
 - Versión del proyecto: [1.0.0]
 - OpenAI API: [Sí/No]
 
 ## 📎 Información Adicional
+
 - Logs relevantes
 - Screenshots si aplican
 - Configuración especial
@@ -266,23 +277,29 @@ Descripción de lo que realmente pasó.
 
 ```markdown
 ## 🚀 Descripción de la Característica
+
 Descripción clara de la nueva funcionalidad.
 
 ## 🎯 Problema que Resuelve
+
 ¿Qué problema específico resuelve esta característica?
 
 ## 💭 Solución Propuesta
+
 Descripción detallada de cómo implementarías esta funcionalidad.
 
 ## 🔄 Alternativas Consideradas
+
 Otras soluciones que consideraste.
 
 ## 📋 Criterios de Aceptación
+
 - [ ] Criterio 1
 - [ ] Criterio 2
 - [ ] Criterio 3
 
 ## 🎨 Mockups/Ejemplos
+
 Si aplican, agrega mockups o ejemplos de uso.
 ```
 
@@ -301,18 +318,22 @@ Si aplican, agrega mockups o ejemplos de uso.
 
 ```markdown
 ## 📝 Descripción
+
 Descripción breve de los cambios realizados.
 
 ## 🔗 Issue Relacionado
+
 Fixes #123
 
 ## 🧪 Tipo de Cambio
+
 - [ ] Bug fix (no breaking change)
 - [ ] Nueva característica (no breaking change)
 - [ ] Breaking change (fix o feature que causa que funcionalidad existente no funcione)
 - [ ] Documentación
 
 ## ✅ Checklist
+
 - [ ] Mi código sigue las guías de estilo del proyecto
 - [ ] He revisado mi propio código
 - [ ] He comentado mi código en áreas difíciles de entender
@@ -322,9 +343,11 @@ Fixes #123
 - [ ] Tests unitarios nuevos y existentes pasan localmente
 
 ## 🧪 Tests Realizados
+
 Describe las pruebas que realizaste.
 
 ## 📸 Screenshots
+
 Si aplican, agrega screenshots de los cambios.
 ```
 

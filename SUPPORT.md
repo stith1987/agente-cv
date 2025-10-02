@@ -24,6 +24,7 @@ Antes de pedir ayuda, revisa nuestra documentación:
 ### 🐛 Problemas Técnicos
 
 #### Issues de GitHub
+
 Para problemas técnicos, bugs o errores:
 
 1. **Busca primero** en [issues existentes](https://github.com/tu-usuario/agente-cv/issues)
@@ -43,6 +44,7 @@ ERROR: OPENAI_API_KEY no está configurada
 ```
 
 **Solución**:
+
 1. Crea un archivo `.env` en la raíz del proyecto
 2. Agrega tu clave: `OPENAI_API_KEY=tu_clave_aqui`
 3. Reinicia la aplicación
@@ -57,6 +59,7 @@ ERROR: You exceeded your current quota
 ```
 
 **Solución**:
+
 1. Verifica tu saldo en [OpenAI Platform](https://platform.openai.com/usage)
 2. Recarga créditos si es necesario
 3. El sistema seguirá funcionando para consultas FAQ sin OpenAI
@@ -71,6 +74,7 @@ INFO: 0 resultados encontrados
 ```
 
 **Solución**:
+
 ```bash
 python -m rag.ingest
 ```
@@ -85,6 +89,7 @@ ERROR: [Errno 10048] Only one usage of each socket address
 ```
 
 **Solución**:
+
 1. Cambia el puerto en `.env`: `PORT=8001`
 2. O termina la aplicación existente
 
@@ -124,6 +129,7 @@ python --version
 <summary><strong>¿Puedo usar el sistema sin OpenAI?</strong></summary>
 
 Sí, parcialmente. El sistema FAQ y RAG funcionan sin OpenAI, pero no tendrás:
+
 - Generación de respuestas contextualizadas
 - Clasificación inteligente de consultas
 - Evaluación automática
@@ -268,22 +274,27 @@ print('✅ Orquestador inicializado correctamente')
 
 ```markdown
 ## 🐛 Descripción del Problema
+
 [Describe el problema brevemente]
 
 ## 🔄 Pasos para Reproducir
-1. 
-2. 
-3. 
+
+1.
+2.
+3.
 
 ## 💻 Información del Entorno
+
 - OS: [Windows/Mac/Linux]
 - Python: [versión]
 - Versión del proyecto: [si la conoces]
 
 ## 📋 Logs/Errores
 ```
+
 [Pega aquí los logs relevantes]
-```
+
+````
 
 ## ❓ Para Hacer una Pregunta
 
@@ -301,7 +312,7 @@ print('✅ Orquestador inicializado correctamente')
 - [ ] README.md
 - [ ] FUNCIONALIDAD.md
 - [ ] Issues existentes
-```
+````
 
 ## 🤝 Comunidad y Recursos
 
@@ -345,7 +356,7 @@ Reconocemos a nuestros contribuyentes más valiosos en [CONTRIBUTORS.md](CONTRIB
 
 ## 🙏 ¡Gracias por Usar Agente CV Inteligente!
 
-Tu feedback y participación ayudan a hacer este proyecto mejor para todos. ¡No dudes en contactarnos si necesitas ayuda! 
+Tu feedback y participación ayudan a hacer este proyecto mejor para todos. ¡No dudes en contactarnos si necesitas ayuda!
 
 **¿Este documento te ayudó?** ⭐ Dale una estrella al repo y compártelo con otros.
 
@@ -353,4 +364,4 @@ Tu feedback y participación ayudan a hacer este proyecto mejor para todos. ¡No
 
 ---
 
-*Última actualización: Octubre 2025*
+_Última actualización: Octubre 2025_
