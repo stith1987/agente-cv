@@ -1,6 +1,7 @@
 # 🤖 Agente de CV Inteligente - Documentación de Funcionalidad
 
 ## 📋 Índice
+
 - [Descripción General](#descripción-general)
 - [Arquitectura del Sistema](#arquitectura-del-sistema)
 - [Componentes Principales](#componentes-principales)
@@ -35,20 +36,20 @@ El **Agente de CV Inteligente** es un sistema avanzado de inteligencia artificia
 graph TB
     User[👤 Usuario] --> API[🌐 FastAPI]
     User --> UI[💻 Gradio UI]
-    
+
     API --> Orchestrator[🎛️ Orquestador]
     UI --> Orchestrator
-    
+
     Orchestrator --> RAG[🔍 RAG System]
     Orchestrator --> FAQ[📊 FAQ SQL]
     Orchestrator --> LLM[🧠 OpenAI LLM]
-    
+
     RAG --> VectorDB[(🗄️ ChromaDB)]
     FAQ --> SQLite[(💾 SQLite)]
-    
+
     Orchestrator --> Evaluator[📈 Evaluador]
     Orchestrator --> Notifier[📬 Notificaciones]
-    
+
     Evaluator --> Stats[📊 Estadísticas]
 ```
 
@@ -91,12 +92,14 @@ agente-cv/
 **Funcionalidad**: Componente central que decide qué herramientas usar y cómo combinar resultados.
 
 **Características**:
+
 - ✅ Clasificación automática de consultas
 - ✅ Enrutamiento inteligente a herramientas apropiadas
 - ✅ Combinación de múltiples fuentes de información
 - ✅ Generación de respuestas contextualizadas
 
 **Flujo de trabajo**:
+
 1. **Recibe consulta** del usuario
 2. **Clasifica** el tipo de pregunta (SIMPLE, COMPLEX, FAQ, etc.)
 3. **Selecciona herramientas** apropiadas (RAG, FAQ, o combinado)
@@ -109,10 +112,12 @@ agente-cv/
 **Funcionalidad**: Búsqueda semántica en documentos usando embeddings.
 
 **Componentes**:
+
 - **`ingest.py`**: Procesa y vectoriza documentos markdown
 - **`retriever.py`**: Realiza búsquedas semánticas
 
 **Proceso**:
+
 1. **Carga documentos** desde `data/`
 2. **Divide en chunks** (1000 caracteres con overlap de 200)
 3. **Genera embeddings** usando SentenceTransformers
@@ -120,6 +125,7 @@ agente-cv/
 5. **Busca** por similitud semántica
 
 **Base de datos actual**:
+
 - 📊 **6 documentos** procesados
 - 📊 **59 chunks** indexados
 - 🔍 Búsqueda por **similitud coseno**
@@ -129,6 +135,7 @@ agente-cv/
 **Funcionalidad**: Base de datos SQL con preguntas frecuentes pre-definidas.
 
 **Esquema de datos**:
+
 ```sql
 CREATE TABLE faqs (
     id INTEGER PRIMARY KEY,
@@ -142,6 +149,7 @@ CREATE TABLE faqs (
 ```
 
 **Categorías disponibles**:
+
 - 🏷️ **tecnologias**: Habilidades técnicas
 - 🏷️ **experiencia**: Años y trayectoria
 - 🏷️ **industria**: Sectores trabajados
@@ -153,6 +161,7 @@ CREATE TABLE faqs (
 **Funcionalidad**: Evalúa automáticamente la calidad de las respuestas.
 
 **Métricas**:
+
 - 📊 **Puntuación general** (0-10)
 - 📊 **Criterios específicos** (precisión, completitud, relevancia)
 - 📊 **Fortalezas y debilidades**
@@ -167,13 +176,13 @@ CREATE TABLE faqs (
 
 El sistema clasifica automáticamente las consultas en:
 
-| Categoría | Descripción | Herramienta Recomendada |
-|-----------|-------------|-------------------------|
-| `SIMPLE` | Preguntas directas y básicas | FAQ |
-| `COMPLEX` | Consultas que requieren análisis | RAG + LLM |
-| `FAQ` | Preguntas frecuentes exactas | FAQ |
-| `SPECIFIC` | Búsquedas muy específicas | RAG |
-| `COMBINED` | Múltiples aspectos | RAG + FAQ + LLM |
+| Categoría  | Descripción                      | Herramienta Recomendada |
+| ---------- | -------------------------------- | ----------------------- |
+| `SIMPLE`   | Preguntas directas y básicas     | FAQ                     |
+| `COMPLEX`  | Consultas que requieren análisis | RAG + LLM               |
+| `FAQ`      | Preguntas frecuentes exactas     | FAQ                     |
+| `SPECIFIC` | Búsquedas muy específicas        | RAG                     |
+| `COMBINED` | Múltiples aspectos               | RAG + FAQ + LLM         |
 
 ### 🎯 **Estrategias de Respuesta**
 
@@ -185,12 +194,14 @@ El sistema clasifica automáticamente las consultas en:
 ### 📊 **Sistema de Evaluación**
 
 **Criterios de evaluación**:
+
 - ✅ **Precisión**: ¿La información es correcta?
 - ✅ **Completitud**: ¿Responde completamente la pregunta?
 - ✅ **Relevancia**: ¿Es relevante para la consulta?
 - ✅ **Claridad**: ¿Es fácil de entender?
 
 **Niveles de calidad**:
+
 - 🟢 **Alta** (7-10): Respuesta excelente
 - 🟡 **Media** (5-6): Respuesta aceptable
 - 🔴 **Baja** (0-4): Necesita mejora
@@ -205,75 +216,78 @@ El sistema clasifica automáticamente las consultas en:
 
 #### 📋 **Endpoints Disponibles**
 
-| Método | Endpoint | Descripción |
-|--------|----------|-------------|
-| `POST` | `/chat` | Enviar consulta al agente |
-| `GET` | `/health` | Estado de salud del sistema |
-| `GET` | `/stats` | Estadísticas del agente |
-| `GET` | `/docs` | Documentación Swagger |
-| `GET` | `/redoc` | Documentación ReDoc |
+| Método | Endpoint  | Descripción                 |
+| ------ | --------- | --------------------------- |
+| `POST` | `/chat`   | Enviar consulta al agente   |
+| `GET`  | `/health` | Estado de salud del sistema |
+| `GET`  | `/stats`  | Estadísticas del agente     |
+| `GET`  | `/docs`   | Documentación Swagger       |
+| `GET`  | `/redoc`  | Documentación ReDoc         |
 
 #### 💬 **POST /chat**
 
 **Request Body**:
+
 ```json
 {
-    "message": "¿Cuáles son mis principales tecnologías?",
-    "session_id": "user123",
-    "include_evaluation": true,
-    "include_metadata": true
+  "message": "¿Cuáles son mis principales tecnologías?",
+  "session_id": "user123",
+  "include_evaluation": true,
+  "include_metadata": true
 }
 ```
 
 **Response**:
+
 ```json
 {
-    "success": true,
-    "response": "Mis principales tecnologías incluyen Java/Spring Boot, Python, React, AWS, Docker, Kubernetes, PostgreSQL, y arquitecturas de microservicios.",
-    "metadata": {
-        "classification": {
-            "category": "FAQ",
-            "confidence": 85,
-            "recommended_tool": "FAQ"
-        },
-        "processing_time": 0.245,
-        "tools_used": ["faq"],
-        "context_length": 156,
-        "session_id": "user123"
+  "success": true,
+  "response": "Mis principales tecnologías incluyen Java/Spring Boot, Python, React, AWS, Docker, Kubernetes, PostgreSQL, y arquitecturas de microservicios.",
+  "metadata": {
+    "classification": {
+      "category": "FAQ",
+      "confidence": 85,
+      "recommended_tool": "FAQ"
     },
-    "evaluation": {
-        "overall_score": 8.5,
-        "criteria_scores": {
-            "accuracy": 9.0,
-            "completeness": 8.0,
-            "relevance": 9.0,
-            "clarity": 8.0
-        },
-        "strengths": ["Información precisa", "Respuesta completa"],
-        "suggestions": ["Podría incluir más detalles sobre experiencia específica"]
-    }
+    "processing_time": 0.245,
+    "tools_used": ["faq"],
+    "context_length": 156,
+    "session_id": "user123"
+  },
+  "evaluation": {
+    "overall_score": 8.5,
+    "criteria_scores": {
+      "accuracy": 9.0,
+      "completeness": 8.0,
+      "relevance": 9.0,
+      "clarity": 8.0
+    },
+    "strengths": ["Información precisa", "Respuesta completa"],
+    "suggestions": ["Podría incluir más detalles sobre experiencia específica"]
+  }
 }
 ```
 
 #### 📊 **GET /stats**
 
 **Response**:
+
 ```json
 {
-    "total_queries": 45,
-    "successful_responses": 42,
-    "success_rate": 93.3,
-    "average_response_time": 0.387,
-    "tool_usage": {
-        "faq": 18,
-        "rag": 12,
-        "combined": 15
-    },
-    "evaluation_stats": {
-        "average_score": 7.8,
-        "high_quality_responses": 38,
-        "high_quality_rate": 84.4
-    }
+  "total_queries": 45,
+  "successful_responses": 42,
+  "success_rate": 93.3,
+  "average_response_time": 0.387,
+  "tool_usage": {
+    "faq": 18,
+    "rag": 12,
+    "combined": 15
+  },
+  "evaluation_stats": {
+    "average_score": 7.8,
+    "high_quality_responses": 38,
+    "high_quality_rate": 84.4
+  }
 }
 ```
 
@@ -282,6 +296,7 @@ El sistema clasifica automáticamente las consultas en:
 **URL**: `http://localhost:7860`
 
 **Características**:
+
 - 💬 Chat interactivo
 - 📊 Visualización de estadísticas
 - 🔍 Historial de consultas
@@ -316,16 +331,19 @@ python -m rag.ingest
 ### **2. Ejecución**
 
 #### **API REST**:
+
 ```bash
 python -m api.app
 ```
 
 #### **Interfaz Web**:
+
 ```bash
 python -m api.ui_gradio
 ```
 
 #### **Uso Programático**:
+
 ```python
 from agent.orchestrator import CVOrchestrator
 
@@ -410,10 +428,12 @@ PUSHOVER_USER=your_pushover_user
 ### **Personalización de Datos**
 
 #### **Agregar Documentos**:
+
 1. Coloca archivos `.md` en `data/`
 2. Ejecuta `python -m rag.ingest`
 
 #### **Modificar FAQs**:
+
 ```python
 from tools.faq_sql import FAQSQLTool
 
@@ -433,27 +453,35 @@ faq_tool.add_faq(
 ### **Problemas Comunes**
 
 #### **Error: OpenAI API Key**
+
 ```
 ERROR: OPENAI_API_KEY no está configurada
 ```
+
 **Solución**: Configurar `.env` con clave válida
 
 #### **Error: Quota Exceeded**
+
 ```
 ERROR: You exceeded your current quota
 ```
+
 **Solución**: Recargar créditos en OpenAI o usar solo FAQ/RAG
 
 #### **Error: Base de datos vacía**
+
 ```
 INFO: 0 resultados encontrados
 ```
+
 **Solución**: Ejecutar `python -m rag.ingest`
 
 #### **Error: Puerto ocupado**
+
 ```
 ERROR: [Errno 10048] Only one usage of each socket address
 ```
+
 **Solución**: Cambiar puerto en `.env` o cerrar aplicación existente
 
 ### **Logs y Debugging**
@@ -532,5 +560,5 @@ Para soporte técnico, bugs o sugerencias:
 
 ---
 
-*Documentación generada el 1 de octubre de 2025*
-*Versión del sistema: 1.0.0*
+_Documentación generada el 1 de octubre de 2025_
+_Versión del sistema: 1.0.0_
