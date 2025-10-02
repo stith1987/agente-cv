@@ -12,6 +12,7 @@
 El **Agente de CV Inteligente** es un sistema de IA conversacional completamente funcional que permite interactuar con información profesional personalizada a través de múltiples interfaces. Utiliza tecnologías de vanguardia como RAG (Retrieval-Augmented Generation), búsqueda semántica y integración con OpenAI GPT para proporcionar respuestas contextualizadas e inteligentes.
 
 ### ✅ **Estado Actual: OPERATIVO AL 100%**
+
 - ✅ **APIs funcionando**: FastAPI (puerto 8000) y Gradio UI (puerto 7860)
 - ✅ **OpenAI integrado**: GPT-3.5-turbo con API key activa y funcional
 - ✅ **Sistema RAG activo**: 59 chunks de conocimiento indexados
@@ -75,24 +76,28 @@ graph TD
 ## 💻 **Stack Tecnológico**
 
 ### **Backend Core**
+
 - **🐍 Python 3.13**: Lenguaje principal
 - **⚡ FastAPI 0.118.0**: Framework web moderno y rápido
 - **🎨 Gradio 5.48.0**: Interfaz web interactiva
 - **🔄 Uvicorn 0.37.0**: Servidor ASGI de alto rendimiento
 
 ### **Inteligencia Artificial**
+
 - **🤖 OpenAI API 2.0.1**: Integración con GPT-3.5-turbo
 - **🧠 LangChain 0.3.27**: Framework para aplicaciones LLM
 - **📊 Sentence Transformers 5.1.1**: Embeddings semánticos
 - **🔍 ChromaDB 1.1.0**: Base de datos vectorial
 
 ### **Procesamiento de Datos**
+
 - **📈 Pandas 2.3.3**: Manipulación de datos
 - **🔢 NumPy 2.3.3**: Computación numérica
 - **📝 Markdown 3.5.1**: Procesamiento de documentos
 - **🗄️ SQLAlchemy 2.0.23**: ORM para base de datos
 
 ### **Infraestructura**
+
 - **🐳 Docker**: Containerización (Dockerfiles disponibles)
 - **🗃️ SQLite**: Base de datos FAQ
 - **📡 HTTP/REST**: APIs estándar
@@ -103,18 +108,21 @@ graph TD
 ## 🚀 **Funcionalidades Implementadas**
 
 ### **1. Motor de Conversación Inteligente**
+
 - ✅ **Clasificación automática** de consultas (FAQ/RAG/Complex)
 - ✅ **Procesamiento contextual** con historial de conversación
 - ✅ **Respuestas multimodales** combinando FAQ, RAG y LLM
 - ✅ **Evaluación automática** de calidad de respuestas
 
 ### **2. Sistema RAG (Retrieval-Augmented Generation)**
+
 - ✅ **59 documentos indexados** con información personal
 - ✅ **Búsqueda semántica** con embeddings all-MiniLM-L6-v2
 - ✅ **Chunking inteligente** de documentos largos
 - ✅ **Relevancia scoring** para resultados precisos
 
 ### **3. Base de Conocimiento FAQ**
+
 - ✅ **10 preguntas frecuentes** sobre experiencia profesional
 - ✅ **Búsqueda full-text** en SQLite
 - ✅ **Categorización** por temas (experiencia, tecnologías, proyectos)
@@ -123,6 +131,7 @@ graph TD
 ### **4. Interfaces de Usuario**
 
 #### **API REST (Puerto 8000)**
+
 ```
 GET  /                          # Estado del sistema
 POST /chat                      # Endpoint principal de chat
@@ -131,12 +140,14 @@ GET  /docs                      # Documentación automática
 ```
 
 #### **Interfaz Web Gradio (Puerto 7860)**
+
 - ✅ **Chat interactivo** con historial
 - ✅ **Visualización de fuentes** utilizadas
 - ✅ **Métricas en tiempo real** de uso
 - ✅ **Interfaz responsive** y moderna
 
 ### **5. Sistema de Notificaciones**
+
 - ✅ **Pushover integration** para alertas
 - ✅ **Logging estructurado** con diferentes niveles
 - ✅ **Métricas de uso** y rendimiento
@@ -146,6 +157,7 @@ GET  /docs                      # Documentación automática
 ## 📊 **Estado de Bases de Datos**
 
 ### **ChromaDB (Vector Database)**
+
 ```
 📊 Estado: ACTIVO
 📈 Documentos: 59 chunks indexados
@@ -155,6 +167,7 @@ GET  /docs                      # Documentación automática
 ```
 
 ### **SQLite (FAQ Database)**
+
 ```
 📊 Estado: ACTIVO
 ❓ Preguntas: 10 FAQs configuradas
@@ -168,6 +181,7 @@ GET  /docs                      # Documentación automática
 ## 🔧 **Configuración Actual**
 
 ### **Variables de Entorno (.env)**
+
 ```bash
 # OpenAI Configuration
 OPENAI_API_KEY=sk-proj-Jg***WwoA     # ✅ ACTIVA Y FUNCIONAL
@@ -192,6 +206,7 @@ VECTOR_DB_PATH=storage/vectordb      # ✅ RUTA CONFIGURADA
 ```
 
 ### **Dependencias Críticas**
+
 ```
 ✅ Python 3.13 (Compatibilidad verificada)
 ✅ FastAPI + Uvicorn (API funcionando)
@@ -206,18 +221,21 @@ VECTOR_DB_PATH=storage/vectordb      # ✅ RUTA CONFIGURADA
 ## 📈 **Métricas de Rendimiento**
 
 ### **Tiempo de Respuesta**
+
 - ⚡ **FAQ queries**: < 100ms
 - 🔍 **RAG searches**: < 500ms
 - 🤖 **OpenAI responses**: 1-3 segundos
 - 🌐 **UI interactions**: < 200ms
 
 ### **Precisión del Sistema**
+
 - 🎯 **FAQ matching**: 95% precisión
 - 🔍 **Semantic search**: 85% relevancia
 - 🤖 **LLM responses**: Alta calidad contextual
 - 📊 **Overall accuracy**: 90%+ satisfacción
 
 ### **Uso de Recursos**
+
 - 💾 **Memoria RAM**: ~2GB (con modelos cargados)
 - 💻 **CPU**: Moderado (picos durante inferencia)
 - 🗄️ **Almacenamiento**: ~500MB (modelos incluidos)
@@ -228,12 +246,14 @@ VECTOR_DB_PATH=storage/vectordb      # ✅ RUTA CONFIGURADA
 ## 🛡️ **Seguridad y Buenas Prácticas**
 
 ### **Configuración de Seguridad**
+
 - ✅ **API Keys** protegidas en variables de entorno
 - ✅ **No hardcoded secrets** en el código
 - ✅ **Input validation** en todos los endpoints
 - ✅ **CORS policies** configuradas apropiadamente
 
 ### **Monitoreo y Logging**
+
 - ✅ **Structured logging** con diferentes niveles
 - ✅ **Error tracking** y manejo de excepciones
 - ✅ **Request logging** para auditoría
@@ -244,12 +264,14 @@ VECTOR_DB_PATH=storage/vectordb      # ✅ RUTA CONFIGURADA
 ## 🎯 **Conocimiento Personal Indexado**
 
 ### **Experiencia Profesional**
+
 - ✅ **10+ años** en desarrollo de software
 - ✅ **Arquitectura de soluciones** y transformación digital
 - ✅ **Sector financiero** (banca digital, pagos)
 - ✅ **E-commerce y tecnología empresarial**
 
 ### **Stack Tecnológico Personal**
+
 - ✅ **Backend**: Java Spring Boot, Python
 - ✅ **Frontend**: React, JavaScript
 - ✅ **Cloud**: AWS, Docker, Kubernetes
@@ -257,6 +279,7 @@ VECTOR_DB_PATH=storage/vectordb      # ✅ RUTA CONFIGURADA
 - ✅ **Architecture**: Microservices, Event-driven
 
 ### **Proyectos Destacados**
+
 - ✅ **Banca Digital**: Plataformas de pagos y transacciones
 - ✅ **Arquitectura Empresarial**: Sistemas escalables
 - ✅ **DevOps**: CI/CD, containerización, orquestación
@@ -267,6 +290,7 @@ VECTOR_DB_PATH=storage/vectordb      # ✅ RUTA CONFIGURADA
 ## 🔄 **Flujos de Trabajo Activos**
 
 ### **Procesamiento de Consultas**
+
 1. **Recepción** → Interfaz Gradio/API recibe query
 2. **Clasificación** → Sistema determina tipo de consulta
 3. **Búsqueda** → FAQ/RAG/LLM según clasificación
@@ -275,6 +299,7 @@ VECTOR_DB_PATH=storage/vectordb      # ✅ RUTA CONFIGURADA
 6. **Entrega** → Respuesta formateada al usuario
 
 ### **Indexación de Documentos**
+
 1. **Ingesta** → Lectura de archivos Markdown
 2. **Chunking** → División en fragmentos semánticos
 3. **Embedding** → Generación de vectores semánticos
@@ -286,6 +311,7 @@ VECTOR_DB_PATH=storage/vectordb      # ✅ RUTA CONFIGURADA
 ## 🚀 **Interfaces Disponibles**
 
 ### **1. API REST (http://localhost:8000)**
+
 - **Público objetivo**: Desarrolladores, integraciones
 - **Funcionalidades**: Endpoints RESTful completos
 - **Documentación**: Swagger UI automática en `/docs`
@@ -293,6 +319,7 @@ VECTOR_DB_PATH=storage/vectordb      # ✅ RUTA CONFIGURADA
 - **Estado**: ✅ ACTIVO Y FUNCIONAL
 
 ### **2. Interfaz Web Gradio (http://localhost:7860)**
+
 - **Público objetivo**: Usuarios finales, demostraciones
 - **Funcionalidades**: Chat interactivo, visualización
 - **Características**: Responsive, historial, métricas
@@ -304,6 +331,7 @@ VECTOR_DB_PATH=storage/vectordb      # ✅ RUTA CONFIGURADA
 ## 📚 **Documentación del Proyecto**
 
 ### **Archivos de Documentación**
+
 - ✅ **README.md**: Guía de instalación y uso
 - ✅ **FUNCIONALIDAD.md**: Documentación técnica completa
 - ✅ **LICENSE**: Licencia MIT
@@ -314,6 +342,7 @@ VECTOR_DB_PATH=storage/vectordb      # ✅ RUTA CONFIGURADA
 - ✅ **activeContext.md**: Este documento (contexto activo)
 
 ### **GitHub Standards**
+
 - ✅ **Issue templates**: Para bugs y feature requests
 - ✅ **PR templates**: Para contribuciones
 - ✅ **GitHub Actions**: Workflows de CI/CD configurados
@@ -324,6 +353,7 @@ VECTOR_DB_PATH=storage/vectordb      # ✅ RUTA CONFIGURADA
 ## 🐳 **Containerización y Deployment**
 
 ### **Docker Configuration**
+
 ```dockerfile
 # Dockerfile está listo para producción
 FROM python:3.13-slim
@@ -336,6 +366,7 @@ CMD ["uvicorn", "api.app:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
 ### **Docker Compose**
+
 ```yaml
 # docker-compose.yml disponible
 version: '3.8'
@@ -343,8 +374,8 @@ services:
   cv-agent:
     build: .
     ports:
-      - "8000:8000"
-      - "7860:7860"
+      - '8000:8000'
+      - '7860:7860'
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
     volumes:
@@ -356,6 +387,7 @@ services:
 ## 🔮 **Roadmap y Futuras Mejoras**
 
 ### **Próximas Funcionalidades**
+
 - 🔄 **Deployment a Cloud** (AWS/GCP/Azure)
 - 🔄 **Autenticación y autorización**
 - 🔄 **Analytics dashboard** avanzado
@@ -364,6 +396,7 @@ services:
 - 🔄 **Integration APIs** con LinkedIn, GitHub
 
 ### **Optimizaciones Técnicas**
+
 - 🔄 **Caching layer** para respuestas frecuentes
 - 🔄 **Database optimization** y indexación
 - 🔄 **Load balancing** para alta disponibilidad
@@ -374,18 +407,21 @@ services:
 ## 🎯 **Casos de Uso Activos**
 
 ### **1. Entrevistas Técnicas**
+
 - ✅ Respuestas sobre experiencia profesional
 - ✅ Detalles de proyectos específicos
 - ✅ Stack tecnológico y competencias
 - ✅ Ejemplos concretos de implementaciones
 
 ### **2. Networking Profesional**
+
 - ✅ Presentación automática personalizada
 - ✅ Información sobre colaboraciones pasadas
 - ✅ Disponibilidad y intereses actuales
 - ✅ Recomendaciones de conexión
 
 ### **3. Consultoría y Asesoramiento**
+
 - ✅ Recomendaciones técnicas basadas en experiencia
 - ✅ Best practices de arquitectura
 - ✅ Lessons learned de proyectos pasados
@@ -396,6 +432,7 @@ services:
 ## 📊 **Logs y Monitoreo**
 
 ### **Eventos Típicos del Sistema**
+
 ```
 INFO:rag.retriever:Conexión a vector DB establecida
 INFO:tools.faq_sql:Base de datos FAQ inicializada
@@ -406,6 +443,7 @@ INFO:rag.retriever:Búsqueda realizada: X resultados encontrados
 ```
 
 ### **Métricas de Uso Recientes**
+
 - ✅ **Consultas procesadas**: Múltiples queries sobre experiencia profesional
 - ✅ **OpenAI calls**: 100% success rate
 - ✅ **RAG searches**: Funcionando correctamente
@@ -416,6 +454,7 @@ INFO:rag.retriever:Búsqueda realizada: X resultados encontrados
 ## 🛠️ **Comandos de Gestión**
 
 ### **Desarrollo Local**
+
 ```bash
 # Activar entorno virtual
 .venv\Scripts\Activate.ps1
@@ -437,6 +476,7 @@ black . && flake8 .
 ```
 
 ### **Production Deployment**
+
 ```bash
 # Build Docker image
 docker build -t cv-agent .
@@ -453,12 +493,14 @@ docker-compose up -d
 ## 💡 **Troubleshooting Guide**
 
 ### **Problemas Comunes**
+
 - **OpenAI API errors**: Verificar API key y quota
 - **ChromaDB connection**: Verificar permisos de storage/
 - **Port conflicts**: Cambiar puertos en .env
 - **Dependencies**: Reinstalar requirements.txt
 
 ### **Health Checks**
+
 ```bash
 # Verificar APIs
 curl http://localhost:8000/health
@@ -473,12 +515,14 @@ python -c "from agent.orchestrator import CVOrchestrator; o=CVOrchestrator(); pr
 ## 📞 **Contacto y Soporte**
 
 ### **Información del Proyecto**
+
 - **Repository**: [stith1987/agente-cv](https://github.com/stith1987/agente-cv)
 - **Owner**: Eduardo (stith1987)
 - **License**: MIT License
 - **Last Updated**: October 2, 2025
 
 ### **Canales de Soporte**
+
 - **Issues**: GitHub Issues para bugs y features
 - **Discussions**: GitHub Discussions para preguntas
 - **Documentation**: Comprehensive docs en el repo
@@ -506,5 +550,5 @@ python -c "from agent.orchestrator import CVOrchestrator; o=CVOrchestrator(); pr
 
 ---
 
-*Documento generado automáticamente el 2 de octubre de 2025*  
-*Para actualizaciones, consulte el repositorio oficial*
+_Documento generado automáticamente el 2 de octubre de 2025_  
+_Para actualizaciones, consulte el repositorio oficial_
