@@ -1,0 +1,44 @@
+# Core dependencies
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+python-dotenv==1.0.0
+
+# AI and ML
+openai>=1.6.1
+langchain>=0.1.0
+langchain-openai>=0.0.5
+chromadb>=0.4.20
+faiss-cpu==1.7.4
+sentence-transformers>=2.2.2
+
+# Data processing
+pandas==2.1.4
+numpy==1.24.3
+markdown==3.5.1
+python-markdown-math==0.8
+
+# Database
+# sqlite3  # Built-in Python module - no need to install
+sqlalchemy==2.0.23
+
+# Web interface
+gradio==4.7.1
+
+# Notifications
+requests==2.31.0  # For Pushover API
+
+# Development and testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+black==23.11.0
+flake8==6.1.0
+mypy==1.7.1
+
+# Logging and monitoring
+loguru==0.7.2
+
+# Utilities
+click==8.1.7
+tqdm==4.66.1
+httpx==0.25.2
