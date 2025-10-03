@@ -475,5 +475,80 @@ def main():
         print(f"Error en test de schemas: {e}")
         raise
 
+# ==================== Agents-as-Tools Schemas ====================
+
+PLANNER_SCHEMA = {
+    "type": "function", 
+    "function": {
+        "name": "generate_plan",
+        "description": "Analiza la consulta y genera un plan estructurado con sub-tareas",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "user_query": {
+                    "type": "string",
+                    "description": "Consulta original del usuario"
+                },
+                "context": {
+                    "type": "string",
+                    "description": "Contexto adicional relevante"
+                }
+            },
+            "required": ["user_query"]
+        }
+    }
+}
+
+SEARCH_SCHEMA = {
+    "type": "function",
+    "function": {
+        "name": "multi_search",
+        "description": "Ejecuta búsqueda semántica con múltiples consultas refinadas",
+        "parameters": {
+            "type": "object", 
+            "properties": {
+                "queries": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "description": "Lista de consultas refinadas para búsqueda"
+                },
+                "document_types": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "description": "Tipos de documentos a buscar (cv, projects, clips)"
+                }
+            },
+            "required": ["queries"]
+        }
+    }
+}
+
+WRITER_SCHEMA = {
+    "type": "function",
+    "function": {
+        "name": "synthesize_response",
+        "description": "Sintetiza información recopilada en una respuesta estructurada",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "search_results": {
+                    "type": "array",
+                    "description": "Resultados de búsqueda a sintetizar"
+                },
+                "user_intent": {
+                    "type": "string", 
+                    "description": "Intención identificada del usuario"
+                },
+                "response_format": {
+                    "type": "string",
+                    "enum": ["detailed", "summary", "bullet_points", "structured"],
+                    "description": "Formato de respuesta requerido"
+                }
+            },
+            "required": ["search_results", "user_intent"]
+        }
+    }
+}
+
 if __name__ == "__main__":
     main()

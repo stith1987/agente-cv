@@ -137,6 +137,80 @@ class CVAgentUI:
                 "error": f"Error de conexión con API: {str(e)}"
             }
     
+    def chat_with_clarification(
+        self, 
+        message: str, 
+        history: List[List[str]]
+    ) -> Tuple[str, List[List[str]], str]:
+        """
+        Chat con capacidad de clarificación automática
+        
+        Args:
+            message: Mensaje del usuario
+            history: Historial de chat
+            
+        Returns:
+            Tupla con (entrada_limpia, historial_actualizado, metadata)
+        """
+        if not message.strip():
+            return "", history, ""
+        
+        try:
+            if self.use_api:
+                # Llamar endpoint de clarificación
+                payload = {
+                    "message": message,
+                    "session_id": self.session_id
+                }
+                
+                response = requests.post(
+                    f"{API_BASE_URL}/chat/clarify",
+                    json=payload,
+                    timeout=30,
+                    headers={"Content-Type": "application/json"}
+                )
+                
+                response.raise_for_status()
+                response_data = response.json()
+                
+                if response_data["needs_clarification"]:
+                    # Mostrar preguntas de aclaración
+                    questions = response_data["clarifying_questions"]
+                    clarification_text = "🤔 Para darte una mejor respuesta, ¿podrías aclarar:\n\n"
+                    for i, question in enumerate(questions, 1):
+                        clarification_text += f"{i}. {question}\n"
+                    
+                    history.append([message, clarification_text])
+                    return "", history, f"🔍 Se generaron {len(questions)} preguntas de aclaración"
+                else:
+                    # Procesar normalmente
+                    return self.chat(message, history, enable_evaluation=False)
+            else:
+                # Modo directo
+                result = self.orchestrator.process_query_with_clarification(
+                    query=message,
+                    session_id=self.session_id,
+                    enable_clarification=True
+                )
+                
+                if result.get("needs_clarification", False):
+                    questions = result.get("clarifying_questions", [])
+                    clarification_text = "🤔 Para darte una mejor respuesta, ¿podrías aclarar:\n\n"
+                    for i, question in enumerate(questions, 1):
+                        clarification_text += f"{i}. {question}\n"
+                    
+                    history.append([message, clarification_text])
+                    return "", history, f"🔍 Se generaron {len(questions)} preguntas de aclaración"
+                else:
+                    # Si no necesita clarificación, procesar normalmente
+                    return self.chat(message, history, enable_evaluation=False)
+        
+        except Exception as e:
+            logger.error(f"Error en chat con clarificación: {e}")
+            error_response = f"❌ Error procesando con clarificación: {str(e)}"
+            history.append([message, error_response])
+            return "", history, error_response
+
     def _call_direct(self, message: str, enable_evaluation: bool) -> Dict[str, Any]:
         """Llamar componentes directamente"""
         try:
@@ -353,6 +427,7 @@ def create_gradio_interface() -> gr.Blocks:
                         
                         with gr.Column(scale=1):
                             send_btn = gr.Button("Enviar", variant="primary")
+                            clarify_btn = gr.Button("🤔 Con Clarificación", variant="secondary")
                             clear_btn = gr.Button("Limpiar", variant="secondary")
                     
                     enable_eval = gr.Checkbox(
@@ -420,6 +495,9 @@ def create_gradio_interface() -> gr.Blocks:
         def submit_message(message, history, evaluation):
             return ui.chat_with_agent(message, history, evaluation)
         
+        def submit_with_clarification(message, history):
+            return ui.chat_with_clarification(message, history)
+        
         def clear_conversation():
             return ui.clear_chat()
         
@@ -439,6 +517,12 @@ def create_gradio_interface() -> gr.Blocks:
         msg_input.submit(
             fn=submit_message,
             inputs=[msg_input, chatbot, enable_eval],
+            outputs=[msg_input, chatbot, metadata_display]
+        )
+        
+        clarify_btn.click(
+            fn=submit_with_clarification,
+            inputs=[msg_input, chatbot],
             outputs=[msg_input, chatbot, metadata_display]
         )
         

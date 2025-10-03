@@ -288,6 +288,109 @@ async def chat(
             detail=f"Error procesando consulta: {str(e)}"
         )
 
+# ==================== Nuevos Endpoints Agentic ====================
+
+class ClarificationRequest(BaseModel):
+    """Modelo para solicitud de clarificación"""
+    message: str = Field(description="Consulta del usuario")
+    session_id: str = Field(default="anonymous", description="ID de sesión")
+
+class ClarificationResponse(BaseModel):
+    """Modelo para respuesta de clarificación"""
+    needs_clarification: bool = Field(description="Si necesita clarificación")
+    clarifying_questions: List[str] = Field(description="Preguntas de aclaración")
+    original_query: str = Field(description="Consulta original")
+    timestamp: str = Field(description="Timestamp")
+
+@app.post("/chat/clarify", response_model=ClarificationResponse)
+async def chat_with_clarification(
+    request: ClarificationRequest,
+    orchestrator: CVOrchestrator = Depends(get_orchestrator)
+):
+    """
+    Endpoint de chat con capacidad de clarificación automática
+    
+    Analiza la consulta y genera preguntas de aclaración si es necesario
+    antes de procesar la respuesta completa.
+    """
+    try:
+        logger.info(f"Consulta con clarificación de {request.session_id}: {request.message[:50]}...")
+        
+        # Procesar con clarificación
+        result = orchestrator.process_query_with_clarification(
+            query=request.message,
+            session_id=request.session_id,
+            enable_clarification=True
+        )
+        
+        if result.get("needs_clarification", False):
+            return ClarificationResponse(
+                needs_clarification=True,
+                clarifying_questions=result.get("clarifying_questions", []),
+                original_query=request.message,
+                timestamp=datetime.now().isoformat()
+            )
+        else:
+            # Si no necesita clarificación, devolver respuesta directa
+            return ClarificationResponse(
+                needs_clarification=False,
+                clarifying_questions=[],
+                original_query=request.message,
+                timestamp=datetime.now().isoformat()
+            )
+        
+    except Exception as e:
+        logger.error(f"Error en endpoint /chat/clarify: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error procesando clarificación: {str(e)}"
+        )
+
+class MultiQueryRequest(BaseModel):
+    """Modelo para búsqueda multi-query"""
+    queries: List[str] = Field(description="Lista de consultas refinadas")
+    document_types: Optional[List[str]] = Field(default=None, description="Tipos de documentos")
+    session_id: str = Field(default="anonymous", description="ID de sesión")
+
+@app.post("/search/multi-query")
+async def multi_query_search(
+    request: MultiQueryRequest,
+    orchestrator: CVOrchestrator = Depends(get_orchestrator)
+):
+    """
+    Endpoint para búsqueda con múltiples consultas refinadas
+    
+    Ejecuta varias consultas y fusiona los resultados para mayor recall.
+    """
+    try:
+        logger.info(f"Búsqueda multi-query con {len(request.queries)} consultas")
+        
+        result = orchestrator.multi_query_search(
+            queries=request.queries,
+            document_types=request.document_types
+        )
+        
+        return {
+            "success": result["success"],
+            "results": [
+                {
+                    "content": r.content,
+                    "score": r.score,
+                    "metadata": r.metadata
+                } for r in result.get("results", [])
+            ],
+            "total_found": result.get("total_found", 0),
+            "queries_used": result.get("queries_used", []),
+            "timestamp": datetime.now().isoformat()
+        }
+        
+    except Exception as e:
+        logger.error(f"Error en endpoint /search/multi-query: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error en búsqueda multi-query: {str(e)}"
+        )
+
 @app.get("/stats", response_model=StatsResponse)
 async def get_stats(
     orchestrator: CVOrchestrator = Depends(get_orchestrator),

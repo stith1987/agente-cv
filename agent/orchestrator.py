@@ -23,6 +23,8 @@ from agent.prompts import (
     format_error_response,
     format_no_results_response
 )
+from agent.clarifier import ClarifierAgent
+from agent.email_agent import EmailAgent
 
 # Para LLM
 from openai import OpenAI
@@ -62,7 +64,12 @@ class CVOrchestrator:
             self.retriever = SemanticRetriever()
             self.faq_tool = FAQSQLTool()
             self.notification_manager = NotificationManager()
-            logger.info("Herramientas inicializadas correctamente")
+            
+            # Nuevos agentes especializados
+            self.clarifier = ClarifierAgent()
+            self.email_agent = EmailAgent()
+            
+            logger.info("Herramientas y agentes inicializados correctamente")
         except Exception as e:
             logger.error(f"Error inicializando herramientas: {e}")
             raise
@@ -241,6 +248,84 @@ class CVOrchestrator:
                 "total_sources": 0
             }
     
+    def generate_clarifying_questions(self, query: str, context: str = "") -> Dict[str, Any]:
+        """
+        Genera preguntas de aclaración para consultas ambiguas
+        
+        Args:
+            query: Consulta original del usuario
+            context: Contexto adicional para refinar las preguntas
+            
+        Returns:
+            Dict con preguntas generadas y metadata
+        """
+        try:
+            questions = self.clarifier.generate_clarifying_questions(query, context)
+            
+            return {
+                "success": True,
+                "questions": questions,
+                "original_query": query,
+                "should_clarify": len(questions) > 0,
+                "clarification_needed": True
+            }
+            
+        except Exception as e:
+            logger.error(f"Error generando preguntas de aclaración: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+                "questions": [],
+                "should_clarify": False,
+                "clarification_needed": False
+            }
+    
+    def multi_query_search(
+        self, 
+        queries: List[str], 
+        document_types: Optional[List[str]] = None
+    ) -> Dict[str, Any]:
+        """
+        Ejecuta búsqueda con múltiples consultas refinadas
+        
+        Args:
+            queries: Lista de consultas refinadas
+            document_types: Tipos de documentos a filtrar
+            
+        Returns:
+            Resultados fusionados de todas las consultas
+        """
+        try:
+            # Usar el nuevo método multi-query del retriever
+            results = self.retriever.retrieve_multi(queries)
+            
+            # Filtrar por tipos de documento si se especifica
+            if document_types:
+                filtered_results = []
+                for result in results:
+                    doc_type = result.metadata.get("document_type", "")
+                    if doc_type in document_types:
+                        filtered_results.append(result)
+                results = filtered_results
+            
+            return {
+                "success": True,
+                "results": results,
+                "total_found": len(results),
+                "queries_used": queries,
+                "formatted_context": self.retriever.format_results_for_context(results)
+            }
+            
+        except Exception as e:
+            logger.error(f"Error en búsqueda multi-query: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+                "results": [],
+                "total_found": 0,
+                "formatted_context": ""
+            }
+    
     def _merge_results(
         self,
         rag_results: Optional[Dict[str, Any]],
@@ -392,6 +477,54 @@ Por favor, proporciona una respuesta completa, precisa y profesional basada úni
             logger.error(f"Error generando respuesta LLM: {e}")
             return format_error_response("LLM Error", str(e))
     
+    def process_query_with_clarification(
+        self,
+        query: str,
+        session_id: str = "anonymous",
+        enable_clarification: bool = True
+    ) -> Dict[str, Any]:
+        """
+        Procesar consulta con capacidad de clarificación automática
+        
+        Args:
+            query: Consulta del usuario
+            session_id: ID de sesión
+            enable_clarification: Si permitir preguntas de aclaración
+            
+        Returns:
+            Respuesta con posibles preguntas de aclaración
+        """
+        try:
+            # 1. Clasificar consulta inicial
+            classification = self.classify_query(query)
+            
+            # 2. Si la consulta es ambigua o tiene baja confianza, generar preguntas
+            if (enable_clarification and 
+                (classification.confidence < 60 or 
+                 classification.category in ["AMBIGUOUS", "COMPLEX"])):
+                
+                clarification = self.generate_clarifying_questions(query)
+                
+                if clarification["should_clarify"]:
+                    return {
+                        "needs_clarification": True,
+                        "clarifying_questions": clarification["questions"],
+                        "original_query": query,
+                        "classification": classification.__dict__,
+                        "suggested_action": "Please answer one or more questions to get a better response"
+                    }
+            
+            # 3. Procesar normalmente si no necesita clarificación
+            return self.process_query(query, session_id, notify_important=False)
+            
+        except Exception as e:
+            logger.error(f"Error en procesamiento con clarificación: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+                "needs_clarification": False
+            }
+
     def process_query(
         self,
         query: str,
@@ -514,6 +647,45 @@ Por favor, proporciona una respuesta completa, precisa y profesional basada úni
                 "error": str(e),
                 "processing_time": (datetime.now() - start_time).total_seconds(),
                 "success": False
+            }
+    
+    def handoff_to_email(
+        self,
+        query: str,
+        response: str,
+        user_email: str,
+        session_id: str = "anonymous"
+    ) -> Dict[str, Any]:
+        """
+        Realizar handoff a email agent para envío de resumen
+        
+        Args:
+            query: Consulta original
+            response: Respuesta generada
+            user_email: Email del usuario
+            session_id: ID de sesión
+            
+        Returns:
+            Resultado del envío del email
+        """
+        try:
+            # Usar el email agent para enviar resumen
+            result = self.email_agent.send_query_summary(
+                query=query,
+                response=response,
+                recipient_email=user_email,
+                session_id=session_id
+            )
+            
+            logger.info(f"Handoff a email agent: {'exitoso' if result['success'] else 'falló'}")
+            return result
+            
+        except Exception as e:
+            logger.error(f"Error en handoff a email: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+                "handoff_completed": False
             }
             self.query_log.append(error_log_entry)
             

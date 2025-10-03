@@ -150,6 +150,68 @@ class SemanticRetriever:
         """Buscar específicamente en recortes/citas"""
         return self.search_by_document_type(query, "clip", top_k)
     
+    def retrieve_multi(
+        self, 
+        queries: List[str], 
+        k_per_query: int = 3,
+        max_total_results: int = 8
+    ) -> List[SearchResult]:
+        """
+        Fusiona resultados de varias consultas refinadas para mayor recall
+        
+        Args:
+            queries: Lista de consultas refinadas
+            k_per_query: Resultados por consulta individual
+            max_total_results: Máximo número de resultados finales
+            
+        Returns:
+            Lista fusionada y deduplicada de resultados
+        """
+        try:
+            all_hits = []
+            
+            # Ejecutar búsqueda para cada consulta
+            for i, query in enumerate(queries):
+                try:
+                    hits = self.search(query, top_k=k_per_query)
+                    
+                    # Agregar metadata de la consulta origen
+                    for hit in hits:
+                        hit.metadata = hit.metadata or {}
+                        hit.metadata["source_query"] = query
+                        hit.metadata["query_index"] = i
+                        all_hits.append(hit)
+                        
+                except Exception as e:
+                    logger.warning(f"Error en consulta '{query}': {e}")
+                    continue
+            
+            # Deduplicar por contenido y fuente
+            seen_keys = set()
+            fused_results = []
+            
+            for hit in all_hits:
+                # Crear clave única basada en fuente y contenido
+                source = hit.metadata.get("source", hit.metadata.get("filename", "unknown"))
+                content_preview = hit.content[:120] if hit.content else ""
+                dedup_key = (source, content_preview)
+                
+                if dedup_key not in seen_keys:
+                    seen_keys.add(dedup_key)
+                    fused_results.append(hit)
+            
+            # Ordenar por score y limitar resultados
+            fused_results.sort(key=lambda x: x.score, reverse=True)
+            final_results = fused_results[:max_total_results]
+            
+            logger.info(f"Multi-query search: {len(queries)} consultas, {len(all_hits)} hits totales, {len(final_results)} únicos")
+            
+            return final_results
+            
+        except Exception as e:
+            logger.error(f"Error en búsqueda multi-query: {e}")
+            return []
+    
     def multi_query_search(self, queries: List[str], top_k: Optional[int] = None) -> Dict[str, List[SearchResult]]:
         """
         Realizar múltiples búsquedas y retornar resultados agrupados
