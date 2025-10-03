@@ -108,13 +108,14 @@ graph TD
 ## 🎭 **Patrones de Diseño Agentic Implementados**
 
 ### **1. Orchestrator Pattern (Patrón Orquestador)**
+
 ```python
 # CVOrchestrator - Coordinador central del agente
 class CVOrchestrator:
     def process_query(self, query: str) -> Dict[str, Any]:
         # 1. Clasificar consulta
         classification = self.classify_query(query)
-        
+
         # 2. Enrutar a herramientas apropiadas
         if classification.recommended_tool == "FAQ_ONLY":
             results = self.search_faq(query)
@@ -122,7 +123,7 @@ class CVOrchestrator:
             results = self.search_rag(query)
         else:
             results = self.combined_search(query)
-        
+
         # 3. Generar respuesta final
         return self.generate_response(query, context, classification)
 ```
@@ -131,13 +132,14 @@ class CVOrchestrator:
 **🎯 Función**: Coordina todas las herramientas y toma decisiones sobre flujo de procesamiento
 
 ### **2. ReAct Pattern (Reasoning + Acting)**
+
 ```python
 # Ciclo de razonamiento y acción
 def classify_query(self, query: str) -> QueryClassification:
     """REASONING: Analizar la consulta antes de actuar"""
     classification_prompt = format_classification_prompt(query)
     response = self.openai_client.chat.completions.create(...)
-    
+
     # ACTING: Ejecutar herramientas basado en el razonamiento
     if classification.recommended_tool == "COMBINED":
         return self.combined_search(query)
@@ -147,18 +149,19 @@ def classify_query(self, query: str) -> QueryClassification:
 **🎯 Función**: Razonar antes de actuar, clasificar consultas para optimizar herramientas
 
 ### **3. Tool Use Pattern (Uso de Herramientas)**
+
 ```python
 # Conjunto especializado de herramientas
 class CVOrchestrator:
     def __init__(self):
         self.retriever = SemanticRetriever()      # RAG Tool
-        self.faq_tool = FAQSQLTool()              # FAQ Tool  
+        self.faq_tool = FAQSQLTool()              # FAQ Tool
         self.notification_manager = NotificationManager()  # Notification Tool
-        
+
     def combined_search(self, query: str):
         """Combinación inteligente de múltiples herramientas"""
         rag_results = self.search_rag(query, top_k=3)
-        faq_results = self.search_faq(query, limit=3) 
+        faq_results = self.search_faq(query, limit=3)
         return self._merge_results(rag_results, faq_results)
 ```
 
@@ -166,6 +169,7 @@ class CVOrchestrator:
 **🎯 Función**: Múltiples herramientas especializadas trabajando coordinadamente
 
 ### **4. RAG Pattern (Retrieval-Augmented Generation)**
+
 ```python
 # Sistema RAG completo
 class SemanticRetriever:
@@ -173,11 +177,11 @@ class SemanticRetriever:
         # 1. RETRIEVAL: Búsqueda semántica
         query_embedding = self.embedding_model.encode([query])
         results = self.collection.query(query_embeddings=[query_embedding])
-        
+
         # 2. AUGMENTATION: Formatear contexto para LLM
         return self._format_search_results(results)
 
-def generate_response(self, query: str, context: str):  
+def generate_response(self, query: str, context: str):
     # 3. GENERATION: LLM con contexto recuperado
     response = self.openai_client.chat.completions.create(
         messages=[
@@ -191,12 +195,13 @@ def generate_response(self, query: str, context: str):
 **🎯 Función**: Recuperación semántica + generación aumentada con contexto
 
 ### **5. Chain of Thought Pattern (Cadena de Pensamiento)**
+
 ```python
 # Proceso de pensamiento estructurado en prompts
 SYSTEM_PROMPT_BASE = """
 ## Instrucciones de Comportamiento
 1. **Precisión:** Responde solo con información respaldada
-2. **Profesionalismo:** Mantén tono profesional pero accesible  
+2. **Profesionalismo:** Mantén tono profesional pero accesible
 3. **Contexto:** Proporciona contexto relevante
 4. **Claridad:** Explica conceptos técnicos cuando sea necesario
 5. **Honestidad:** Si no tienes información, dilo claramente
@@ -213,6 +218,7 @@ SYSTEM_PROMPT_BASE = """
 **🎯 Función**: Estructurar el razonamiento del LLM paso a paso
 
 ### **6. Multi-Modal Pattern (Múltiples Modalidades)**
+
 ```python
 # Diferentes tipos de datos y procesamiento
 def combined_search(self, query: str):
@@ -221,7 +227,7 @@ def combined_search(self, query: str):
         "faq_results": None,        # Datos estructurados Q&A
         "combined_summary": "",     # Síntesis multi-modal
     }
-    
+
     # Fusionar diferentes modalidades de información
     return self._merge_results(rag_results, faq_results, merge_strategy)
 ```
@@ -230,13 +236,14 @@ def combined_search(self, query: str):
 **🎯 Función**: Combinar datos estructurados (FAQ) y no estructurados (documentos)
 
 ### **7. Evaluation Pattern (Patrón de Evaluación)**
+
 ```python
 # Sistema de evaluación y mejora continua
 class ResponseEvaluator:
     def evaluate_response(self, query: str, response: str, context: str):
         """Evaluar calidad de respuesta"""
         return EvaluationResult(score, confidence, improvements)
-    
+
     def self_critique(self, query: str, response: str, tools_used: List[str]):
         """Auto-crítica y recomendaciones"""
         return {"critique": analysis, "recommendations": suggestions}
@@ -246,13 +253,14 @@ class ResponseEvaluator:
 **🎯 Función**: Evaluación automática de calidad y mejora continua
 
 ### **8. Memory Pattern (Patrón de Memoria)**
+
 ```python
 # Sistema de logging y memoria de sesión
 class CVOrchestrator:
     def __init__(self):
         self.query_log = []           # Memoria de consultas
         self.session_stats = {}       # Estadísticas de sesión
-        
+
     def process_query(self, query: str):
         # Almacenar en memoria para contexto futuro
         query_log_entry = {
@@ -269,15 +277,16 @@ class CVOrchestrator:
 **🎯 Función**: Mantener contexto de sesión y aprendizaje de patrones
 
 ### **9. Notification Pattern (Patrón de Notificación)**
+
 ```python
 # Sistema de alertas y monitoreo
 class NotificationManager:
     def send_query_notification(self, user_query: str, response_summary: str):
         """Notificar consultas importantes"""
-        
+
     def send_error_notification(self, error_message: str, context: dict):
         """Alertar sobre errores críticos"""
-        
+
 # Integración en orquestador
 if notify_important and classification.confidence > 80:
     self.notification_manager.send_query_notification(query, response)
@@ -287,6 +296,7 @@ if notify_important and classification.confidence > 80:
 **🎯 Función**: Monitoreo proactivo y alertas inteligentes
 
 ### **10. Schema-Driven Pattern (Patrón Dirigido por Esquemas)**
+
 ```python
 # Validación y estructura de datos con Pydantic
 class RAGSearchParams(BaseModel):
@@ -312,39 +322,39 @@ class QueryClassification:
 ```python
 def process_query(self, query: str) -> Dict[str, Any]:
     """Implementación completa del patrón agentic"""
-    
+
     # 1. PERCEPTION: Percibir y clasificar entrada
     classification = self.classify_query(query)  # ReAct Pattern
-    
-    # 2. PLANNING: Planificar estrategia de herramientas  
+
+    # 2. PLANNING: Planificar estrategia de herramientas
     if classification.recommended_tool == "FAQ_ONLY":
         strategy = "faq_search"
-    elif classification.recommended_tool == "RAG_ONLY": 
+    elif classification.recommended_tool == "RAG_ONLY":
         strategy = "rag_search"
     else:
         strategy = "combined_search"  # Tool Use Pattern
-    
+
     # 3. EXECUTION: Ejecutar herramientas
     if strategy == "combined_search":
         results = self.combined_search(query)  # Multi-Modal Pattern
     # ... otras estrategias
-    
+
     # 4. REASONING: Razonar sobre resultados
     context = self._merge_results(results)  # RAG Pattern
-    
+
     # 5. GENERATION: Generar respuesta final
     response = self.generate_response(query, context)  # Chain of Thought
-    
+
     # 6. EVALUATION: Evaluar calidad
     evaluation = self.evaluator.evaluate_response(query, response)  # Evaluation Pattern
-    
+
     # 7. MEMORY: Almacenar experiencia
     self.query_log.append(query_log_entry)  # Memory Pattern
-    
+
     # 8. NOTIFICATION: Alertas si es importante
     if classification.confidence > 80:
         self.notification_manager.send_query_notification(query, response)
-    
+
     return {
         "success": True,
         "response": response,
@@ -802,32 +812,39 @@ python -c "from agent.orchestrator import CVOrchestrator; o=CVOrchestrator(); pr
 ## 🆕 **NUEVAS CAPACIDADES AGENTIC IMPLEMENTADAS** (Octubre 2025)
 
 ### **🤔 Clarifier Agent - 3 Preguntas de Aclaración**
+
 ```python
 # Nuevo agente especializado en clarificación automática
 clarifier = ClarifierAgent()
 questions = clarifier.generate_clarifying_questions("¿Qué sabes hacer?")
 # Resultado: ['¿En qué tipo de roles...?', '¿Qué tecnologías...?', '¿Qué logros...?']
 ```
+
 **Características:**
+
 - Genera exactamente 3 preguntas contextuales
 - Sistema de fallback inteligente
 - Integración con OpenAI GPT
 - Detección automática de consultas ambiguas
 
 ### **🔍 Multi-Query Search - Fusión de Resultados**
+
 ```python
 # Búsqueda con múltiples consultas refinadas
 queries = ["experiencia técnica", "proyectos cloud", "liderazgo desarrollo"]
 results = orchestrator.multi_query_search(queries)
 # Fusiona y deduplica resultados automáticamente
 ```
+
 **Características:**
+
 - Deduplicación por contenido y fuente
 - Fusión de scores para ranking óptimo
 - Filtrado por tipos de documento
 - Mayor recall en búsquedas complejas
 
 ### **📧 Email Handoff Agent - Delegación Especializada**
+
 ```python
 # Handoff automático a email agent
 result = orchestrator.handoff_to_email(
@@ -836,27 +853,33 @@ result = orchestrator.handoff_to_email(
     user_email="cliente@empresa.com"
 )
 ```
+
 **Características:**
+
 - Templates HTML automáticos
 - Configuración SMTP flexible
 - Sistema de fallback robusto
 - Integración con flujo principal
 
 ### **🔧 Agents-as-Tools Pattern - Arquitectura Modular**
+
 ```python
 # Los agentes funcionan como herramientas especializadas
 # Nuevos schemas formalizados:
 PLANNER_SCHEMA   # Para análisis y planificación
-SEARCH_SCHEMA    # Para búsquedas multi-query  
+SEARCH_SCHEMA    # Para búsquedas multi-query
 WRITER_SCHEMA    # Para síntesis de respuestas
 ```
+
 **Características:**
+
 - Schemas JSON formalizados
 - Integración transparente
 - Composición de agentes
 - Escalabilidad mejorada
 
 ### **🧠 Contextual Query Processing - Procesamiento Inteligente**
+
 ```python
 # Procesamiento con clarificación automática
 result = orchestrator.process_query_with_clarification(
@@ -865,16 +888,19 @@ result = orchestrator.process_query_with_clarification(
 )
 # Auto-detecta ambigüedad y activa clarificación según confianza
 ```
+
 **Características:**
+
 - Análisis de confianza automático
 - Activación inteligente de clarificación
 - Flujo de decisión adaptativo
 - Experiencia de usuario proactiva
 
 ### **📊 Estado de Implementación Agentic**
+
 ```
 ✅ PATRONES BÁSICOS        : 10 patrones implementados (ReAct, Tool Use, RAG, etc.)
-✅ CLARIFIER AGENT         : Preguntas automáticas de aclaración  
+✅ CLARIFIER AGENT         : Preguntas automáticas de aclaración
 ✅ MULTI-QUERY SEARCH      : Fusión inteligente de resultados
 ✅ EMAIL HANDOFF AGENT     : Delegación a sistemas externos
 ✅ AGENTS-AS-TOOLS         : Arquitectura modular escalable
