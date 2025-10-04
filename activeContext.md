@@ -99,34 +99,38 @@ graph TD
 ### **Stack Tecnológico (Verificado)**
 
 #### **Backend Core**
+
 - **🐍 Python 3.11+**: Lenguaje principal (compatible con .venv actual)
 - **⚡ FastAPI 0.104.1**: Framework web moderno con docs automáticas
 - **🎨 Gradio 4.7.1**: Interfaz web interactiva y responsiva
 - **🔄 Uvicorn 0.24.0**: Servidor ASGI de alto rendimiento
 
 #### **Inteligencia Artificial**
+
 - **🤖 OpenAI API >=1.6.1**: GPT-3.5-turbo/GPT-4 completamente integrado
 - **🧠 LangChain >=0.1.0**: Framework para aplicaciones LLM
 - **📊 Sentence Transformers >=2.2.2**: `all-MiniLM-L6-v2` activo
 - **🔍 ChromaDB >=0.4.20**: Base vectorial con 59 embeddings
 
 #### **Procesamiento de Datos**
+
 - **📈 Pandas >=2.2.0**: Manipulación y análisis de datos
 - **🔢 NumPy >=1.26.0**: Computación numérica optimizada
 - **📝 Markdown 3.5.1**: Procesamiento documentos MD
+
 ---
 
 ## 📈 **Métricas de Rendimiento (Actuales)**
 
 ### **� Tiempos de Respuesta**
 
-| Componente | Tiempo Promedio | Estado |
-|------------|-----------------|--------|
-| 🎛️ Orquestador | <3 segundos | ✅ Óptimo |
-| 🔍 Búsqueda RAG | <1 segundo | ✅ Excelente |
-| 📊 Consulta FAQ | <0.5 segundos | ✅ Instantáneo |
-| 🧠 Generación GPT | 2-4 segundos | ✅ Normal |
-| 📬 Notificación | <2 segundos | ✅ Rápido |
+| Componente        | Tiempo Promedio | Estado         |
+| ----------------- | --------------- | -------------- |
+| 🎛️ Orquestador    | <3 segundos     | ✅ Óptimo      |
+| 🔍 Búsqueda RAG   | <1 segundo      | ✅ Excelente   |
+| 📊 Consulta FAQ   | <0.5 segundos   | ✅ Instantáneo |
+| 🧠 Generación GPT | 2-4 segundos    | ✅ Normal      |
+| 📬 Notificación   | <2 segundos     | ✅ Rápido      |
 
 ### **📊 Capacidad del Sistema**
 
@@ -155,24 +159,28 @@ graph TD
 ## 🔍 **Formas de Ejecución Disponibles**
 
 ### **1. 🚀 Sistema Completo (Recomendado)**
+
 ```bash
 python run_full_app.py
 # → API (8000) + UI (7860) simultáneos
 ```
 
 ### **2. 🎨 Solo Interfaz Web**
+
 ```bash
 python run_ui_only.py
 # → Solo Gradio UI (7860)
 ```
 
 ### **3. 🖥️ Script Windows**
+
 ```cmd
 start_app.bat
 # → Activación automática + ejecución
 ```
 
 ### **4. 🔧 API Desarrollo**
+
 ```bash
 python api\app.py
 # → Solo FastAPI (8000) para desarrollo
@@ -183,19 +191,22 @@ python api\app.py
 ## 🏆 **Validaciones y Testing**
 
 ### **🧪 Tests Disponibles**
+
 - ✅ `test_agentic.py` - Patrones conversacionales
 - ✅ `test_refactoring.py` - Validación arquitectura
 - ✅ Health checks en `/health`
 - ✅ Documentación API en `/docs`
 
 ### **📈 Métrica SQLites de Calidad**
-- **Cocon FAQs
+
+- \*\*Cocon FAQs
 
 #### **Herramientas y Utilidades**
-- **📧 Requests 2.31.0**: Cliente HTTP parertura Pu documentación**: 100% componenteshov
+
+- **📧 Requests 2.31.0**: Cliente HTTP parertura Pu documentación\*\*: 100% componenteshov
 - **Funcionalidad core**: 100% operativa
-- **Integracioner API
-- **🔍s**: 100% Python-conectadotenv 1.0.0**: Gestión variablas
+- \*\*Integracioner API
+- **🔍s**: 100% Python-conectadotenv 1.0.0\*\*: Gestión variablas
 - **Performance**: Des entorno
 - **📊 Pydantic 2.5.0**: Validaciónntro de parámetros óptos y mimodelos
 - **📄 Loguru 0.7.2**: Sistema logging avanzado
@@ -215,6 +226,7 @@ python api\app.py
 **🟢 Confirmación**: El Agente de CV Inteligente está **completamente funcional** y listo para uso en producción. Todos los componentes han sido validados, la documentación está actualizada y sincronizada con la realidad del código.
 
 **🎯 Próximos pasos**:
+
 1. ✅ **Documentación actualizada** - Completado
 2. ✅ **Sistema validado** - Completado
 3. ✅ **Múltiples launchers** - Completado

@@ -122,6 +122,7 @@ python run_full_app.py
 ```
 
 **Servicios disponibles:**
+
 - 🌐 **API REST**: `http://localhost:8000` (con documentación en `/docs`)
 - 💻 **Interfaz Web**: `http://localhost:7860`
 
@@ -158,6 +159,7 @@ Content-Type: application/json
 ```
 
 **Otros endpoints:**
+
 - `GET /health` - Estado del sistema
 - `GET /stats` - Estadísticas de uso
 - `POST /notifications/test` - Test de notificaciones
@@ -215,15 +217,15 @@ LOG_LEVEL=INFO
 
 ### 🔑 Variables Críticas
 
-| Variable | Requerido | Descripción | Default |
-|----------|-----------|-------------|---------|
-| `OPENAI_API_KEY` | ✅ **Sí** | Clave API de OpenAI | - |
-| `OPENAI_MODEL` | ❌ No | Modelo GPT a usar | `gpt-3.5-turbo` |
-| `VECTORDB_PATH` | ❌ No | Ruta ChromaDB | `./storage/vectordb/` |
-| `SQLITE_DB_PATH` | ❌ No | Ruta base FAQs | `./storage/sqlite/faq.db` |
-| `TOP_K_RESULTS` | ❌ No | Resultados RAG | `5` |
-| `PORT` | ❌ No | Puerto API | `8000` |
-| `GRADIO_PORT` | ❌ No | Puerto UI | `7860` |
+| Variable         | Requerido | Descripción         | Default                   |
+| ---------------- | --------- | ------------------- | ------------------------- |
+| `OPENAI_API_KEY` | ✅ **Sí** | Clave API de OpenAI | -                         |
+| `OPENAI_MODEL`   | ❌ No     | Modelo GPT a usar   | `gpt-3.5-turbo`           |
+| `VECTORDB_PATH`  | ❌ No     | Ruta ChromaDB       | `./storage/vectordb/`     |
+| `SQLITE_DB_PATH` | ❌ No     | Ruta base FAQs      | `./storage/sqlite/faq.db` |
+| `TOP_K_RESULTS`  | ❌ No     | Resultados RAG      | `5`                       |
+| `PORT`           | ❌ No     | Puerto API          | `8000`                    |
+| `GRADIO_PORT`    | ❌ No     | Puerto UI           | `7860`                    |
 
 ### Personalización
 
@@ -303,18 +305,21 @@ python -c "from tools.faq_sql import get_faq_answer; print(get_faq_answer('exper
 ## � Roadmap y Mejoras Futuras
 
 ### 🔥 En Desarrollo
+
 - [ ] Dashboard de analytics y métricas de uso
 - [ ] Integración con calendarios (Google Calendar)
 - [ ] Export de respuestas a PDF/Word
 - [ ] Plugin para LinkedIn y redes sociales
 
 ### 🔮 Planificado
+
 - [ ] Soporte multilingüe (ES/EN)
 - [ ] Integración con más LLMs (Claude, Gemini)
 - [ ] Chat persistente con historial
 - [ ] API webhooks para integraciones
 
 ### 🌱 Ideas Futuras
+
 - [ ] Generación automática de propuestas
 - [ ] Integración con CRM (HubSpot, Salesforce)
 - [ ] Análisis de sentimientos en conversaciones
@@ -336,7 +341,7 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 **Eduardo** - Desarrollador de IA y Arquitecto de Software  
 📧 Email: [Contacto directo vía GitHub](https://github.com/stith1987/agente-cv/issues)  
-🔗 Repositorio: [`stith1987/agente-cv`](https://github.com/stith1987/agente-cv)  
+🔗 Repositorio: [`stith1987/agente-cv`](https://github.com/stith1987/agente-cv)
 
 ---
 

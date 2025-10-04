@@ -112,6 +112,7 @@ agente-cv/
 8. **Envía notificación** si está configurado
 
 **Métricas Actuales**:
+
 - **Precisión routing**: >90% (basado en tests)
 - **Tiempo respuesta**: <3 segundos promedio
 - **Herramientas disponibles**: 3 (RAG, FAQ, Notificaciones)
@@ -144,6 +145,7 @@ agente-cv/
 - � **Velocidad**: <1 segundo por búsqueda semántica
 
 **Documentos Indexados**:
+
 - `cv.md` - Curriculum vitae completo
 - `proyectos/01-banca-digital.md` - Proyecto bancario
 - `proyectos/02-arch-enterprise.md` - Arquitectura empresarial
