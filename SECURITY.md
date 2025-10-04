@@ -19,8 +19,8 @@ We appreciate your efforts to responsibly disclose security vulnerabilities. If 
 
 Instead, please report security vulnerabilities by:
 
-1. **Email**: Send details to `security@ejemplo.com`
-2. **Subject**: Include `[SECURITY]` in the subject line
+1. **GitHub Issues**: Create a private security advisory via GitHub
+2. **Contact**: Reach out through the repository owner `stith1987`
 3. **Details**: Include as much information as possible:
    - Description of the vulnerability
    - Steps to reproduce

@@ -34,7 +34,7 @@ Para problemas técnicos, bugs o errores:
    - 💡 Feature Request
    - ❓ Question
 
-#### ⚡ Problemas Comunes
+#### ⚡ Problemas Comunes y Soluciones
 
 <details>
 <summary><strong>🔑 Error: OpenAI API Key no configurada</strong></summary>
@@ -47,7 +47,68 @@ ERROR: OPENAI_API_KEY no está configurada
 
 1. Crea un archivo `.env` en la raíz del proyecto
 2. Agrega tu clave: `OPENAI_API_KEY=tu_clave_aqui`
-3. Reinicia la aplicación
+3. Usa modelo: `OPENAI_MODEL=gpt-3.5-turbo`
+4. Reinicia la aplicación con cualquier launcher
+
+</details>
+
+<details>
+<summary><strong>🐍 Error: Entorno virtual no activado</strong></summary>
+
+```bash
+ModuleNotFoundError: No module named 'fastapi'
+```
+
+**Solución**:
+
+```bash
+# Windows
+.venv\Scripts\activate
+
+# Linux/Mac  
+source .venv/bin/activate
+
+# Verificar
+pip list | findstr fastapi
+```
+
+</details>
+
+<details>
+<summary><strong>🔌 Error: Puerto en uso</strong></summary>
+
+```bash
+ERROR: Port 8000 is already in use
+```
+
+**Solución**:
+
+```bash
+# Cambiar puerto en .env
+PORT=8001
+
+# O terminar procesos
+taskkill /f /im python.exe
+```
+
+</details>
+
+<details>
+<summary><strong>📊 Error: Base de datos no encontrada</strong></summary>
+
+```bash
+ERROR: ChromaDB collection not found
+```
+
+**Solución**:
+
+```bash
+# Re-indexar documentos
+python -c "from rag.ingest import main; main()"
+
+# Verificar
+python -c "from rag.retriever import RAGRetriever; r=RAGRetriever(); print(f'Docs: {r.get_collection_size()}')"
+```
 
 </details>
 

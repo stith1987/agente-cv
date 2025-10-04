@@ -1,46 +1,77 @@
-# Agente de CV Inteligente
+# 🤖 Agente de CV Inteligente
 
-Un agente de IA avanzado que utiliza RAG (Retrieval-Augmented Generation) y herramientas especializadas para responder preguntas sobre tu CV, proyectos y experiencia profesional.
+Un sistema de inteligencia artificial conversacional avanzado que utiliza **RAG (Retrieval-Augmented Generation)** y herramientas especializadas para responder preguntas inteligentes sobre experiencia profesional, proyectos y habilidades técnicas.
 
-## 🚀 Características
+## ✨ Características Principales
 
-- **RAG Semántico**: Búsqueda inteligente en documentos de CV y proyectos
-- **Base de FAQs**: Sistema SQL para preguntas frecuentes
-- **Evaluación Automática**: LLM evaluador para auto-crítica y mejora
-- **Notificaciones**: Integración con Pushover para alertas
-- **API REST**: Endpoint FastAPI para integración
-- **Interfaz Web**: UI con Gradio (opcional)
-- **Orquestador Inteligente**: Decide automáticamente qué herramienta usar
+- 🔍 **RAG Semántico**: Búsqueda inteligente con ChromaDB y sentence-transformers
+- 📊 **Base de FAQs**: Sistema SQLite para preguntas frecuentes estructuradas
+- 🧠 **Evaluación Automática**: LLM evaluador con auto-crítica y mejora continua
+- 📬 **Notificaciones**: Integración con Pushover para alertas en tiempo real
+- 🌐 **API REST**: FastAPI con documentación automática (OpenAPI/Swagger)
+- 💻 **Interfaz Web**: UI moderna con Gradio para interacción visual
+- 🎛️ **Orquestador Inteligente**: Routing automático de consultas a la herramienta óptima
+- ⚡ **Ejecución Flexible**: Scripts de inicio para API sola o sistema completo
 
 ## 📁 Estructura del Proyecto
 
 ```
-├─ .env.example
-├─ README.md
-├─ requirements.txt
-├─ data/
-│  ├─ cv.md
-│  ├─ proyectos/
-│  │  ├─ 01-banca-digital.md
-│  │  ├─ 02-arch-enterprise.md
-│  └─ recortes/               # citas, publicaciones, talks
-├─ rag/
-│  ├─ ingest.py               # carga e indexa documentos
-│  └─ retriever.py            # búsqueda semántica (top-k)
-├─ tools/
-│  ├─ faq_sql.py              # herramienta SQL (FAQs)
-│  ├─ notify.py               # Pushover u otro canal
-│  └─ tool_schemas.py         # JSON schemas para tool calling
-├─ agent/
-│  ├─ prompts.py              # system / evaluator / planning
-│  ├─ orchestrator.py         # decide: RAG, SQL o directo
-│  └─ evaluator.py            # LLM evaluador (self-critique)
-├─ api/
-│  ├─ app.py                  # FastAPI (endpoint /chat)
-│  └─ ui_gradio.py            # Interfaz web (opcional)
-└─ storage/
-   ├─ vectordb/               # Chroma/FAISS index
-   └─ sqlite/faq.db           # base de FAQs
+├── README.md                     # 📖 Este archivo
+├── requirements.txt              # 📦 Dependencias Python
+├── run_full_app.py              # 🚀 Launcher: API + UI
+├── run_ui_only.py               # 🎨 Launcher: Solo UI
+├── start_app.bat                # 🖥️ Script Windows
+├── test_agentic.py              # 🧪 Test de patrones agénticos
+├── test_refactoring.py          # 🔧 Validación refactoring
+│
+├── 📚 data/                     # Conocimiento base
+│   ├── cv.md                    # CV personal completo
+│   ├── proyectos/               # Proyectos específicos
+│   │   ├── 01-banca-digital.md
+│   │   └── 02-arch-enterprise.md
+│   └── recortes/                # Artículos y experiencias
+│       ├── articulo-fintech-microservices.md
+│       ├── devops-days-2023.md
+│       └── workshop-kubernetes-2022.md
+│
+├── 🧠 agent/                    # Motor de IA
+│   ├── orchestrator.py          # Lógica central de routing
+│   ├── evaluator.py             # Sistema de evaluación
+│   ├── clarifier.py             # Clarificación de consultas
+│   ├── email_agent.py           # Agente de emails
+│   └── prompts.py               # Templates de prompts
+│
+├── 🌐 api/                      # Interfaces web
+│   ├── app.py                   # FastAPI principal (refactorizado)
+│   ├── ui_gradio.py             # Interfaz Gradio
+│   ├── dependencies.py          # Inyección de dependencias
+│   ├── exceptions.py            # Manejo de errores
+│   ├── background_tasks.py      # Tareas asíncronas
+│   ├── models/                  # Modelos Pydantic
+│   │   ├── requests.py
+│   │   └── responses.py
+│   └── routes/                  # Endpoints organizados
+│       ├── chat.py
+│       ├── health.py
+│       ├── stats.py
+│       └── notifications.py
+│
+├── 🔍 rag/                      # Sistema RAG
+│   ├── ingest.py                # Indexación de documentos
+│   └── retriever.py             # Búsqueda semántica
+│
+├── 🛠️ tools/                   # Herramientas especializadas
+│   ├── faq_sql.py               # FAQ con SQLite
+│   ├── notify.py                # Notificaciones Pushover
+│   └── tool_schemas.py          # Esquemas JSON
+│
+├── 💾 storage/                  # Bases de datos
+│   ├── vectordb/                # ChromaDB (vector embeddings)
+│   └── sqlite/                  # SQLite (FAQs estructuradas)
+│       └── faq.db
+│
+└── 📄 examples/                 # Ejemplos y demos
+    └── agentic_patterns_demo.py
 ```
 
 ## 🛠️ Instalación
@@ -77,56 +108,122 @@ Un agente de IA avanzado que utiliza RAG (Retrieval-Augmented Generation) y herr
    python -m rag.ingest
    ```
 
-## 🚦 Uso
+## 🚦 Formas de Ejecución
 
-### API REST
+### ⚡ Opción 1: Sistema Completo (Recomendado)
 
 ```bash
-python -m api.app
+# Activa el entorno virtual
+.venv\Scripts\activate  # Windows
+source .venv/bin/activate  # Linux/Mac
+
+# Ejecuta API + UI simultáneamente
+python run_full_app.py
 ```
 
-La API estará disponible en `http://localhost:8000`
+**Servicios disponibles:**
+- 🌐 **API REST**: `http://localhost:8000` (con documentación en `/docs`)
+- 💻 **Interfaz Web**: `http://localhost:7860`
+
+### 🎨 Opción 2: Solo Interfaz Web
+
+```bash
+python run_ui_only.py
+```
+
+### 🖥️ Opción 3: Script Windows (Automático)
+
+```cmd
+start_app.bat
+```
+
+### 🔧 Opción 4: Solo API (Desarrollo)
+
+```bash
+python api\app.py
+```
+
+### 📡 Uso de la API
 
 **Endpoint principal:**
 
 ```bash
-POST /chat
+POST http://localhost:8000/chat
+Content-Type: application/json
+
 {
   "message": "¿Cuáles son mis principales proyectos de banca digital?",
   "session_id": "user123"
 }
 ```
 
-### Interfaz Web
+**Otros endpoints:**
+- `GET /health` - Estado del sistema
+- `GET /stats` - Estadísticas de uso
+- `POST /notifications/test` - Test de notificaciones
 
-```bash
-python -m api.ui_gradio
-```
-
-Accede a `http://localhost:7860` para la interfaz web.
-
-### Uso Programático
+### 💻 Uso Programático
 
 ```python
 from agent.orchestrator import CVOrchestrator
 
+# Inicializar orquestador
 orchestrator = CVOrchestrator()
+
+# Procesar consulta
 response = orchestrator.process_query(
     "¿Qué experiencia tengo en arquitectura empresarial?"
 )
-print(response)
+
+print(f"Respuesta: {response['response']}")
+print(f"Herramientas usadas: {response['tools_used']}")
+print(f"Confianza: {response['confidence']}")
 ```
 
-## 🔧 Configuración
+## ⚙️ Configuración
 
-### Variables de Entorno
+### Variables de Entorno Principales
 
-- `OPENAI_API_KEY`: Tu clave API de OpenAI
-- `OPENAI_MODEL`: Modelo a usar (default: gpt-4)
-- `VECTORDB_PATH`: Ruta de la base de datos vectorial
-- `SQLITE_DB_PATH`: Ruta de la base de datos SQLite
-- `PUSHOVER_TOKEN`: Token de Pushover para notificaciones
-- `TOP_K_RESULTS`: Número de resultados RAG (default: 5)
+Crea un archivo `.env` en la raíz del proyecto:
+
+```env
+# OpenAI Configuration (REQUERIDO)
+OPENAI_API_KEY=sk-tu_clave_aqui
+OPENAI_MODEL=gpt-3.5-turbo  # o gpt-4
+
+# Base de Datos
+VECTORDB_PATH=./storage/vectordb/
+SQLITE_DB_PATH=./storage/sqlite/faq.db
+
+# RAG Configuration
+TOP_K_RESULTS=5
+EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
+
+# Notificaciones (OPCIONAL)
+PUSHOVER_TOKEN=tu_token_pushover
+PUSHOVER_USER_KEY=tu_user_key
+
+# Servidor
+PORT=8000
+GRADIO_PORT=7860
+API_BASE_URL=http://localhost:8000
+
+# Desarrollo
+PYTHONPATH=.
+LOG_LEVEL=INFO
+```
+
+### 🔑 Variables Críticas
+
+| Variable | Requerido | Descripción | Default |
+|----------|-----------|-------------|---------|
+| `OPENAI_API_KEY` | ✅ **Sí** | Clave API de OpenAI | - |
+| `OPENAI_MODEL` | ❌ No | Modelo GPT a usar | `gpt-3.5-turbo` |
+| `VECTORDB_PATH` | ❌ No | Ruta ChromaDB | `./storage/vectordb/` |
+| `SQLITE_DB_PATH` | ❌ No | Ruta base FAQs | `./storage/sqlite/faq.db` |
+| `TOP_K_RESULTS` | ❌ No | Resultados RAG | `5` |
+| `PORT` | ❌ No | Puerto API | `8000` |
+| `GRADIO_PORT` | ❌ No | Puerto UI | `7860` |
 
 ### Personalización
 
@@ -135,47 +232,93 @@ print(response)
 3. **Prompts**: Personaliza en `agent/prompts.py`
 4. **Herramientas**: Añade nuevas tools en `tools/`
 
-## 📊 Componentes
+## 📊 Componentes Técnicos
 
-### RAG (Retrieval-Augmented Generation)
+### 🔍 RAG (Retrieval-Augmented Generation)
 
-- **Ingest**: Procesa y vectoriza documentos markdown
-- **Retriever**: Búsqueda semántica con embeddings
-- **Vector DB**: Almacenamiento eficiente con Chroma/FAISS
+- **Ingest**: Procesa archivos MD con metadatos y chunking inteligente
+- **Embeddings**: `sentence-transformers/all-MiniLM-L6-v2` para vectorización
+- **Vector DB**: ChromaDB para almacenamiento y búsqueda semántica
+- **Retriever**: Top-K similarity search con filtros contextuales
 
-### Sistema de Herramientas
+### 🛠️ Sistema de Herramientas
 
-- **FAQ SQL**: Consultas estructuradas a base de FAQs
-- **Notificaciones**: Alertas push via Pushover
-- **Schemas**: Definiciones JSON para tool calling
+- **FAQ SQL**: SQLAlchemy + SQLite para consultas estructuradas
+- **Notificaciones**: Pushover API para alertas en tiempo real
+- **Tool Schemas**: Pydantic para validación de entrada/salida
+- **Background Tasks**: FastAPI para procesamiento asíncrono
 
-### Agente Inteligente
+### 🧠 Motor de IA
 
-- **Orquestador**: Routing inteligente de consultas
-- **Evaluador**: Auto-crítica y mejora continua
-- **Prompts**: Sistema de prompts especializados
+- **Orquestador**: Lógica de routing con GPT-3.5-turbo/GPT-4
+- **Evaluador**: Sistema de auto-evaluación y mejora continua
+- **Clarificador**: Procesamiento de consultas ambiguas
+- **Email Agent**: Generación de emails profesionales
+- **Prompts**: Templates especializados por tipo de consulta
 
-## 🧪 Testing
+### 🌐 APIs y UI
+
+- **FastAPI**: API REST con documentación automática OpenAPI
+- **Gradio**: Interfaz web moderna y responsiva
+- **CORS**: Configurado para integraciones externas
+- **Health Checks**: Monitoreo de estado de componentes
+
+## 🧪 Testing y Validación
+
+### Scripts de Prueba Incluidos
 
 ```bash
-# Ejecutar tests
-python -m pytest tests/
+# Test completo de patrones agénticos
+python test_agentic.py
 
-# Test específico del RAG
-python -m pytest tests/test_rag.py
-
-# Test del orquestador
-python -m pytest tests/test_orchestrator.py
+# Validación post-refactoring
+python test_refactoring.py
 ```
 
-## 📈 Roadmap
+### Pruebas Manuales
 
-- [ ] Integración con más bases de datos
-- [ ] Soporte para múltiples idiomas
-- [ ] Dashboard de analytics
-- [ ] Integración con calendarios
-- [ ] Export a diferentes formatos
-- [ ] Plugin para LinkedIn
+```bash
+# Test de la API
+curl -X POST http://localhost:8000/chat \
+  -H "Content-Type: application/json" \
+  -d '{"message": "Hola, cuéntame sobre tu experiencia", "session_id": "test"}'
+
+# Health check
+curl http://localhost:8000/health
+
+# Documentación interactiva
+# Abrir: http://localhost:8000/docs
+```
+
+### 🔍 Debugging
+
+```bash
+# Verificar base de datos vectorial
+python -c "from rag.retriever import RAGRetriever; r = RAGRetriever(); print(f'Documentos indexados: {r.get_collection_size()}')"
+
+# Test de herramientas individualmente
+python -c "from tools.faq_sql import get_faq_answer; print(get_faq_answer('experiencia'))"
+```
+
+## � Roadmap y Mejoras Futuras
+
+### 🔥 En Desarrollo
+- [ ] Dashboard de analytics y métricas de uso
+- [ ] Integración con calendarios (Google Calendar)
+- [ ] Export de respuestas a PDF/Word
+- [ ] Plugin para LinkedIn y redes sociales
+
+### 🔮 Planificado
+- [ ] Soporte multilingüe (ES/EN)
+- [ ] Integración con más LLMs (Claude, Gemini)
+- [ ] Chat persistente con historial
+- [ ] API webhooks para integraciones
+
+### 🌱 Ideas Futuras
+- [ ] Generación automática de propuestas
+- [ ] Integración con CRM (HubSpot, Salesforce)
+- [ ] Análisis de sentimientos en conversaciones
+- [ ] Modo voice-to-text para consultas por voz
 
 ## 🤝 Contribuir
 
@@ -189,8 +332,21 @@ python -m pytest tests/test_orchestrator.py
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
 
-## 📞 Contacto
+## � Autor y Contacto
 
-Tu Nombre - tu.email@ejemplo.com
+**Eduardo** - Desarrollador de IA y Arquitecto de Software  
+📧 Email: [Contacto directo vía GitHub](https://github.com/stith1987/agente-cv/issues)  
+🔗 Repositorio: [`stith1987/agente-cv`](https://github.com/stith1987/agente-cv)  
 
-Enlace del Proyecto: [https://github.com/tu-usuario/agente-cv](https://github.com/tu-usuario/agente-cv)
+---
+
+## 🚀 ¿Te Gusta el Proyecto?
+
+Si encuentras útil este agente de CV:
+
+- ⭐ **Dale una estrella** al repositorio
+- 🐛 **Reporta bugs** en [Issues](https://github.com/stith1987/agente-cv/issues)
+- 💬 **Comparte feedback** para mejoras
+- 🤝 **Contribuye** siguiendo la [Guía de Contribución](CONTRIBUTING.md)
+
+🚀 **¡Gracias por usar el Agente de CV Inteligente!**

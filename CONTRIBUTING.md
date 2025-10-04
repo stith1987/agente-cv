@@ -58,26 +58,50 @@ Hay muchas formas de contribuir al proyecto:
 
 ### Prerrequisitos
 
-- Python 3.8+
-- Git
-- Cuenta de OpenAI (para testing completo)
+- **Python 3.11+** (recomendado para compatibilidad completa)
+- **Git** para control de versiones
+- **Cuenta de OpenAI** con API key activa (GPT-3.5-turbo o GPT-4)
+- **VS Code** (opcional, pero recomendado para desarrollo)
+
+### 🔑 Variables de Entorno Requeridas
+
+Crear archivo `.env` con:
+
+```env
+# OBLIGATORIO
+OPENAI_API_KEY=sk-tu_clave_openai_aqui
+OPENAI_MODEL=gpt-3.5-turbo
+
+# OPCIONAL (usa defaults)
+VECTORDB_PATH=./storage/vectordb/
+SQLITE_DB_PATH=./storage/sqlite/faq.db
+TOP_K_RESULTS=5
+PORT=8000
+GRADIO_PORT=7860
+
+# NOTIFICACIONES (OPCIONAL)
+PUSHOVER_TOKEN=tu_token_pushover
+PUSHOVER_USER_KEY=tu_user_key
+```
 
 ### Configuración Local
 
 ```bash
 # 1. Fork y clonar el repositorio
-git clone https://github.com/tu-usuario/agente-cv.git
+git clone https://github.com/stith1987/agente-cv.git
 cd agente-cv
 
 # 2. Crear entorno virtual
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# o
-venv\Scripts\activate     # Windows
+python -m venv .venv
 
-# 3. Instalar dependencias
+# Activar (Windows)
+.venv\Scripts\activate
+
+# Activar (Linux/Mac)
+source .venv/bin/activate
+
+# 3. Instalar dependencias (17 paquetes principales)
 pip install -r requirements.txt
-pip install -r requirements-dev.txt  # Si existe
 
 # 4. Configurar variables de entorno
 cp .env.example .env

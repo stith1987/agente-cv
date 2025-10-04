@@ -34,11 +34,11 @@ Este Código de Conducta aplica tanto a espacios del proyecto como a espacios p�
 
 ## Aplicación
 
-Instancias de comportamiento abusivo, acosador o de otra manera inaceptable pueden ser reportadas contactando al equipo del proyecto en `conduct@ejemplo.com`. Todas las quejas serán revisadas e investigadas y resultarán en una respuesta que se considere necesaria y apropiada a las circunstancias. El equipo del proyecto está obligado a mantener la confidencialidad con respecto al reporte de un incidente.
+Instancias de comportamiento abusivo, acosador o de otra manera inaceptable pueden ser reportadas contactando al equipo del proyecto mediante **GitHub Issues** en el repositorio [`stith1987/agente-cv`](https://github.com/stith1987/agente-cv/issues). Todas las quejas serán revisadas e investigadas y resultarán en una respuesta que se considere necesaria y apropiada a las circunstancias. El equipo del proyecto está obligado a mantener la confidencialidad con respecto al reporte de un incidente.
 
 ## Proceso de Resolución
 
-1. **Reporte**: Envía un email detallado a `conduct@ejemplo.com`
+1. **Reporte**: Crea un issue detallado en GitHub con etiqueta `conduct`
 2. **Reconocimiento**: Recibirás confirmación en 24 horas
 3. **Investigación**: El equipo investigará el reporte
 4. **Resolución**: Se tomará acción apropiada
