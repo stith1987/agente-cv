@@ -30,12 +30,12 @@ El **Agente de CV Inteligente** es una solución de inteligencia artificial que 
 
 ### 1.2 Beneficios Clave
 
-| Beneficio | Descripción | Impacto |
-|-----------|-------------|---------|
+| Beneficio             | Descripción                                   | Impacto                              |
+| --------------------- | --------------------------------------------- | ------------------------------------ |
 | 🚀 **Automatización** | Respuestas automáticas a consultas frecuentes | 80% reducción en tiempo de respuesta |
-| 🎯 **Precisión** | Información específica y contextualizada | 95% precisión en respuestas |
-| 📈 **Escalabilidad** | Manejo de múltiples consultas simultáneas | Ilimitadas consultas concurrentes |
-| 💡 **Inteligencia** | Análisis y síntesis de información compleja | Respuestas más elaboradas y útiles |
+| 🎯 **Precisión**      | Información específica y contextualizada      | 95% precisión en respuestas          |
+| 📈 **Escalabilidad**  | Manejo de múltiples consultas simultáneas     | Ilimitadas consultas concurrentes    |
+| 💡 **Inteligencia**   | Análisis y síntesis de información compleja   | Respuestas más elaboradas y útiles   |
 
 ### 1.3 Stakeholders
 
@@ -152,27 +152,27 @@ graph TB
 
 #### 3.2.1 Frontend Solutions
 
-| Componente | Tecnología | Propósito |
-|------------|------------|-----------|
-| **Chat Interface** | Gradio | Interfaz conversacional intuitiva |
-| **REST API** | FastAPI | Integración con sistemas externos |
-| **Documentation** | OpenAPI | Documentación automática de APIs |
+| Componente         | Tecnología | Propósito                         |
+| ------------------ | ---------- | --------------------------------- |
+| **Chat Interface** | Gradio     | Interfaz conversacional intuitiva |
+| **REST API**       | FastAPI    | Integración con sistemas externos |
+| **Documentation**  | OpenAPI    | Documentación automática de APIs  |
 
 #### 3.2.2 Intelligence Layer
 
-| Componente | Tecnología | Propósito |
-|------------|------------|-----------|
-| **NLP Engine** | OpenAI GPT-4 | Comprensión y generación de lenguaje |
-| **RAG System** | LangChain + ChromaDB | Recuperación de información contextual |
-| **Quality Evaluator** | Custom LLM | Evaluación automática de respuestas |
+| Componente            | Tecnología           | Propósito                              |
+| --------------------- | -------------------- | -------------------------------------- |
+| **NLP Engine**        | OpenAI GPT-4         | Comprensión y generación de lenguaje   |
+| **RAG System**        | LangChain + ChromaDB | Recuperación de información contextual |
+| **Quality Evaluator** | Custom LLM           | Evaluación automática de respuestas    |
 
 #### 3.2.3 Data Management
 
-| Componente | Tecnología | Propósito |
-|------------|------------|-----------|
-| **Vector Store** | ChromaDB | Búsqueda semántica eficiente |
-| **Relational DB** | SQLite | Gestión de FAQs estructuradas |
-| **File System** | Local/Cloud | Almacenamiento de documentos fuente |
+| Componente        | Tecnología  | Propósito                           |
+| ----------------- | ----------- | ----------------------------------- |
+| **Vector Store**  | ChromaDB    | Búsqueda semántica eficiente        |
+| **Relational DB** | SQLite      | Gestión de FAQs estructuradas       |
+| **File System**   | Local/Cloud | Almacenamiento de documentos fuente |
 
 ---
 
@@ -200,7 +200,7 @@ sequenceDiagram
 
 **Actores**: Reclutador, HR Manager, Technical Lead  
 **Precondiciones**: Sistema inicializado, documentos cargados  
-**Postcondiciones**: Respuesta precisa y contextualizada entregada  
+**Postcondiciones**: Respuesta precisa y contextualizada entregada
 
 #### 4.1.2 UC-002: Generación de Email Personalizado
 
@@ -222,13 +222,14 @@ sequenceDiagram
 
 **Actores**: Profesional, Agente de Email  
 **Precondiciones**: Contexto de la posición conocido  
-**Postcondiciones**: Email profesional generado y listo para envío  
+**Postcondiciones**: Email profesional generado y listo para envío
 
 #### 4.1.3 UC-003: Análisis de Proyectos Específicos
 
 **Descripción**: Consultas detalladas sobre proyectos específicos y tecnologías utilizadas.
 
 **Flujo Principal**:
+
 1. Usuario solicita información sobre proyecto específico
 2. Sistema identifica proyecto en base de conocimiento
 3. RAG retriever busca documentación relacionada
@@ -239,16 +240,19 @@ sequenceDiagram
 ### 4.2 Casos de Uso Secundarios
 
 #### 4.2.1 UC-004: Gestión de FAQs
+
 - Administración de preguntas frecuentes
 - Actualización automática basada en consultas
 - Análisis de gaps en conocimiento
 
 #### 4.2.2 UC-005: Monitoreo y Alertas
+
 - Tracking de consultas y respuestas
 - Alertas de errores o problemas
 - Métricas de calidad y performance
 
 #### 4.2.3 UC-006: Clarificación de Consultas
+
 - Detección de consultas ambiguas
 - Solicitud de clarificación al usuario
 - Refinamiento de respuestas
@@ -261,39 +265,39 @@ sequenceDiagram
 
 #### 5.1.1 Procesamiento de Consultas
 
-| ID | Requisito | Prioridad | Criterio de Aceptación |
-|----|-----------|-----------|------------------------|
-| RF-001 | Procesamiento de lenguaje natural | Alta | Comprende 95% de consultas en español |
-| RF-002 | Búsqueda semántica inteligente | Alta | Encuentra información relevante en <2s |
-| RF-003 | Generación de respuestas contextuales | Alta | Respuestas coherentes y precisas |
-| RF-004 | Evaluación automática de calidad | Media | Puntuación 1-10 para cada respuesta |
+| ID     | Requisito                             | Prioridad | Criterio de Aceptación                 |
+| ------ | ------------------------------------- | --------- | -------------------------------------- |
+| RF-001 | Procesamiento de lenguaje natural     | Alta      | Comprende 95% de consultas en español  |
+| RF-002 | Búsqueda semántica inteligente        | Alta      | Encuentra información relevante en <2s |
+| RF-003 | Generación de respuestas contextuales | Alta      | Respuestas coherentes y precisas       |
+| RF-004 | Evaluación automática de calidad      | Media     | Puntuación 1-10 para cada respuesta    |
 
 #### 5.1.2 Gestión de Conocimiento
 
-| ID | Requisito | Prioridad | Criterio de Aceptación |
-|----|-----------|-----------|------------------------|
-| RF-005 | Indexación de documentos MD | Alta | Procesa documentos automáticamente |
-| RF-006 | Gestión de FAQs estructuradas | Media | CRUD completo de preguntas frecuentes |
-| RF-007 | Versionado de conocimiento | Baja | Tracking de cambios en documentos |
+| ID     | Requisito                     | Prioridad | Criterio de Aceptación                |
+| ------ | ----------------------------- | --------- | ------------------------------------- |
+| RF-005 | Indexación de documentos MD   | Alta      | Procesa documentos automáticamente    |
+| RF-006 | Gestión de FAQs estructuradas | Media     | CRUD completo de preguntas frecuentes |
+| RF-007 | Versionado de conocimiento    | Baja      | Tracking de cambios en documentos     |
 
 #### 5.1.3 Interfaz y APIs
 
-| ID | Requisito | Prioridad | Criterio de Aceptación |
-|----|-----------|-----------|------------------------|
-| RF-008 | API REST documentada | Alta | OpenAPI 3.0 completo |
-| RF-009 | Interfaz web conversacional | Media | UI intuitiva con Gradio |
-| RF-010 | Notificaciones push | Baja | Integración con Pushover |
+| ID     | Requisito                   | Prioridad | Criterio de Aceptación   |
+| ------ | --------------------------- | --------- | ------------------------ |
+| RF-008 | API REST documentada        | Alta      | OpenAPI 3.0 completo     |
+| RF-009 | Interfaz web conversacional | Media     | UI intuitiva con Gradio  |
+| RF-010 | Notificaciones push         | Baja      | Integración con Pushover |
 
 ### 5.2 Requisitos No Funcionales
 
 #### 5.2.1 Performance
 
-| Métrica | Objetivo | Crítico |
-|---------|----------|---------|
-| **Tiempo de Respuesta** | < 3 segundos | < 5 segundos |
-| **Throughput** | 100 consultas/min | 50 consultas/min |
-| **Disponibilidad** | 99.5% | 95% |
-| **Precisión** | 95% respuestas correctas | 85% respuestas correctas |
+| Métrica                 | Objetivo                 | Crítico                  |
+| ----------------------- | ------------------------ | ------------------------ |
+| **Tiempo de Respuesta** | < 3 segundos             | < 5 segundos             |
+| **Throughput**          | 100 consultas/min        | 50 consultas/min         |
+| **Disponibilidad**      | 99.5%                    | 95%                      |
+| **Precisión**           | 95% respuestas correctas | 85% respuestas correctas |
 
 #### 5.2.2 Escalabilidad
 
@@ -312,12 +316,14 @@ sequenceDiagram
 ### 5.3 Restricciones
 
 #### 5.3.1 Técnicas
+
 - Python 3.11+ como lenguaje principal
 - OpenAI API para capacidades de LLM
 - Despliegue local/on-premise
 - Presupuesto de $100/mes para APIs externas
 
 #### 5.3.2 Negocio
+
 - Tiempo de implementación: 4 semanas
 - Mantenimiento: 2 horas/semana
 - Documentación completa requerida
@@ -426,12 +432,12 @@ stateDiagram-v2
 
 #### 6.3.2 Tipos de Respuesta
 
-| Tipo | Características | Ejemplo |
-|------|----------------|---------|
-| **Directa** | Respuesta específica y concreta | "Tengo 5 años de experiencia en Java" |
-| **Contextual** | Información con background | "En el proyecto bancario, implementé microservicios con Spring Boot..." |
-| **Comparativa** | Análisis de alternativas | "Comparando Java vs Python para este caso..." |
-| **Técnica** | Detalles de implementación | "La arquitectura utiliza Event Sourcing con..." |
+| Tipo            | Características                 | Ejemplo                                                                 |
+| --------------- | ------------------------------- | ----------------------------------------------------------------------- |
+| **Directa**     | Respuesta específica y concreta | "Tengo 5 años de experiencia en Java"                                   |
+| **Contextual**  | Información con background      | "En el proyecto bancario, implementé microservicios con Spring Boot..." |
+| **Comparativa** | Análisis de alternativas        | "Comparando Java vs Python para este caso..."                           |
+| **Técnica**     | Detalles de implementación      | "La arquitectura utiliza Event Sourcing con..."                         |
 
 ---
 
@@ -481,18 +487,18 @@ graph LR
 API Specification:
   Version: 1.0.0
   Base URL: https://api.cv-agent.com/v1
-  
+
 Endpoints:
   /chat:
     POST: Enviar consulta y obtener respuesta
     GET: Obtener historial de conversación
-  
+
   /health:
     GET: Estado del sistema
-  
+
   /stats:
     GET: Métricas y estadísticas
-  
+
   /admin/faqs:
     GET: Listar FAQs
     POST: Crear nueva FAQ
@@ -510,26 +516,28 @@ Authentication:
 Webhook Events:
   query.received:
     Description: Nueva consulta recibida
-    Payload: {user_id, query, timestamp}
-  
+    Payload: { user_id, query, timestamp }
+
   response.generated:
     Description: Respuesta generada
-    Payload: {query_id, response, quality_score}
-  
+    Payload: { query_id, response, quality_score }
+
   error.occurred:
     Description: Error en procesamiento
-    Payload: {error_type, message, context}
+    Payload: { error_type, message, context }
 ```
 
 ### 7.3 Conectividad Externa
 
 #### 7.3.1 OpenAI API
+
 - **Propósito**: Procesamiento de lenguaje natural y generación
 - **Rate Limits**: 3,500 requests/min (GPT-4)
 - **Fallback**: GPT-3.5-turbo para consultas simples
 - **Monitoring**: Tracking de tokens y costos
 
 #### 7.3.2 Pushover API
+
 - **Propósito**: Notificaciones push para administradores
 - **Rate Limits**: 10,000 messages/month
 - **Configuración**: API token y user key
@@ -670,17 +678,17 @@ Document Processing Pipeline:
     - Lectura de archivos MD
     - Parsing de estructura
     - Extracción de metadatos
-    
+
   Chunking:
     - División por secciones lógicas
     - Overlapping de 50 tokens
     - Tamaño óptimo: 500-1000 tokens
-    
+
   Embedding:
     - Modelo: sentence-transformers/all-MiniLM-L6-v2
     - Dimensiones: 384
     - Batch processing para eficiencia
-    
+
   Indexing:
     - Almacenamiento en ChromaDB
     - Índices por categoría
@@ -692,16 +700,16 @@ Document Processing Pipeline:
 ```yaml
 Backup Strategy:
   Frequency: Diario (incremental), Semanal (completo)
-  
+
   Components:
     Vector DB: Exportación de colección completa
     SQLite: Dump SQL con datos y esquema
     Documents: Sincronización con cloud storage
-    
+
   Recovery:
     RTO: 4 horas (Recovery Time Objective)
     RPO: 1 día (Recovery Point Objective)
-    
+
   Testing: Restauración mensual en ambiente de pruebas
 ```
 
@@ -719,13 +727,13 @@ graph TB
             A2[FastAPI Instance 2]
             LB[Load Balancer]
         end
-        
+
         subgraph "Data Layer"
             VDB[ChromaDB Volume]
             SQL[SQLite Database]
             FS[File System Storage]
         end
-        
+
         subgraph "Monitoring"
             LOG[Log Aggregator]
             MET[Metrics Collector]
@@ -746,14 +754,14 @@ graph TB
     A2 --> VDB
     A2 --> SQL
     A2 --> FS
-    
+
     A1 --> LOG
     A2 --> LOG
     A1 --> MET
     A2 --> MET
-    
+
     MET --> ALT
-    
+
     A1 --> AI
     A2 --> AI
     ALT --> PUSH
@@ -855,8 +863,7 @@ graph LR
 ```yaml
 Release Strategy: Blue-Green Deployment
 
-Process:
-  1. Deploy to Green environment
+Process: 1. Deploy to Green environment
   2. Run health checks and smoke tests
   3. Gradually shift traffic (10%, 25%, 50%, 100%)
   4. Monitor key metrics during rollout
@@ -881,14 +888,14 @@ Monitoring During Deploy:
 
 ### 10.1 Matriz de Riesgos
 
-| Riesgo | Probabilidad | Impacto | Severidad | Mitigación |
-|--------|--------------|---------|-----------|------------|
-| **Límites API OpenAI** | Media | Alto | Alto | Rate limiting, fallback a modelos locales |
-| **Calidad de respuestas** | Media | Alto | Alto | Sistema de evaluación automática |
-| **Pérdida de datos** | Baja | Crítico | Alto | Backups automáticos, redundancia |
-| **Sobrecarga del sistema** | Alta | Medio | Medio | Load balancing, auto-scaling |
-| **Dependencia de servicios externos** | Media | Alto | Alto | Circuit breakers, timeouts |
-| **Seguridad de datos** | Baja | Alto | Medio | Encriptación, access controls |
+| Riesgo                                | Probabilidad | Impacto | Severidad | Mitigación                                |
+| ------------------------------------- | ------------ | ------- | --------- | ----------------------------------------- |
+| **Límites API OpenAI**                | Media        | Alto    | Alto      | Rate limiting, fallback a modelos locales |
+| **Calidad de respuestas**             | Media        | Alto    | Alto      | Sistema de evaluación automática          |
+| **Pérdida de datos**                  | Baja         | Crítico | Alto      | Backups automáticos, redundancia          |
+| **Sobrecarga del sistema**            | Alta         | Medio   | Medio     | Load balancing, auto-scaling              |
+| **Dependencia de servicios externos** | Media        | Alto    | Alto      | Circuit breakers, timeouts                |
+| **Seguridad de datos**                | Baja         | Alto    | Medio     | Encriptación, access controls             |
 
 ### 10.2 Planes de Contingencia
 
@@ -901,12 +908,12 @@ Immediate Response:
   - Switch to backup model (local inference)
   - Notificar a usuarios sobre degradación
   - Activar modo de respuestas predefinidas
-  
+
 Recovery Actions:
   - Implementar cola de requests
   - Usar modelos alternativos (Anthropic, local)
   - Escalar límites con OpenAI
-  
+
 Prevention:
   - Monitoring de uso de API
   - Alertas tempranas de límites
@@ -922,12 +929,12 @@ Immediate Response:
   - Auto-scaling de instancias
   - Activar caches agresivos
   - Reducir complejidad de respuestas
-  
+
 Recovery Actions:
   - Análisis de bottlenecks
   - Optimización de queries
   - Revisión de índices de BD
-  
+
 Prevention:
   - Load testing regular
   - Monitoring continuo
@@ -942,14 +949,13 @@ Prevention:
 DR Strategy:
   RTO: 4 horas
   RPO: 24 horas
-  
+
 Backup Locations:
   - Primary: On-premise
   - Secondary: Cloud storage
   - Tertiary: Offsite backup
-  
-Recovery Process:
-  1. Assess damage and scope
+
+Recovery Process: 1. Assess damage and scope
   2. Activate DR team
   3. Restore from latest backup
   4. Validate data integrity
@@ -964,12 +970,12 @@ Monitoring Stack:
   Application: Custom metrics + health checks
   Infrastructure: System metrics (CPU, RAM, disk)
   Business: Query success rate, response quality
-  
+
 Alert Levels:
   Warning: Performance degradation
   Critical: Service unavailable
   Emergency: Data loss or security breach
-  
+
 Notification Channels:
   - Pushover for immediate alerts
   - Email for summaries
@@ -991,17 +997,17 @@ gantt
     Arquitectura base           :done, arch, 2024-01-01, 5d
     Setup desarrollo           :done, setup, after arch, 3d
     Core RAG system            :done, rag, after setup, 10d
-    
+
     section Fase 2: Core Features
     Orquestador principal      :active, orch, 2024-01-15, 8d
     Sistema de evaluación      :eval, after orch, 5d
     API REST básica           :api, after orch, 6d
-    
+
     section Fase 3: Enhancements
     Agente clarificador       :clarify, after eval, 5d
     Agente de email           :email, after clarify, 4d
     Interfaz Gradio           :ui, after api, 5d
-    
+
     section Fase 4: Production
     Testing integral          :test, after email, 7d
     Despliegue producción     :deploy, after test, 3d
@@ -1094,12 +1100,12 @@ Criterios de Éxito:
 
 #### 11.3.1 Equipo del Proyecto
 
-| Rol | Responsabilidad | Dedicación | Perfil |
-|-----|----------------|------------|--------|
-| **Tech Lead** | Arquitectura y desarrollo core | 100% | Senior Python + AI/ML |
-| **Developer** | Implementación y testing | 80% | Mid-level Python + FastAPI |
-| **DevOps** | Infra y despliegue | 40% | Docker + CI/CD |
-| **QA** | Testing y validación | 60% | Testing automation |
+| Rol           | Responsabilidad                | Dedicación | Perfil                     |
+| ------------- | ------------------------------ | ---------- | -------------------------- |
+| **Tech Lead** | Arquitectura y desarrollo core | 100%       | Senior Python + AI/ML      |
+| **Developer** | Implementación y testing       | 80%        | Mid-level Python + FastAPI |
+| **DevOps**    | Infra y despliegue             | 40%        | Docker + CI/CD             |
+| **QA**        | Testing y validación           | 60%        | Testing automation         |
 
 #### 11.3.2 Infraestructura
 
@@ -1107,12 +1113,12 @@ Criterios de Éxito:
 Development:
   Hardware: Laptop/Desktop development
   Software: Python 3.11, VS Code, Git
-  
+
 Staging:
   Cloud: AWS/GCP/Azure small instance
   Storage: 50GB SSD
   Compute: 4 vCPU, 8GB RAM
-  
+
 Production:
   Cloud: Scalable cloud instance
   Storage: 100GB SSD + backups
@@ -1122,13 +1128,13 @@ Production:
 
 #### 11.3.3 Presupuesto
 
-| Categoría | Mensual | Anual | Notas |
-|-----------|---------|-------|-------|
-| **OpenAI API** | $80 | $960 | GPT-4 usage estimado |
-| **Cloud Infrastructure** | $150 | $1,800 | Staging + Production |
-| **Monitoring Tools** | $50 | $600 | Logging y métricas |
-| **Development Tools** | $40 | $480 | IDEs, subscripciones |
-| **Total** | **$320** | **$3,840** | Costo operativo anual |
+| Categoría                | Mensual  | Anual      | Notas                 |
+| ------------------------ | -------- | ---------- | --------------------- |
+| **OpenAI API**           | $80      | $960       | GPT-4 usage estimado  |
+| **Cloud Infrastructure** | $150     | $1,800     | Staging + Production  |
+| **Monitoring Tools**     | $50      | $600       | Logging y métricas    |
+| **Development Tools**    | $40      | $480       | IDEs, subscripciones  |
+| **Total**                | **$320** | **$3,840** | Costo operativo anual |
 
 ---
 
@@ -1138,23 +1144,23 @@ Production:
 
 #### 12.1.1 Costos de Desarrollo (One-time)
 
-| Categoría | Costo | Descripción |
-|-----------|-------|-------------|
-| **Desarrollo** | $8,000 | 4 semanas x 2 desarrolladores |
-| **Infraestructura Setup** | $500 | Configuración inicial |
-| **Testing y QA** | $1,200 | Testing completo y UAT |
-| **Documentación** | $800 | Documentación técnica y usuario |
-| **Total Inicial** | **$10,500** | Inversión una sola vez |
+| Categoría                 | Costo       | Descripción                     |
+| ------------------------- | ----------- | ------------------------------- |
+| **Desarrollo**            | $8,000      | 4 semanas x 2 desarrolladores   |
+| **Infraestructura Setup** | $500        | Configuración inicial           |
+| **Testing y QA**          | $1,200      | Testing completo y UAT          |
+| **Documentación**         | $800        | Documentación técnica y usuario |
+| **Total Inicial**         | **$10,500** | Inversión una sola vez          |
 
 #### 12.1.2 Costos Operativos (Anuales)
 
-| Categoría | Anual | Descripción |
-|-----------|-------|-------------|
-| **APIs Externas** | $960 | OpenAI + otros servicios |
-| **Infraestructura** | $1,800 | Cloud hosting y storage |
-| **Monitoreo** | $600 | Observability stack |
-| **Mantenimiento** | $2,400 | 2 horas/semana x $23/hora |
-| **Total Operativo** | **$5,760** | Costo anual recurrente |
+| Categoría           | Anual      | Descripción               |
+| ------------------- | ---------- | ------------------------- |
+| **APIs Externas**   | $960       | OpenAI + otros servicios  |
+| **Infraestructura** | $1,800     | Cloud hosting y storage   |
+| **Monitoreo**       | $600       | Observability stack       |
+| **Mantenimiento**   | $2,400     | 2 horas/semana x $23/hora |
+| **Total Operativo** | **$5,760** | Costo anual recurrente    |
 
 ### 12.2 Beneficios Esperados
 
@@ -1204,21 +1210,20 @@ Beneficios (3 años):
   Disponibilidad 24/7: $22,500
   Total: $125,556
 
-ROI:
-  ROI = (Beneficios - Inversión) / Inversión
+ROI: ROI = (Beneficios - Inversión) / Inversión
   ROI = ($125,556 - $27,780) / $27,780
   ROI = 352%
-  
+
 Payback Period: 3.2 meses
 ```
 
 #### 12.3.2 Escenarios de Sensibilidad
 
-| Escenario | ROI | Payback | Notas |
-|-----------|-----|---------|-------|
-| **Conservador** | 180% | 6 meses | 50% de beneficios estimados |
-| **Realista** | 352% | 3.2 meses | Estimaciones base |
-| **Optimista** | 500% | 2.5 meses | Adopción acelerada |
+| Escenario       | ROI  | Payback   | Notas                       |
+| --------------- | ---- | --------- | --------------------------- |
+| **Conservador** | 180% | 6 meses   | 50% de beneficios estimados |
+| **Realista**    | 352% | 3.2 meses | Estimaciones base           |
+| **Optimista**   | 500% | 2.5 meses | Adopción acelerada          |
 
 ### 12.4 Justificación de Inversión
 
@@ -1252,6 +1257,7 @@ El **Agente de CV Inteligente** representa una inversión estratégica que trans
 ### Recomendación
 
 **Proceder con la implementación** basado en:
+
 - ROI atractivo y payback rápido (3.2 meses)
 - Beneficios tangibles e intangibles significativos
 - Riesgo técnico bajo con tecnologías probadas
@@ -1266,7 +1272,7 @@ El **Agente de CV Inteligente** representa una inversión estratégica que trans
 
 ---
 
-*Documento de Arquitectura de Solución*  
-*Versión: 1.0*  
-*Fecha: 3 de octubre de 2025*  
-*Autor: GitHub Copilot*
+_Documento de Arquitectura de Solución_  
+_Versión: 1.0_  
+_Fecha: 3 de octubre de 2025_  
+_Autor: GitHub Copilot_
