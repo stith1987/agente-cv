@@ -39,7 +39,7 @@ GRADIO_SHARE = os.getenv("GRADIO_SHARE", "false").lower() == "true"
 class CVAgentUI:
     """Interfaz Gradio para el agente de CV"""
     
-    def __init__(self, use_api: bool = not STANDALONE_MODE):
+    def __init__(self, use_api: bool = True):
         """
         Inicializar interfaz
         
@@ -383,8 +383,8 @@ class CVAgentUI:
 def create_gradio_interface() -> gr.Blocks:
     """Crear interfaz Gradio"""
     
-    # Inicializar UI
-    ui = CVAgentUI()
+    # Inicializar UI en modo API
+    ui = CVAgentUI(use_api=True)
     
     # Definir interfaz
     with gr.Blocks(
@@ -553,11 +553,12 @@ def launch_gradio_ui():
         interface = create_gradio_interface()
         
         interface.launch(
-            server_name="0.0.0.0",
+            server_name="127.0.0.1",
             server_port=GRADIO_PORT,
             share=GRADIO_SHARE,
             show_error=True,
-            quiet=False
+            quiet=False,
+            prevent_thread_lock=False
         )
         
     except Exception as e:
