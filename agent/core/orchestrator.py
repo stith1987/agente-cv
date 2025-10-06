@@ -220,8 +220,7 @@ class CVOrchestrator:
         try:
             results = self.retriever.search(
                 query=query,
-                top_k=search_params["top_k"],
-                similarity_threshold=search_params["similarity_threshold"]
+                top_k=search_params["top_k"]
             )
             
             if not results:
@@ -432,7 +431,9 @@ class CVOrchestrator:
             "source": source,
             "metadata": {
                 "no_results": True,
-                "tools_used": [source.lower()]
+                "tools_used": [source.lower()],
+                # Incluir metadata LLM si está disponible
+                **self._last_llm_metadata
             }
         }
     
@@ -449,7 +450,9 @@ class CVOrchestrator:
                 "error": True,
                 "error_tool": tool,
                 "error_message": error_msg,
-                "tools_used": []
+                "tools_used": [],
+                # Incluir metadata LLM si está disponible
+                **self._last_llm_metadata
             }
         }
     
