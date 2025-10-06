@@ -9,22 +9,26 @@ Este directorio contiene scripts útiles para el mantenimiento del proyecto.
 Inicializa la estructura de ramas Git del proyecto.
 
 **Windows:**
+
 ```bash
 scripts\setup_branches.bat
 ```
 
 **Linux/Mac:**
+
 ```bash
 chmod +x scripts/setup_branches.sh
 ./scripts/setup_branches.sh
 ```
 
 **Python directo:**
+
 ```bash
 python scripts/setup_branches.py
 ```
 
 #### Lo que hace:
+
 1. Verifica que estés en un repositorio Git válido
 2. Crea las ramas `develop` y `staging` desde `main`
 3. Pushea las ramas al repositorio remoto
@@ -32,6 +36,7 @@ python scripts/setup_branches.py
 5. Retorna a tu rama original
 
 #### Requisitos:
+
 - Git instalado y configurado
 - Repositorio con al menos un commit
 - Acceso de escritura al repositorio remoto
@@ -88,7 +93,7 @@ def main():
         help="Descripción del parámetro"
     )
     args = parser.parse_args()
-    
+
     # Lógica del script
     try:
         # ... código ...

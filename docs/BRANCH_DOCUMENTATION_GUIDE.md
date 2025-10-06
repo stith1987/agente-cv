@@ -13,6 +13,7 @@ En este proyecto, la documentación **SIEMPRE** debe estar sincronizada con el c
 ### 1. Rama `main` (Producción)
 
 #### 🎯 Propósito
+
 Documentación oficial y estable que refleja exactamente lo que está en producción.
 
 #### 📄 Archivos Obligatorios
@@ -51,6 +52,7 @@ agente-cv/
 ```
 
 #### ✅ Requisitos
+
 - **Versión documentada**: Debe coincidir con el tag de release
 - **Sin WIP**: No debe haber menciones a "trabajo en progreso"
 - **Links validados**: Todos los enlaces internos deben funcionar
@@ -58,6 +60,7 @@ agente-cv/
 - **Screenshots actualizados**: Las imágenes deben reflejar la UI actual
 
 #### 🔄 Actualización
+
 - Se actualiza **SOLO** cuando se hace merge desde `staging`
 - Cada merge debe incluir actualización de CHANGELOG.md
 - Se crea un tag de versión después de cada merge
@@ -67,9 +70,11 @@ agente-cv/
 ### 2. Rama `staging` (QA/Pre-producción)
 
 #### 🎯 Propósito
+
 Documentación lista para producción, en fase de validación final.
 
 #### 📄 Archivos
+
 Mismos que `main`, más:
 
 ```
@@ -80,12 +85,14 @@ docs/
 ```
 
 #### ✅ Requisitos
+
 - **Candidato a producción**: Debe estar completa y revisada
 - **QA Sign-off**: Debe pasar revisión de QA
 - **No breaking changes sin documentar**: Cualquier cambio mayor debe estar documentado
 - **Migración documentada**: Si hay cambios de esquema, deben estar documentados
 
 #### 🔄 Actualización
+
 - Se actualiza cuando se hace merge desde `develop`
 - QA revisa y valida la documentación
 - Se pueden hacer ajustes menores antes de merge a `main`
@@ -95,9 +102,11 @@ docs/
 ### 3. Rama `develop` (Desarrollo)
 
 #### 🎯 Propósito
+
 Documentación activa que puede incluir features en desarrollo.
 
 #### 📄 Archivos
+
 Todos los anteriores, más:
 
 ```
@@ -111,12 +120,14 @@ docs/
 ```
 
 #### ✅ Requisitos
+
 - **Puede ser incompleta**: Está bien tener TODOs
 - **Marca WIP**: Indica claramente qué está en progreso
 - **Actualización frecuente**: Se actualiza con cada feature completada
 - **Enlaces a PRs**: Puede referenciar PRs abiertos
 
 #### 🔄 Actualización
+
 - Se actualiza con cada merge de feature branch
 - Los developers actualizan al completar features
 - Se limpia antes de merge a `staging`
@@ -126,9 +137,11 @@ docs/
 ### 4. Ramas `feature/*` (Características)
 
 #### 🎯 Propósito
+
 Documentación específica de la feature en desarrollo.
 
 #### 📄 Archivos
+
 Pueden incluir:
 
 ```
@@ -142,11 +155,13 @@ docs/
 ```
 
 #### ✅ Requisitos
+
 - **Enfocada**: Solo documenta la feature específica
 - **Temporal**: Se mergea o elimina
 - **Actualiza docs principales**: Al completar, actualizar README, etc.
 
 #### 🔄 Actualización
+
 - Se crea al inicio de la feature
 - Se actualiza durante el desarrollo
 - Se integra a `develop` al completar
@@ -156,9 +171,11 @@ docs/
 ### 5. Ramas `hotfix/*` (Correcciones)
 
 #### 🎯 Propósito
+
 Documentación de correcciones urgentes.
 
 #### 📄 Archivos
+
 Actualizar:
 
 ```
@@ -168,6 +185,7 @@ README.md                              # Si afecta instalación/uso
 ```
 
 #### ✅ Requisitos
+
 - **Mínima pero precisa**: Documenta el fix sin excesos
 - **Update CHANGELOG**: Siempre actualizar el changelog
 - **Sync a develop**: Debe mergearse también a develop
@@ -261,7 +279,7 @@ def check_required_files(branch):
             'docs/ROADMAP.md', 'docs/WIP_FEATURES.md'
         ]
     }
-    
+
     # Implementar lógica de validación
     pass
 
@@ -312,90 +330,110 @@ echo "✅ Validación de documentación completa"
 
 ### Template: Nueva Feature
 
-```markdown
+````markdown
 # Feature: [Nombre]
 
 ## 📋 Descripción
+
 [Descripción concisa de la feature]
 
 ## 🎯 Objetivos
+
 - Objetivo 1
 - Objetivo 2
 
 ## 💡 Motivación
+
 [Por qué se implementó esta feature]
 
 ## 🚀 Uso
 
 ### Instalación
+
 \```bash
+
 # Comandos de instalación
+
 \```
 
 ### Ejemplo Básico
+
 \```python
+
 # Código de ejemplo
+
 \```
 
 ### Ejemplo Avanzado
+
 \```python
+
 # Código avanzado
+
 \```
 
 ## ⚙️ Configuración
 
-| Parámetro | Tipo | Default | Descripción |
-|-----------|------|---------|-------------|
+| Parámetro | Tipo | Default   | Descripción |
+| --------- | ---- | --------- | ----------- |
 | param1    | str  | "default" | Descripción |
 
 ## 🔗 API Reference
 
 ### Función principal
+
 \```python
 def feature_function(param1: str, param2: int) -> Result:
-    """
-    Descripción de la función
-    
+"""
+Descripción de la función
+
     Args:
         param1: Descripción
         param2: Descripción
-    
+
     Returns:
         Result: Descripción del resultado
-        
+
     Raises:
         ValueError: Cuando...
     """
+
 \```
 
 ## 🧪 Testing
 
 ### Tests Incluidos
+
 - Test 1: Descripción
 - Test 2: Descripción
 
 ### Ejecutar Tests
+
 \```bash
 pytest tests/test_feature.py
 \```
 
 ## ⚠️ Limitaciones Conocidas
+
 - Limitación 1
 - Limitación 2
 
 ## 🔮 Futuras Mejoras
+
 - [ ] Mejora 1
 - [ ] Mejora 2
 
 ## 📚 Referencias
+
 - [Link 1](url)
 - [Link 2](url)
 
 ---
+
 **Autor**: @username
 **Fecha**: YYYY-MM-DD
 **Versión**: v1.0.0
-```
+````
 
 ---
 
@@ -492,21 +530,27 @@ find examples/ -name "*.py" | wc -l
 ## 🆘 FAQs de Documentación
 
 ### P: ¿Cuándo actualizar la documentación?
+
 **R**: Siempre con el código, en el mismo PR.
 
 ### P: ¿Qué pasa si olvido actualizar docs?
+
 **R**: El revisor rechazará el PR. Es un requisito.
 
 ### P: ¿Dónde documento features experimentales?
+
 **R**: En `develop`, en `docs/EXPERIMENTAL.md`
 
 ### P: ¿Cómo documento breaking changes?
+
 **R**: CHANGELOG con warning, guía de migración, y update en README.
 
 ### P: ¿Necesito documentar cada función?
+
 **R**: Funciones públicas sí, privadas opcionalmente.
 
 ### P: ¿Puedo usar español en docs internas?
+
 **R**: Sí, pero README y docs públicas en inglés es recomendado.
 
 ---

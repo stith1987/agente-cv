@@ -48,11 +48,13 @@ Este proyecto utiliza Git Flow con las siguientes ramas:
 - **`hotfix/*`** - Correcciones urgentes
 
 📋 **Documentación:**
+
 - 📖 [Flujo de Trabajo Git Completo](GIT_WORKFLOW.md)
 - 📚 [Guía de Documentación por Ramas](docs/BRANCH_DOCUMENTATION_GUIDE.md)
 - 📝 [Template de Pull Request](.github/pull_request_template.md)
 
 🚀 **Inicializar ramas:**
+
 ```bash
 # Windows
 scripts\setup_branches.bat

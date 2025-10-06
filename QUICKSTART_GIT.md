@@ -26,13 +26,13 @@ git branch -d feature/mi-feature
 
 ## 🌳 Ramas Principales
 
-| Rama | Propósito | Deploy a |
-|------|-----------|----------|
-| `main` | Producción estable | 🚀 Production |
-| `staging` | Pre-producción/QA | 🧪 Staging |
-| `develop` | Desarrollo activo | 🔧 Development |
-| `feature/*` | Nueva característica | - |
-| `hotfix/*` | Fix urgente producción | - |
+| Rama        | Propósito              | Deploy a       |
+| ----------- | ---------------------- | -------------- |
+| `main`      | Producción estable     | 🚀 Production  |
+| `staging`   | Pre-producción/QA      | 🧪 Staging     |
+| `develop`   | Desarrollo activo      | 🔧 Development |
+| `feature/*` | Nueva característica   | -              |
+| `hotfix/*`  | Fix urgente producción | -              |
 
 ## 🔄 Flujo de Trabajo
 

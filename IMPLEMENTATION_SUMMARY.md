@@ -16,11 +16,11 @@ Se ha implementado exitosamente una **estrategia de ramas Git basada en Git Flow
 
 ### Ramas Principales
 
-| Rama | Propósito | Estado |
-|------|-----------|--------|
-| **`main`** | Producción estable | ✅ Creada |
-| **`staging`** | QA/Pre-producción | ✅ Creada |
-| **`develop`** | Desarrollo activo | ✅ Creada |
+| Rama          | Propósito          | Estado    |
+| ------------- | ------------------ | --------- |
+| **`main`**    | Producción estable | ✅ Creada |
+| **`staging`** | QA/Pre-producción  | ✅ Creada |
+| **`develop`** | Desarrollo activo  | ✅ Creada |
 
 ### Ramas Temporales (según necesidad)
 
@@ -34,6 +34,7 @@ Se ha implementado exitosamente una **estrategia de ramas Git basada en Git Flow
 ### Documentos Principales
 
 1. **`GIT_WORKFLOW.md`** (Completo)
+
    - Guía exhaustiva del flujo de trabajo
    - Comandos comunes y ejemplos
    - Políticas de merge y protección de ramas
@@ -41,17 +42,20 @@ Se ha implementado exitosamente una **estrategia de ramas Git basada en Git Flow
    - 📍 **Ubicación**: Raíz del proyecto
 
 2. **`QUICKSTART_GIT.md`** (Referencia Rápida)
+
    - TL;DR con comandos esenciales
    - Checklist de PR
    - Comandos de emergencia
    - 📍 **Ubicación**: Raíz del proyecto
 
 3. **`CHANGELOG.md`** (Registro de Cambios)
+
    - Template siguiendo Keep a Changelog
    - Versión inicial documentada (v1.0.0)
    - 📍 **Ubicación**: Raíz del proyecto
 
 4. **`docs/BRANCH_DOCUMENTATION_GUIDE.md`** (Gestión de Docs)
+
    - Filosofía de documentación por rama
    - Checklists por tipo de cambio
    - Templates y mejores prácticas
@@ -66,17 +70,20 @@ Se ha implementado exitosamente una **estrategia de ramas Git basada en Git Flow
 ### Configuración GitHub
 
 6. **`.github/pull_request_template.md`**
+
    - Template completo de PR
    - Checklists por tipo de cambio
    - Guía para revisores
 
 7. **`.github/workflows/branch-protection.yml`**
+
    - CI/CD para validación automática
    - Checks de documentación
    - Tests automatizados
    - Linting de markdown
 
 8. **`.github/labeler.yml`**
+
    - Auto-etiquetado de PRs
    - Labels por tipo de cambio
 
@@ -91,16 +98,19 @@ Se ha implementado exitosamente una **estrategia de ramas Git basada en Git Flow
 ### Scripts Creados
 
 1. **`scripts/setup_branches.py`** (Principal)
+
    - Script Python para inicializar ramas
    - Crea `develop` y `staging` automáticamente
    - Pushea al remoto
    - Muestra instrucciones de configuración
 
 2. **`scripts/setup_branches.bat`** (Windows)
+
    - Wrapper para Windows
    - Ejecuta el script Python
 
 3. **`scripts/setup_branches.sh`** (Linux/Mac)
+
    - Wrapper para Unix
    - Hace ejecutable y lanza Python
 
@@ -148,6 +158,7 @@ feature/xxx → develop → staging → main
 Ve a tu repositorio: https://github.com/stith1987/agente-cv
 
 #### Para `main`:
+
 ```
 Settings → Branches → Add rule
 - Branch name pattern: main
@@ -159,6 +170,7 @@ Settings → Branches → Add rule
 ```
 
 #### Para `staging`:
+
 ```
 Settings → Branches → Add rule
 - Branch name pattern: staging
@@ -168,6 +180,7 @@ Settings → Branches → Add rule
 ```
 
 #### Para `develop`:
+
 ```
 Settings → Branches → Add rule
 - Branch name pattern: develop
@@ -275,10 +288,12 @@ Estructura creada:
 ### Para tu Equipo
 
 1. **Lectura Obligatoria**:
+
    - `QUICKSTART_GIT.md` - 5 minutos
    - `GIT_WORKFLOW.md` - 20 minutos
 
 2. **Referencia Visual**:
+
    - `docs/GIT_BRANCH_VISUALIZATION.md`
 
 3. **Práctica**:
@@ -349,15 +364,19 @@ Hotfix frequency:   < 1x/mes
 ### Problemas Comunes
 
 #### "No puedo pushear a main"
+
 ✅ **Normal** - main está protegido. Usa PRs.
 
 #### "Mi PR fue rechazado"
+
 ✅ Revisa los checks de CI/CD y el template de PR.
 
 #### "Tengo conflictos de merge"
+
 ✅ Ver sección "Troubleshooting" en `GIT_WORKFLOW.md`.
 
 #### "¿Cómo hago un hotfix?"
+
 ✅ Ver sección "Hotfix de Emergencia" en `GIT_WORKFLOW.md`.
 
 ---
@@ -399,4 +418,4 @@ Has implementado exitosamente una estrategia de ramas Git profesional y escalabl
 
 ---
 
-*Este documento fue generado como parte de la implementación de la estrategia de ramas Git. Manténlo actualizado conforme evolucione el proyecto.*
+_Este documento fue generado como parte de la implementación de la estrategia de ramas Git. Manténlo actualizado conforme evolucione el proyecto._

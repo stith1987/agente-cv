@@ -8,6 +8,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### 🎯 En Desarrollo (develop)
+
 - Implementación de estrategia de ramas Git
 - Configuración de workflow de desarrollo
 
@@ -18,6 +19,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ### 🎉 Lanzamiento Inicial
 
 #### ✨ Añadido (Added)
+
 - Sistema agéntico multi-LLM con orquestador inteligente
 - Agente clarificador para interacciones ambiguas
 - Agente evaluador para validación de respuestas
@@ -44,6 +46,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   - Código de conducta
 
 #### 🛠️ Arquitectura
+
 - Patrón de diseño modular y extensible
 - Separación de responsabilidades por agentes
 - Sistema de dependencias inyectables
@@ -51,6 +54,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Rate limiting y validaciones
 
 #### 📦 Infraestructura
+
 - Docker multi-stage builds
 - Docker Compose para diferentes ambientes:
   - Desarrollo (docker-compose.dev.yml)
@@ -61,12 +65,14 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Scripts de inicio para Windows y Linux
 
 #### 🧪 Testing
+
 - Tests unitarios para componentes clave
 - Tests de integración
 - Validación de refactoring
 - Tests de patrones agénticos
 
 #### 📚 Documentación
+
 - Arquitectura de software detallada
 - Arquitectura de datos
 - Arquitectura de prompts
@@ -93,23 +99,29 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [X.Y.Z] - YYYY-MM-DD
 
 ### ✨ Añadido (Added)
+
 - Nueva característica 1
 - Nueva característica 2
 
 ### 🔄 Cambiado (Changed)
+
 - Cambio en comportamiento existente
 
 ### ⚠️ Obsoleto (Deprecated)
+
 - Característica que será removida
 
 ### 🗑️ Removido (Removed)
+
 - Característica removida
 
 ### 🐛 Corregido (Fixed)
+
 - Bug fix 1
 - Bug fix 2
 
 ### 🔒 Seguridad (Security)
+
 - Parche de seguridad
 
 ---

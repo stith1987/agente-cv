@@ -1,6 +1,7 @@
 # Estrategia de Ramas Git - Agente CV
 
 ## 📋 Tabla de Contenidos
+
 - [Visión General](#visión-general)
 - [Estructura de Ramas](#estructura-de-ramas)
 - [Flujo de Trabajo](#flujo-de-trabajo)
@@ -13,6 +14,7 @@
 ## 🎯 Visión General
 
 Este proyecto utiliza una estrategia de ramas basada en **Git Flow** para garantizar:
+
 - ✅ Código estable en producción
 - 🔄 Desarrollo continuo sin interrupciones
 - 🧪 Pruebas exhaustivas antes de producción
@@ -25,6 +27,7 @@ Este proyecto utiliza una estrategia de ramas basada en **Git Flow** para garant
 ### Ramas Permanentes
 
 #### 1. `main` (Producción)
+
 - **Propósito**: Código en producción activo
 - **Estabilidad**: Siempre estable y desplegable
 - **Protección**: ⚠️ Protegida - Solo merge desde `staging` con PR
@@ -37,6 +40,7 @@ git tag -l
 ```
 
 #### 2. `develop` (Desarrollo)
+
 - **Propósito**: Rama principal de desarrollo
 - **Estabilidad**: Generalmente estable, puede tener características en progreso
 - **Protección**: Requiere revisión de código para merges
@@ -44,6 +48,7 @@ git tag -l
 - **CI/CD**: Deploys a ambiente de desarrollo
 
 #### 3. `staging` (QA/Pre-producción)
+
 - **Propósito**: Pruebas finales antes de producción
 - **Estabilidad**: Candidato a producción
 - **Protección**: Requiere aprobación de QA
@@ -56,6 +61,7 @@ git tag -l
 ### Ramas Temporales
 
 #### 4. `feature/*` (Características)
+
 - **Nomenclatura**: `feature/nombre-descriptivo`
 - **Ejemplos**:
   - `feature/multi-llm-support`
@@ -74,6 +80,7 @@ git checkout -b feature/nombre-caracteristica
 ```
 
 #### 5. `hotfix/*` (Correcciones Urgentes)
+
 - **Nomenclatura**: `hotfix/descripcion-bug`
 - **Ejemplos**:
   - `hotfix/api-timeout-error`
@@ -91,6 +98,7 @@ git checkout -b hotfix/nombre-bug
 ```
 
 #### 6. `release/*` (Preparación de Release) [Opcional]
+
 - **Nomenclatura**: `release/v1.2.0`
 - **Origen**: Desde `develop`
 - **Destino**: Se fusiona a `main` y `develop`
@@ -255,6 +263,7 @@ git log develop..staging --oneline
 ### Pull Request Requirements
 
 #### Para `develop`:
+
 - ✅ Al menos 1 revisor debe aprobar
 - ✅ Todos los tests de CI deben pasar
 - ✅ No conflictos de merge
@@ -262,12 +271,14 @@ git log develop..staging --oneline
 - 📋 Commits con formato convencional
 
 #### Para `staging`:
+
 - ✅ Todos los requisitos de develop
 - ✅ QA sign-off requerido
 - ✅ Tests de integración pasados
 - 📋 Actualización de CHANGELOG.md
 
 #### Para `main`:
+
 - ✅ Todos los requisitos de staging
 - ✅ Aprobación del tech lead/product owner
 - ✅ Tag de versión creado
@@ -312,17 +323,20 @@ docs/
 ### Archivos Clave por Rama
 
 #### En todas las ramas:
+
 - `README.md` - Información principal del proyecto
 - `CHANGELOG.md` - Registro de cambios (actualizar antes de merge a main)
 - `CONTRIBUTING.md` - Guías de contribución
 - `GIT_WORKFLOW.md` - Este documento
 
 #### Solo en `develop`:
+
 - `docs/ROADMAP.md` - Próximas características
 - `docs/WIP.md` - Trabajo en progreso
 - Docs de features experimentales
 
 #### Solo en `main`:
+
 - `docs/RELEASE_NOTES.md` - Notas de versiones publicadas
 - Docs de producción validadas
 
@@ -360,6 +374,7 @@ v MAJOR . MINOR . PATCH
 ```
 
 ### Ejemplos:
+
 - `v1.0.0` → `v1.0.1`: Hotfix de bug
 - `v1.0.1` → `v1.1.0`: Nueva feature (multi-LLM)
 - `v1.1.0` → `v2.0.0`: Breaking change (nueva API)
@@ -373,6 +388,7 @@ v MAJOR . MINOR . PATCH
 1. **Settings** → **Branches** → **Add rule**
 
 #### Para `main`:
+
 ```yaml
 - Require pull request reviews: 2
 - Require status checks to pass: true
@@ -382,6 +398,7 @@ v MAJOR . MINOR . PATCH
 ```
 
 #### Para `develop`:
+
 ```yaml
 - Require pull request reviews: 1
 - Require status checks to pass: true
@@ -389,6 +406,7 @@ v MAJOR . MINOR . PATCH
 ```
 
 #### Para `staging`:
+
 ```yaml
 - Require pull request reviews: 1 (QA team)
 - Require status checks to pass: true

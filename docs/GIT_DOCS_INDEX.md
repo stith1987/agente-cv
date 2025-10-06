@@ -7,21 +7,27 @@
 ## 🚀 Para Empezar (Start Here)
 
 ### 👉 Si tienes 5 minutos:
+
 📄 **[QUICKSTART_GIT.md](../QUICKSTART_GIT.md)**
+
 - TL;DR completo
 - Comandos esenciales
 - Checklist de PR
 - Comandos de emergencia
 
 ### 👉 Si tienes 20 minutos:
+
 📄 **[GIT_WORKFLOW.md](../GIT_WORKFLOW.md)**
+
 - Guía completa del flujo de trabajo
 - Todos los comandos explicados
 - Políticas y mejores prácticas
 - Ejemplos paso a paso
 
 ### 👉 Acabas de llegar al proyecto:
+
 📄 **[IMPLEMENTATION_SUMMARY.md](../IMPLEMENTATION_SUMMARY.md)**
+
 - Resumen ejecutivo
 - ¿Qué se implementó y por qué?
 - Próximos pasos
@@ -34,6 +40,7 @@
 ### 🎯 Necesito saber cómo...
 
 #### ✨ Crear una nueva feature
+
 1. Lee: [GIT_WORKFLOW.md](../GIT_WORKFLOW.md) → Sección "Desarrollar una Nueva Característica"
 2. Ejecuta:
    ```bash
@@ -43,6 +50,7 @@
 3. Usa: [Pull Request Template](../.github/pull_request_template.md)
 
 #### 🐛 Hacer un hotfix urgente
+
 1. Lee: [GIT_WORKFLOW.md](../GIT_WORKFLOW.md) → Sección "Hotfix de Emergencia"
 2. Ejecuta:
    ```bash
@@ -52,11 +60,13 @@
 3. Sigue: El flujo rápido de hotfix
 
 #### 📝 Actualizar documentación
+
 1. Lee: [BRANCH_DOCUMENTATION_GUIDE.md](BRANCH_DOCUMENTATION_GUIDE.md)
 2. Revisa: El checklist para tu tipo de cambio
 3. Actualiza: Docs junto con el código
 
 #### 🔍 Ver el estado de las ramas
+
 1. Usa: [GIT_BRANCH_VISUALIZATION.md](GIT_BRANCH_VISUALIZATION.md)
 2. Ejecuta:
    ```bash
@@ -65,11 +75,13 @@
 3. O instala: Git Graph extension para VSCode
 
 #### ✅ Crear un Pull Request
+
 1. Usa: [Pull Request Template](../.github/pull_request_template.md)
 2. Revisa: [GIT_WORKFLOW.md](../GIT_WORKFLOW.md) → "Pull Request Requirements"
 3. Verifica: Que los checks de CI/CD pasen
 
 #### 🔧 Configurar mi entorno
+
 1. Ejecuta: `scripts\setup_branches.bat` (Windows) o `./scripts/setup_branches.sh` (Linux)
 2. Lee: [scripts/README.md](../scripts/README.md)
 3. Configura: Protección de ramas en GitHub (ver [IMPLEMENTATION_SUMMARY.md](../IMPLEMENTATION_SUMMARY.md))
@@ -80,38 +92,38 @@
 
 ### 📋 Documentos Raíz
 
-| Documento | Propósito | Audiencia | Tiempo de Lectura |
-|-----------|-----------|-----------|-------------------|
-| **[README.md](../README.md)** | Información general del proyecto | Todos | 10 min |
-| **[GIT_WORKFLOW.md](../GIT_WORKFLOW.md)** | Guía completa de Git Flow | Developers | 20 min |
-| **[QUICKSTART_GIT.md](../QUICKSTART_GIT.md)** | Referencia rápida | Developers | 5 min |
-| **[CHANGELOG.md](../CHANGELOG.md)** | Registro de cambios | Todos | Variable |
-| **[IMPLEMENTATION_SUMMARY.md](../IMPLEMENTATION_SUMMARY.md)** | Resumen de implementación | Tech Leads | 15 min |
+| Documento                                                     | Propósito                        | Audiencia  | Tiempo de Lectura |
+| ------------------------------------------------------------- | -------------------------------- | ---------- | ----------------- |
+| **[README.md](../README.md)**                                 | Información general del proyecto | Todos      | 10 min            |
+| **[GIT_WORKFLOW.md](../GIT_WORKFLOW.md)**                     | Guía completa de Git Flow        | Developers | 20 min            |
+| **[QUICKSTART_GIT.md](../QUICKSTART_GIT.md)**                 | Referencia rápida                | Developers | 5 min             |
+| **[CHANGELOG.md](../CHANGELOG.md)**                           | Registro de cambios              | Todos      | Variable          |
+| **[IMPLEMENTATION_SUMMARY.md](../IMPLEMENTATION_SUMMARY.md)** | Resumen de implementación        | Tech Leads | 15 min            |
 
 ### 📁 Documentos en /docs
 
-| Documento | Propósito | Audiencia | Tiempo de Lectura |
-|-----------|-----------|-----------|-------------------|
-| **[BRANCH_DOCUMENTATION_GUIDE.md](BRANCH_DOCUMENTATION_GUIDE.md)** | Gestión de docs por rama | Developers | 15 min |
-| **[GIT_BRANCH_VISUALIZATION.md](GIT_BRANCH_VISUALIZATION.md)** | Diagramas y visualizaciones | Todos | 10 min |
+| Documento                                                          | Propósito                   | Audiencia  | Tiempo de Lectura |
+| ------------------------------------------------------------------ | --------------------------- | ---------- | ----------------- |
+| **[BRANCH_DOCUMENTATION_GUIDE.md](BRANCH_DOCUMENTATION_GUIDE.md)** | Gestión de docs por rama    | Developers | 15 min            |
+| **[GIT_BRANCH_VISUALIZATION.md](GIT_BRANCH_VISUALIZATION.md)**     | Diagramas y visualizaciones | Todos      | 10 min            |
 
 ### ⚙️ Configuración (.github)
 
-| Archivo | Propósito |
-|---------|-----------|
-| **[pull_request_template.md](../.github/pull_request_template.md)** | Template de PR |
-| **[workflows/branch-protection.yml](../.github/workflows/branch-protection.yml)** | CI/CD checks |
-| **[labeler.yml](../.github/labeler.yml)** | Auto-etiquetado |
+| Archivo                                                                           | Propósito            |
+| --------------------------------------------------------------------------------- | -------------------- |
+| **[pull_request_template.md](../.github/pull_request_template.md)**               | Template de PR       |
+| **[workflows/branch-protection.yml](../.github/workflows/branch-protection.yml)** | CI/CD checks         |
+| **[labeler.yml](../.github/labeler.yml)**                                         | Auto-etiquetado      |
 | **[markdown-link-check-config.json](../.github/markdown-link-check-config.json)** | Config de validación |
 
 ### 🛠️ Scripts
 
-| Script | Propósito | Plataforma |
-|--------|-----------|------------|
-| **[setup_branches.py](../scripts/setup_branches.py)** | Inicializar ramas | Todas (Python) |
-| **[setup_branches.bat](../scripts/setup_branches.bat)** | Wrapper de Windows | Windows |
-| **[setup_branches.sh](../scripts/setup_branches.sh)** | Wrapper de Unix | Linux/Mac |
-| **[scripts/README.md](../scripts/README.md)** | Documentación de scripts | Todas |
+| Script                                                  | Propósito                | Plataforma     |
+| ------------------------------------------------------- | ------------------------ | -------------- |
+| **[setup_branches.py](../scripts/setup_branches.py)**   | Inicializar ramas        | Todas (Python) |
+| **[setup_branches.bat](../scripts/setup_branches.bat)** | Wrapper de Windows       | Windows        |
+| **[setup_branches.sh](../scripts/setup_branches.sh)**   | Wrapper de Unix          | Linux/Mac      |
+| **[scripts/README.md](../scripts/README.md)**           | Documentación de scripts | Todas          |
 
 ---
 
@@ -159,24 +171,25 @@
 
 ### Por Palabra Clave
 
-| Buscas... | Ve a... |
-|-----------|---------|
-| "comandos git" | [QUICKSTART_GIT.md](../QUICKSTART_GIT.md) → Comandos Comunes |
-| "crear feature" | [GIT_WORKFLOW.md](../GIT_WORKFLOW.md) → Flujo Normal |
-| "hotfix" | [GIT_WORKFLOW.md](../GIT_WORKFLOW.md) → Hotfix de Emergencia |
-| "pull request" | [pull_request_template.md](../.github/pull_request_template.md) |
-| "documentación" | [BRANCH_DOCUMENTATION_GUIDE.md](BRANCH_DOCUMENTATION_GUIDE.md) |
-| "visualizar ramas" | [GIT_BRANCH_VISUALIZATION.md](GIT_BRANCH_VISUALIZATION.md) |
-| "changelog" | [CHANGELOG.md](../CHANGELOG.md) |
-| "versiones" | [GIT_WORKFLOW.md](../GIT_WORKFLOW.md) → Versionado Semántico |
-| "protección" | [IMPLEMENTATION_SUMMARY.md](../IMPLEMENTATION_SUMMARY.md) → Próximos Pasos |
-| "CI/CD" | [branch-protection.yml](../.github/workflows/branch-protection.yml) |
-| "scripts" | [scripts/README.md](../scripts/README.md) |
-| "conflictos" | [GIT_WORKFLOW.md](../GIT_WORKFLOW.md) → Troubleshooting |
+| Buscas...          | Ve a...                                                                    |
+| ------------------ | -------------------------------------------------------------------------- |
+| "comandos git"     | [QUICKSTART_GIT.md](../QUICKSTART_GIT.md) → Comandos Comunes               |
+| "crear feature"    | [GIT_WORKFLOW.md](../GIT_WORKFLOW.md) → Flujo Normal                       |
+| "hotfix"           | [GIT_WORKFLOW.md](../GIT_WORKFLOW.md) → Hotfix de Emergencia               |
+| "pull request"     | [pull_request_template.md](../.github/pull_request_template.md)            |
+| "documentación"    | [BRANCH_DOCUMENTATION_GUIDE.md](BRANCH_DOCUMENTATION_GUIDE.md)             |
+| "visualizar ramas" | [GIT_BRANCH_VISUALIZATION.md](GIT_BRANCH_VISUALIZATION.md)                 |
+| "changelog"        | [CHANGELOG.md](../CHANGELOG.md)                                            |
+| "versiones"        | [GIT_WORKFLOW.md](../GIT_WORKFLOW.md) → Versionado Semántico               |
+| "protección"       | [IMPLEMENTATION_SUMMARY.md](../IMPLEMENTATION_SUMMARY.md) → Próximos Pasos |
+| "CI/CD"            | [branch-protection.yml](../.github/workflows/branch-protection.yml)        |
+| "scripts"          | [scripts/README.md](../scripts/README.md)                                  |
+| "conflictos"       | [GIT_WORKFLOW.md](../GIT_WORKFLOW.md) → Troubleshooting                    |
 
 ### Por Rol
 
 #### 👨‍💻 Developer
+
 - **Esencial**:
   - [QUICKSTART_GIT.md](../QUICKSTART_GIT.md)
   - [GIT_WORKFLOW.md](../GIT_WORKFLOW.md)
@@ -186,6 +199,7 @@
   - [GIT_BRANCH_VISUALIZATION.md](GIT_BRANCH_VISUALIZATION.md)
 
 #### 🧪 QA Engineer
+
 - **Esencial**:
   - [GIT_WORKFLOW.md](../GIT_WORKFLOW.md) → Sección Staging
   - [Pull Request Template](../.github/pull_request_template.md) → Checklist
@@ -194,6 +208,7 @@
   - [GIT_BRANCH_VISUALIZATION.md](GIT_BRANCH_VISUALIZATION.md)
 
 #### 👔 Tech Lead
+
 - **Esencial**:
   - [IMPLEMENTATION_SUMMARY.md](../IMPLEMENTATION_SUMMARY.md)
   - [GIT_WORKFLOW.md](../GIT_WORKFLOW.md) → Completo
@@ -202,6 +217,7 @@
   - Todo lo demás
 
 #### 📝 Technical Writer
+
 - **Esencial**:
   - [BRANCH_DOCUMENTATION_GUIDE.md](BRANCH_DOCUMENTATION_GUIDE.md)
   - [GIT_WORKFLOW.md](../GIT_WORKFLOW.md) → Gestión de Documentación
@@ -224,13 +240,13 @@
   ┌────┴────┐      ┌────┴────┐      ┌────┴────┐
   |         |      |         |      |         |
 Main   Branches   Docs    Templates Scripts  CI/CD
-Docs                by Role           
+Docs                by Role
   |         |      |         |      |         |
   |         |      |         |      |         |
 GIT_     feature/  Branch   PR     setup_   branch-
 WORKFLOW hotfix/   Docs     Template branches protection
-         develop            
-         staging            
+         develop
+         staging
          main
 ```
 
@@ -243,6 +259,7 @@ WORKFLOW hotfix/   Docs     Template branches protection
 **Usuario**: "Acabo de unirme al equipo, ¿por dónde empiezo?"
 
 **Ruta**:
+
 1. Leer [README.md](../README.md) → Sección Git Strategy
 2. Leer [QUICKSTART_GIT.md](../QUICKSTART_GIT.md)
 3. Ejecutar `scripts\setup_branches.bat` (si es necesario)
@@ -257,6 +274,7 @@ WORKFLOW hotfix/   Docs     Template branches protection
 **Usuario**: "Tengo que implementar una nueva característica"
 
 **Ruta**:
+
 1. [GIT_WORKFLOW.md](../GIT_WORKFLOW.md) → "Desarrollar una Nueva Característica"
 2. [BRANCH_DOCUMENTATION_GUIDE.md](BRANCH_DOCUMENTATION_GUIDE.md) → "Checklist: Nueva Feature"
 3. [Pull Request Template](../.github/pull_request_template.md) → Llenar al terminar
@@ -270,6 +288,7 @@ WORKFLOW hotfix/   Docs     Template branches protection
 **Usuario**: "¡Hay un bug en producción! ¿Qué hago?"
 
 **Ruta**:
+
 1. [GIT_WORKFLOW.md](../GIT_WORKFLOW.md) → "Hotfix de Emergencia"
 2. [QUICKSTART_GIT.md](../QUICKSTART_GIT.md) → Comandos de Emergencia
 3. Ejecutar hotfix siguiendo el flujo
@@ -283,6 +302,7 @@ WORKFLOW hotfix/   Docs     Template branches protection
 **Usuario**: "Me pidieron revisar un PR"
 
 **Ruta**:
+
 1. [Pull Request Template](../.github/pull_request_template.md) → Checklist de Revisión
 2. [GIT_WORKFLOW.md](../GIT_WORKFLOW.md) → "Políticas de Merge"
 3. Verificar que pase CI/CD en [branch-protection.yml](../.github/workflows/branch-protection.yml)
@@ -296,6 +316,7 @@ WORKFLOW hotfix/   Docs     Template branches protection
 **Usuario**: "Hice cambios en el código, ¿cómo actualizo las docs?"
 
 **Ruta**:
+
 1. [BRANCH_DOCUMENTATION_GUIDE.md](BRANCH_DOCUMENTATION_GUIDE.md) → Tu tipo de cambio
 2. Seguir el checklist específico
 3. Actualizar [CHANGELOG.md](../CHANGELOG.md) si es necesario
@@ -327,6 +348,7 @@ WORKFLOW hotfix/   Docs     Template branches protection
 ### Documentación Desactualizada
 
 Si encuentras docs desactualizadas:
+
 1. Abre un issue describiendo el problema
 2. O mejor aún, crea un PR con la corrección
 3. Sigue [CONTRIBUTING.md](../CONTRIBUTING.md)
@@ -336,6 +358,7 @@ Si encuentras docs desactualizadas:
 ## 📅 Mantenimiento
 
 Este índice se actualiza:
+
 - ✅ Cada vez que se añade un documento nuevo
 - ✅ Cuando cambia la estructura
 - ✅ Cuando hay feedback de usuarios
@@ -351,7 +374,7 @@ Este índice se actualiza:
 1. **Marcador**: Guarda este índice como marcador para acceso rápido
 2. **Búsqueda**: Usa Ctrl+F para buscar en este índice
 3. **Imprime**: [QUICKSTART_GIT.md](../QUICKSTART_GIT.md) es perfecto para imprimir y tener a mano
-4. **Extensiones VSCode**: 
+4. **Extensiones VSCode**:
    - Git Graph para visualizar
    - GitLens para información de commits
 5. **Alias**: Configura aliases de Git para comandos frecuentes

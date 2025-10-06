@@ -32,6 +32,7 @@ Fixes #(issue)
 - [ ] Test B
 
 **Configuración de Test**:
+
 - Sistema Operativo:
 - Python Version:
 - Rama base: develop/staging/main
@@ -45,6 +46,7 @@ Fixes #(issue)
 <!-- Marca con X las tareas completadas -->
 
 ### General
+
 - [ ] Mi código sigue el estilo de código de este proyecto
 - [ ] He realizado una auto-revisión de mi propio código
 - [ ] He comentado mi código, particularmente en áreas difíciles de entender
@@ -55,12 +57,14 @@ Fixes #(issue)
 - [ ] Cualquier cambio dependiente ha sido mergeado y publicado
 
 ### Documentación
+
 - [ ] He actualizado el README si es necesario
 - [ ] He actualizado el CHANGELOG.md
 - [ ] He actualizado la documentación técnica si es necesario
 - [ ] He actualizado los ejemplos si es necesario
 
 ### Para merges a `staging` o `main`
+
 - [ ] He probado en un ambiente similar a producción
 - [ ] He actualizado los archivos de configuración si es necesario
 - [ ] He verificado que no hay información sensible en el código
@@ -68,6 +72,7 @@ Fixes #(issue)
 - [ ] He considerado el impacto en usuarios existentes
 
 ### Docker (si aplica)
+
 - [ ] He probado la imagen Docker localmente
 - [ ] He actualizado docker-compose files si es necesario
 - [ ] He verificado que los health checks funcionan

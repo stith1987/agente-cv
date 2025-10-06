@@ -199,6 +199,7 @@ features: ●──●  ●───●  ●───●    │        ●──
 ## 🔀 Merge Strategy
 
 ### Feature → Develop
+
 ```bash
 Strategy: Squash and Merge
 Result: 1 commit limpio en develop
@@ -209,6 +210,7 @@ Ventajas:
 ```
 
 ### Develop → Staging
+
 ```bash
 Strategy: Merge Commit
 Result: Preserva historial de features
@@ -219,6 +221,7 @@ Ventajas:
 ```
 
 ### Staging → Main
+
 ```bash
 Strategy: Merge Commit + Tag
 Result: Release oficial con tag
@@ -255,11 +258,13 @@ Ventajas:
 ## 🛠️ Herramientas Visuales
 
 ### Ver Git Graph en VSCode
+
 1. Instalar extensión "Git Graph"
 2. Click en "Git Graph" en la barra inferior
 3. Ver todas las ramas visualmente
 
 ### Ver en Terminal
+
 ```bash
 # Graph completo
 git log --all --graph --decorate --oneline
