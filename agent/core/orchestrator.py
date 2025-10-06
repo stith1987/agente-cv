@@ -284,8 +284,7 @@ class CVOrchestrator:
             # Ejecutar ambas búsquedas en paralelo
             rag_results = self.retriever.search(
                 query=query,
-                top_k=search_params["top_k"] // 2,  # Dividir espacio
-                similarity_threshold=search_params["similarity_threshold"]
+                top_k=search_params["top_k"] // 2  # Dividir espacio
             )
             
             faq_results = self.faq_tool.query(query, limit=self.config.faq_limit // 2)
