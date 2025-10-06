@@ -168,6 +168,24 @@ class MultiLLMCVAgentUI:
         Returns:
             Tupla de (mensaje_estado, info_proveedor)
         """
+        # Validar que el proveedor tenga API key (excepto Ollama)
+        provider_config = PROVIDER_CONFIGS[provider_name]
+        if provider_config["env_key"]:
+            api_key = os.getenv(provider_config["env_key"])
+            if not api_key:
+                return (
+                    f"❌ {provider_name} requiere API key en .env: {provider_config['env_key']}",
+                    f"""**{provider_name} no configurado**
+
+Para usar este proveedor, agrega en tu archivo `.env`:
+```
+{provider_config['env_key']}=tu_api_key_aqui
+```
+
+Luego reinicia el contenedor Docker.
+"""
+                )
+        
         if not self.available_providers.get(provider_name, False):
             return (
                 f"❌ {provider_name} no está configurado. Añade la API key en .env",
@@ -190,7 +208,7 @@ class MultiLLMCVAgentUI:
             return status_msg, info_msg
         else:
             return (
-                f"❌ Error cambiando a {provider_name}",
+                f"❌ Error cambiando a {provider_name}. Verifica que la API key sea válida.",
                 "Verifica la configuración y logs"
             )
     
@@ -237,14 +255,16 @@ class MultiLLMCVAgentUI:
                 return "", history, provider_info
             else:
                 error_msg = result.get("error", "Error desconocido")
-                history.append([message, f"❌ Error: {error_msg}"])
+                logger.error(f"Error en process_query: {error_msg}")
+                error_response = f"❌ Error: {error_msg}\n\n💡 Si acabas de cambiar de proveedor, verifica que la API key sea válida."
+                history.append([message, error_response])
                 return "", history, f"❌ Error: {error_msg}"
                 
         except Exception as e:
-            logger.error(f"Error en chat: {e}")
-            error_response = f"❌ Error: {str(e)}"
+            logger.error(f"Error en chat: {e}", exc_info=True)
+            error_response = f"❌ Error: {str(e)}\n\n💡 Posibles causas:\n- API key inválida o expirada\n- Proveedor no configurado correctamente\n- Problema de conexión"
             history.append([message, error_response])
-            return "", history, error_response
+            return "", history, f"❌ Error: {str(e)}"
     
     def clear_chat(self) -> Tuple[List, str]:
         """Limpiar historial de chat"""
@@ -291,6 +311,19 @@ def create_multi_llm_gradio_interface() -> gr.Blocks:
         Cambia entre OpenAI, DeepSeek, Groq, Ollama y más en tiempo real.
         """)
         
+        # Mostrar proveedores disponibles
+        available_list = []
+        for name, available in ui.available_providers.items():
+            icon = PROVIDER_CONFIGS[name]["icon"]
+            status = "✅" if available else "❌"
+            available_list.append(f"{status} {icon} **{name}**")
+        
+        gr.Markdown(f"""
+        **Proveedores Disponibles:** {' | '.join(available_list)}
+        
+        💡 *Solo puedes usar proveedores con ✅ (tienen API key configurada)*
+        """)
+        
         # Selector de proveedor (arriba)
         with gr.Group():
             gr.Markdown("### ⚙️ Configuración de Proveedor LLM")
@@ -315,7 +348,7 @@ def create_multi_llm_gradio_interface() -> gr.Blocks:
             with gr.Row():
                 status_msg = gr.Textbox(
                     label="Estado",
-                    value="👋 Selecciona un proveedor y modelo",
+                    value="👋 Selecciona un proveedor con ✅ y haz clic en '🔄 Aplicar'",
                     interactive=False
                 )
                 
