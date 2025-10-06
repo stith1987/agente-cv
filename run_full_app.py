@@ -22,10 +22,10 @@ def main():
     env["API_BASE_URL"] = "http://localhost:8000"
     env["GRADIO_PORT"] = "7860"
     
-    print("🚀 Iniciando CV Agent con Frontend...")
+    print("🚀 Iniciando CV Agent con Frontend Multi-LLM...")
     print(f"📁 Directorio de trabajo: {project_root}")
     print(f"🔗 API URL: {env['API_BASE_URL']}")
-    print(f"🎨 UI URL: http://localhost:{env['GRADIO_PORT']}")
+    print(f"🎨 UI URL: http://localhost:{env['GRADIO_PORT']} (Multi-LLM)")
     
     try:
         # Ejecutar API en background
@@ -38,16 +38,17 @@ def main():
         print("⏳ Esperando a que la API se inicie...")
         time.sleep(5)
         
-        # Ejecutar UI
-        print("\n🎨 Iniciando UI de Gradio...")
+        # Ejecutar UI con Multi-LLM selector
+        print("\n🎨 Iniciando UI de Gradio con Multi-LLM...")
         ui_process = subprocess.Popen([
-            sys.executable, "api/ui_gradio.py"
+            sys.executable, "api/ui_gradio_multi_llm.py"
         ], env=env, cwd=project_root)
         
         print("\n✅ ¡Ambos servicios iniciados!")
         print("🔗 API: http://localhost:8001")
         print("🔗 Docs: http://localhost:8001/docs")
-        print("🎨 UI: http://localhost:7860")
+        print("🎨 UI Multi-LLM: http://localhost:7860")
+        print("💡 Selecciona el proveedor LLM desde el dropdown en la UI")
         print("\n👆 Abre http://localhost:7860 en tu navegador")
         print("⏹️  Presiona Ctrl+C para detener ambos servicios")
         
