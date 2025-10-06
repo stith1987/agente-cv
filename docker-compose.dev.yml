@@ -1,0 +1,22 @@
+# Docker Compose para Desarrollo
+version: "3.8"
+
+services:
+  agente-cv:
+    # Configuraciones para desarrollo
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=DEBUG
+    volumes:
+      # Montar código fuente para hot-reload
+      - ./agent:/app/agent
+      - ./api:/app/api
+      - ./rag:/app/rag
+      - ./tools:/app/tools
+    command: ["python", "run_full_app.py"]
+    # Sin límites de recursos en dev
+    deploy:
+      resources:
+        limits:
+          cpus: "4"
+          memory: 8G

@@ -1,0 +1,108 @@
+version: "3.8"
+
+services:
+  # Servicio principal de la aplicación
+  agente-cv:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: agente-cv-app
+    ports:
+      - "8000:8000" # FastAPI
+      - "7860:7860" # Gradio UI
+    environment:
+      # Variables de entorno - Ajusta según tus necesidades
+      - PYTHONUNBUFFERED=1
+      - HOST=0.0.0.0
+      - PORT=8000
+      # API Keys
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - GROQ_API_KEY=${GROQ_API_KEY:-}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY:-}
+      - MISTRAL_API_KEY=${MISTRAL_API_KEY:-}
+    volumes:
+      # Montar volúmenes para persistencia de datos
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./storage:/app/storage
+      - ./config:/app/config
+    restart: unless-stopped
+    networks:
+      - agente-network
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import requests; requests.get('http://localhost:8000/health')",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Servicio solo API (opcional)
+  agente-cv-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: agente-cv-api-only
+    ports:
+      - "8001:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - HOST=0.0.0.0
+      - PORT=8000
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./storage:/app/storage
+      - ./config:/app/config
+    command:
+      [
+        "uvicorn",
+        "api.app:app",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8000",
+        "--reload",
+      ]
+    restart: unless-stopped
+    networks:
+      - agente-network
+    profiles:
+      - api-only
+
+  # Servicio solo UI (opcional)
+  agente-cv-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: agente-cv-ui-only
+    ports:
+      - "7861:7860"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - API_URL=http://agente-cv-api:8000
+    volumes:
+      - ./config:/app/config
+    command: ["python", "run_ui_only.py"]
+    restart: unless-stopped
+    networks:
+      - agente-network
+    profiles:
+      - ui-only
+    depends_on:
+      - agente-cv-api
+
+networks:
+  agente-network:
+    driver: bridge
+
+volumes:
+  agente-data:
+  agente-logs:
+  agente-storage:

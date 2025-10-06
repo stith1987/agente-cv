@@ -553,7 +553,7 @@ def launch_gradio_ui():
         interface = create_gradio_interface()
         
         interface.launch(
-            server_name="127.0.0.1",
+            server_name="0.0.0.0",
             server_port=GRADIO_PORT,
             share=GRADIO_SHARE,
             show_error=True,

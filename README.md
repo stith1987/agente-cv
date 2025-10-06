@@ -12,6 +12,30 @@ Un sistema de inteligencia artificial conversacional avanzado que utiliza **RAG 
 - 💻 **Interfaz Web**: UI moderna con Gradio para interacción visual
 - 🎛️ **Orquestador Inteligente**: Routing automático de consultas a la herramienta óptima
 - ⚡ **Ejecución Flexible**: Scripts de inicio para API sola o sistema completo
+- 🐳 **Docker Ready**: Contenerización completa con Docker y Docker Compose
+
+## 🐳 Inicio Rápido con Docker
+
+La forma más rápida de empezar:
+
+```bash
+# 1. Configurar variables de entorno
+cp .env.example .env
+# Edita .env con tus API keys
+
+# 2. Iniciar con Docker
+docker-compose up -d
+
+# 3. Acceder a la aplicación
+# API: http://localhost:8000
+# UI:  http://localhost:7860
+```
+
+📦 **Documentación Docker:**
+
+- 🚀 [Inicio Rápido](DOCKER_COMPLETE.md)
+- 📖 [Guía Completa](DOCKER_SUMMARY.md)
+- 📚 [Índice Completo](DOCKER_INDEX.md)
 
 ## 📁 Estructura del Proyecto
 
@@ -108,7 +132,76 @@ Un sistema de inteligencia artificial conversacional avanzado que utiliza **RAG 
    python -m rag.ingest
    ```
 
-## 🚦 Formas de Ejecución
+## � Ejecución con Docker (Recomendado)
+
+La forma más rápida y sencilla de ejecutar la aplicación es usando Docker:
+
+### Inicio Rápido
+
+```bash
+# 1. Configurar variables de entorno
+cp .env.example .env
+# Edita .env con tus claves API
+
+# 2. Construir y ejecutar
+docker-compose up -d
+
+# 3. Ver logs
+docker-compose logs -f
+```
+
+**Servicios disponibles:**
+
+- 🌐 **API REST**: http://localhost:8000 (con `/docs`)
+- 💻 **Interfaz Web**: http://localhost:7860
+
+### Comandos Útiles
+
+```bash
+# Ver estado
+docker-compose ps
+
+# Detener servicios
+docker-compose down
+
+# Reconstruir
+docker-compose build --no-cache
+
+# Ver logs
+docker-compose logs -f agente-cv
+```
+
+### Scripts de Gestión
+
+**Windows:**
+
+```cmd
+docker_manager.bat up      # Iniciar
+docker_manager.bat logs    # Ver logs
+docker_manager.bat down    # Detener
+```
+
+**Linux/Mac:**
+
+```bash
+./docker_manager.sh up
+./docker_manager.sh logs
+./docker_manager.sh down
+```
+
+**Con Make:**
+
+```bash
+make up        # Iniciar
+make logs      # Ver logs
+make down      # Detener
+make status    # Ver estado
+make shell     # Abrir terminal en contenedor
+```
+
+📖 **Documentación completa**: Ver [README_DOCKER.md](README_DOCKER.md)
+
+## �🚦 Formas de Ejecución (Sin Docker)
 
 ### ⚡ Opción 1: Sistema Completo (Recomendado)
 
@@ -336,6 +429,30 @@ python -c "from tools.faq_sql import get_faq_answer; print(get_faq_answer('exper
 ## 📝 Licencia
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
+
+---
+
+## 📚 Documentación Docker
+
+### Guías Principales
+
+- 📦 **[Resumen de Docker](DOCKER_SUMMARY.md)** - Overview completo de la implementación
+- 📖 **[Guía de Usuario](README_DOCKER.md)** - Instrucciones detalladas de uso
+- 🚀 **[Referencia Rápida](DOCKER_QUICK_REFERENCE.md)** - Comandos más usados
+
+### Recursos Avanzados
+
+- 🏆 **[Mejores Prácticas](DOCKER_BEST_PRACTICES.md)** - Optimización y seguridad
+- 🔧 **[Troubleshooting](DOCKER_TROUBLESHOOTING.md)** - Resolución de problemas
+- 🛠️ **Scripts de Gestión**
+  - `docker_manager.bat` / `docker_manager.sh` - Gestión de contenedores
+  - `docker_quickstart.bat` / `docker_quickstart.sh` - Inicio interactivo
+  - `Makefile` - Comandos make
+  - `verify_docker.py` - Verificación pre-deployment
+
+---
+
+**✨ Hecho con ❤️ por [Eduardo](https://github.com/stith1987)**
 
 ## � Autor y Contacto
 

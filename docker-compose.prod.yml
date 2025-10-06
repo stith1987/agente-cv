@@ -1,0 +1,30 @@
+# Docker Compose para Producción
+version: "3.8"
+
+services:
+  agente-cv:
+    # Sobreescribe configuraciones para producción
+    restart: always
+    environment:
+      - DEBUG=false
+      - LOG_LEVEL=WARNING
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 4G
+        reservations:
+          cpus: "1"
+          memory: 2G
+    # Healthcheck más estricto
+    healthcheck:
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    # Política de logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

@@ -239,6 +239,12 @@ yarn-error.log*
 # Docker
 .dockerignore
 docker-compose.override.yml
+.docker/
+docker-volumes/
+
+# Docker backups
+backups/
+*.tar.gz
 
 # Terraform (if using for infrastructure)
 *.tfstate
