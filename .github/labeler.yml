@@ -1,0 +1,58 @@
+# Configuración para auto-labeling de PRs
+
+# Documentación
+documentation:
+  - docs/**/*
+  - '*.md'
+
+# Código fuente - Agent
+agent:
+  - agent/**/*
+
+# Código fuente - API
+api:
+  - api/**/*
+
+# Código fuente - RAG
+rag:
+  - rag/**/*
+
+# Código fuente - Tools
+tools:
+  - tools/**/*
+
+# Enhancement
+enhancement:
+  - agent/**/*
+  - api/**/*
+  - rag/**/*
+  - tools/**/*
+
+# Tests
+tests:
+  - 'test_*.py'
+  - tests/**/*
+
+# Docker
+docker:
+  - Dockerfile
+  - docker-compose*.yml
+
+# Infrastructure
+infrastructure:
+  - Dockerfile
+  - docker-compose*.yml
+  - .github/**/*
+
+# CI/CD
+ci-cd:
+  - .github/**/*
+
+# Dependencies
+dependencies:
+  - requirements.txt
+
+# Configuration
+configuration:
+  - .env.example
+  - config/**/*

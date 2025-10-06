@@ -37,6 +37,30 @@ docker-compose up -d
 - 📖 [Guía Completa](DOCKER_SUMMARY.md)
 - 📚 [Índice Completo](DOCKER_INDEX.md)
 
+## 🌳 Estrategia de Ramas Git
+
+Este proyecto utiliza Git Flow con las siguientes ramas:
+
+- **`main`** - Código en producción (estable)
+- **`staging`** - Ambiente de QA/Pre-producción
+- **`develop`** - Desarrollo activo
+- **`feature/*`** - Nuevas características
+- **`hotfix/*`** - Correcciones urgentes
+
+📋 **Documentación:**
+- 📖 [Flujo de Trabajo Git Completo](GIT_WORKFLOW.md)
+- 📚 [Guía de Documentación por Ramas](docs/BRANCH_DOCUMENTATION_GUIDE.md)
+- 📝 [Template de Pull Request](.github/pull_request_template.md)
+
+🚀 **Inicializar ramas:**
+```bash
+# Windows
+scripts\setup_branches.bat
+
+# Linux/Mac
+./scripts/setup_branches.sh
+```
+
 ## 📁 Estructura del Proyecto
 
 ```
@@ -470,5 +494,13 @@ Si encuentras útil este agente de CV:
 - 🐛 **Reporta bugs** en [Issues](https://github.com/stith1987/agente-cv/issues)
 - 💬 **Comparte feedback** para mejoras
 - 🤝 **Contribuye** siguiendo la [Guía de Contribución](CONTRIBUTING.md)
+- 🌳 **Sigue nuestro workflow** descrito en [GIT_WORKFLOW.md](GIT_WORKFLOW.md)
+
+## 📊 Estado del Proyecto
+
+![GitHub last commit](https://img.shields.io/github/last-commit/stith1987/agente-cv)
+![GitHub issues](https://img.shields.io/github/issues/stith1987/agente-cv)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/stith1987/agente-cv)
+![GitHub stars](https://img.shields.io/github/stars/stith1987/agente-cv)
 
 🚀 **¡Gracias por usar el Agente de CV Inteligente!**
