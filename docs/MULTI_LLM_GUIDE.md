@@ -322,4 +322,44 @@ curl http://localhost:11434/api/tags
 
 ---
 
+## 🎨 Interfaz Gradio con Multi-LLM
+
+### Selector de Proveedor en UI
+
+Ahora puedes cambiar de proveedor LLM **directamente desde la interfaz web**:
+
+```bash
+# Lanzar UI con selector de proveedores
+python run_multi_llm_ui.py
+```
+
+**Características de la UI:**
+
+- ✅ Dropdown para seleccionar proveedor (OpenAI, DeepSeek, Groq, Ollama)
+- ✅ Dropdown dinámico de modelos según proveedor seleccionado
+- ✅ Cambio en tiempo real sin reiniciar la aplicación
+- ✅ Estado visual de proveedores configurados
+- ✅ Metadata mostrando proveedor/modelo usado en cada respuesta
+- ✅ Evaluación opcional de respuestas
+
+**Ejemplo de uso:**
+
+1. Abre http://localhost:7860
+2. Selecciona "DeepSeek" en el dropdown de proveedor
+3. Selecciona "deepseek-chat" en el dropdown de modelo
+4. Haz clic en "🔄 Aplicar"
+5. Escribe tu pregunta y compara con OpenAI
+
+**Comparar proveedores:**
+
+```
+1. Pregunta con OpenAI GPT-4
+2. Cambia a DeepSeek
+3. Haz la misma pregunta
+4. Cambia a Groq (Mixtral)
+5. Compara resultados y velocidad
+```
+
+---
+
 **¿Preguntas?** Revisa `examples/multi_llm_demo.py` para más ejemplos.
