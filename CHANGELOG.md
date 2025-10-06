@@ -14,6 +14,45 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ---
 
+## [1.1.0] - 2025-10-06
+
+### 🎉 Multi-LLM Plug-and-Play
+
+#### ✨ Añadido (Added)
+
+- **Multi-LLM Client**: Cliente unificado compatible con OpenAI API
+  - Soporte para OpenAI, DeepSeek, Groq, Gemini, Ollama, Anthropic
+  - Configuración plug-and-play vía `base_url` y `api_key`
+  - Cliente síncrono y asíncrono
+- **Sistema de Ensemble**: Invocación paralela de múltiples modelos
+  - Generación asíncrona simultánea
+  - Selección del mejor output por criterio
+  - Combinación inteligente de respuestas
+- **Configuración extendida**: 
+  - `OpenAIConfig` ahora soporta `base_url` y `provider`
+  - Variables de entorno: `LLM_PROVIDER`, `OPENAI_BASE_URL`
+- **Documentación completa**:
+  - Guía Multi-LLM (`docs/MULTI_LLM_GUIDE.md`)
+  - Demo funcional (`examples/multi_llm_demo.py`)
+  - Comparativas de proveedores y precios
+  - Ejemplos de configuración para cada proveedor
+
+#### 🔄 Cambiado (Changed)
+
+- **CVOrchestrator**: Ahora usa `MultiLLMClient` internamente
+  - Mantiene retrocompatibilidad con `openai_client`
+  - Soporte transparente para proveedores alternativos
+- **AgentConfig**: Método `from_env()` actualizado para leer nuevas variables
+
+#### 📚 Documentación
+
+- ✅ Guía completa de Multi-LLM con ejemplos
+- ✅ Comparativa de performance y costos
+- ✅ Casos de uso por proveedor
+- ✅ Troubleshooting específico por proveedor
+
+---
+
 ## [1.0.0] - 2025-10-06
 
 ### 🎉 Lanzamiento Inicial

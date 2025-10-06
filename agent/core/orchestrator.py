@@ -18,6 +18,7 @@ from tools.notify import NotificationManager
 from ..utils.config import AgentConfig
 from ..utils.logger import AgentLogger
 from ..utils.prompts import PromptManager
+from ..utils.multi_llm_client import MultiLLMClient
 from .query_classifier import QueryClassifier, QueryClassification, RecommendedTool
 from .response_evaluator import ResponseEvaluator, EvaluationResult
 from ..specialists.clarifier import ClarifierAgent
@@ -44,8 +45,10 @@ class CVOrchestrator:
         # Managers
         self.prompt_manager = PromptManager()
         
-        # Cliente OpenAI
-        self.openai_client = OpenAI(api_key=self.config.openai.api_key)
+        # Cliente Multi-LLM (compatible con OpenAI y otros proveedores)
+        self.llm_client = MultiLLMClient(self.config.openai, self.logger)
+        # Mantener compatibilidad con código legacy
+        self.openai_client = self.llm_client.client
         
         # Inicializar componentes principales
         self._initialize_tools()
