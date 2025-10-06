@@ -316,13 +316,11 @@ def create_multi_llm_gradio_interface() -> gr.Blocks:
                 status_msg = gr.Textbox(
                     label="Estado",
                     value="👋 Selecciona un proveedor y modelo",
-                    interactive=False,
-                    scale=2
+                    interactive=False
                 )
                 
                 provider_info = gr.Markdown(
-                    value="Selecciona un proveedor para comenzar",
-                    scale=2
+                    value="Selecciona un proveedor para comenzar"
                 )
         
         # Chat principal
@@ -340,8 +338,7 @@ def create_multi_llm_gradio_interface() -> gr.Blocks:
                         msg_input = gr.Textbox(
                             placeholder="Escribe tu pregunta aquí...",
                             label="Tu pregunta",
-                            lines=2,
-                            scale=4
+                            lines=2
                         )
                         
                         with gr.Column(scale=1):
