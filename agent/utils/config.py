@@ -17,15 +17,25 @@ except ImportError:
 
 @dataclass
 class OpenAIConfig:
-    """Configuración para OpenAI"""
+    """Configuración para OpenAI y proveedores compatibles"""
     api_key: str
     model: str = "gpt-4"
     temperature: float = 0.7
     max_tokens: int = 2000
+    base_url: Optional[str] = None  # Para proveedores alternativos
+    provider: str = "openai"  # openai, deepseek, groq, gemini, ollama, etc.
     
     def __post_init__(self):
         if not self.api_key:
-            raise ValueError("OpenAI API key is required")
+            raise ValueError("API key is required")
+    
+    def get_provider_name(self) -> str:
+        """Obtener nombre del proveedor configurado"""
+        return self.provider
+    
+    def is_openai_compatible(self) -> bool:
+        """Verificar si el proveedor es compatible con OpenAI API"""
+        return True  # Todos los proveedores soportados usan API compatible
 
 @dataclass 
 class EmailConfig:
@@ -71,12 +81,14 @@ class AgentConfig:
     def from_env(cls) -> 'AgentConfig':
         """Crear configuración desde variables de entorno"""
         
-        # OpenAI
+        # OpenAI / Multi-LLM
         openai_config = OpenAIConfig(
             api_key=os.getenv("OPENAI_API_KEY", ""),
             model=os.getenv("OPENAI_MODEL", "gpt-4"),
             temperature=float(os.getenv("OPENAI_TEMPERATURE", "0.7")),
-            max_tokens=int(os.getenv("OPENAI_MAX_TOKENS", "2000"))
+            max_tokens=int(os.getenv("OPENAI_MAX_TOKENS", "2000")),
+            base_url=os.getenv("OPENAI_BASE_URL"),  # None si no está configurado
+            provider=os.getenv("LLM_PROVIDER", "openai")
         )
         
         # Email

@@ -18,6 +18,7 @@ from tools.notify import NotificationManager
 from ..utils.config import AgentConfig
 from ..utils.logger import AgentLogger
 from ..utils.prompts import PromptManager
+from ..utils.multi_llm_client import MultiLLMClient
 from .query_classifier import QueryClassifier, QueryClassification, RecommendedTool
 from .response_evaluator import ResponseEvaluator, EvaluationResult
 from ..specialists.clarifier import ClarifierAgent
@@ -44,8 +45,10 @@ class CVOrchestrator:
         # Managers
         self.prompt_manager = PromptManager()
         
-        # Cliente OpenAI
-        self.openai_client = OpenAI(api_key=self.config.openai.api_key)
+        # Cliente Multi-LLM (compatible con OpenAI y otros proveedores)
+        self.llm_client = MultiLLMClient(self.config.openai, self.logger)
+        # Mantener compatibilidad con código legacy
+        self.openai_client = self.llm_client.client
         
         # Inicializar componentes principales
         self._initialize_tools()
@@ -67,6 +70,9 @@ class CVOrchestrator:
         
         # Log de consultas para análisis
         self.query_log = []
+        
+        # Metadata del último LLM usado (para incluir en respuestas)
+        self._last_llm_metadata = {}
         
         self.logger.info("CVOrchestrator initialized successfully")
     
@@ -214,8 +220,7 @@ class CVOrchestrator:
         try:
             results = self.retriever.search(
                 query=query,
-                top_k=search_params["top_k"],
-                similarity_threshold=search_params["similarity_threshold"]
+                top_k=search_params["top_k"]
             )
             
             if not results:
@@ -234,7 +239,9 @@ class CVOrchestrator:
                 "metadata": {
                     "results_count": len(results),
                     "tools_used": ["rag_search"],
-                    "search_params": search_params
+                    "search_params": search_params,
+                    # Agregar metadata del LLM usado
+                    **self._last_llm_metadata
                 }
             }
             
@@ -261,7 +268,9 @@ class CVOrchestrator:
                 "source": "FAQ",
                 "metadata": {
                     "results_count": len(results),
-                    "tools_used": ["faq_query"]
+                    "tools_used": ["faq_query"],
+                    # Agregar metadata del LLM usado
+                    **self._last_llm_metadata
                 }
             }
             
@@ -275,8 +284,7 @@ class CVOrchestrator:
             # Ejecutar ambas búsquedas en paralelo
             rag_results = self.retriever.search(
                 query=query,
-                top_k=search_params["top_k"] // 2,  # Dividir espacio
-                similarity_threshold=search_params["similarity_threshold"]
+                top_k=search_params["top_k"] // 2  # Dividir espacio
             )
             
             faq_results = self.faq_tool.query(query, limit=self.config.faq_limit // 2)
@@ -299,7 +307,9 @@ class CVOrchestrator:
                 "metadata": {
                     "rag_results": len(rag_results) if rag_results else 0,
                     "faq_results": len(faq_results) if faq_results else 0,
-                    "tools_used": ["rag_search", "faq_query"]
+                    "tools_used": ["rag_search", "faq_query"],
+                    # Agregar metadata del LLM usado
+                    **self._last_llm_metadata
                 }
             }
             
@@ -345,17 +355,23 @@ class CVOrchestrator:
             Si el contexto no es suficiente para responder completamente, indícalo claramente.
             """
             
-            response = self.openai_client.chat.completions.create(
-                model=self.config.openai.model,
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_prompt}
-                ],
+            # Usar MultiLLMClient.generate() para capturar metadata
+            llm_response = self.llm_client.generate(
+                prompt=user_prompt,
+                system_prompt=system_prompt,
                 temperature=self.config.openai.temperature,
                 max_tokens=self.config.openai.max_tokens
             )
             
-            return response.choices[0].message.content.strip()
+            # Guardar metadata de la generación para usarlo en respuesta
+            self._last_llm_metadata = {
+                "provider": llm_response.provider,
+                "model": llm_response.model,
+                "tokens": llm_response.usage.total_tokens if llm_response.usage else None,
+                "cost": llm_response.cost
+            }
+            
+            return llm_response.content
             
         except Exception as e:
             self.logger.error("Error generating response with context", exception=e)
@@ -414,7 +430,9 @@ class CVOrchestrator:
             "source": source,
             "metadata": {
                 "no_results": True,
-                "tools_used": [source.lower()]
+                "tools_used": [source.lower()],
+                # Incluir metadata LLM si está disponible
+                **self._last_llm_metadata
             }
         }
     
@@ -431,7 +449,9 @@ class CVOrchestrator:
                 "error": True,
                 "error_tool": tool,
                 "error_message": error_msg,
-                "tools_used": []
+                "tools_used": [],
+                # Incluir metadata LLM si está disponible
+                **self._last_llm_metadata
             }
         }
     
