@@ -53,6 +53,16 @@ Este proyecto utiliza Git Flow con las siguientes ramas:
 - 📚 [Guía de Documentación por Ramas](docs/BRANCH_DOCUMENTATION_GUIDE.md)
 - 📝 [Template de Pull Request](.github/pull_request_template.md)
 
+## 🏛️ Decisiones de Arquitectura
+
+Este proyecto documenta todas las decisiones arquitectónicas significativas mediante ADRs (Architecture Decision Records):
+
+- 📋 [**Architecture Decision Records (ADR)**](docs/ADR.md) - Histórico completo de decisiones técnicas
+- 🏗️ [Arquitectura de Software](ARQUITECTURA_SOFTWARE.md)
+- 🎯 [Arquitectura de Solución](ARQUITECTURA_SOLUCION.md)
+- 📊 [Arquitectura de Datos](ARQUITECTURA_DATOS.md)
+- 📝 [Arquitectura de Prompts](ARQUITECTURA_PROMPTS.md)
+
 🚀 **Inicializar ramas:**
 
 ```bash
