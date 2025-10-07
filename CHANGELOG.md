@@ -14,6 +14,44 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ---
 
+## [1.1.1] - 2025-10-06
+
+### 📋 Documentación
+
+#### ✨ Añadido (Added)
+
+- **Architecture Decision Records (ADR)** - Documento completo en `docs/ADR.md`
+  - ADR-001: Uso de RAG para generación de respuestas
+  - ADR-002: FastAPI como framework de API
+  - ADR-003: ChromaDB como vector database
+  - ADR-004: Arquitectura modular con patrón orquestador
+  - ADR-005: Sistema Multi-LLM plug-and-play
+  - ADR-006: Git Flow como estrategia de ramas
+  - ADR-007: Docker y Docker Compose para despliegue
+  - ADR-008: Gradio para interfaz de usuario
+  - ADR-009: SQLite para FAQs estructuradas
+  - ADR-010: Refactorización a arquitectura limpia
+- **Índice Maestro de Documentación** - `docs/README.md`
+  - Organización por categorías (Arquitectura, Desarrollo, Docker, Git)
+  - Roadmap de lectura para diferentes roles (Junior, Senior, Arquitecto)
+  - Enlaces a todas las decisiones arquitectónicas
+  - Métricas del proyecto y herramientas disponibles
+  - Sección de ayuda y troubleshooting
+
+#### 🔄 Cambiado (Changed)
+
+- **README.md** - Añadida sección "🏛️ Decisiones de Arquitectura" con enlaces a ADR
+
+#### 📊 Impacto
+
+- ✅ Documentación de decisiones arquitectónicas centralizada y justificada
+- ✅ Historia completa de por qué se tomaron decisiones técnicas
+- ✅ Referencia rápida para nuevos desarrolladores
+- ✅ Base sólida para futuras decisiones arquitectónicas
+- ✅ Transparencia en trade-offs y alternativas consideradas
+
+---
+
 ## [1.1.0] - 2025-10-06
 
 ### 🎉 Multi-LLM Plug-and-Play
@@ -28,7 +66,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   - Generación asíncrona simultánea
   - Selección del mejor output por criterio
   - Combinación inteligente de respuestas
-- **Configuración extendida**: 
+- **Configuración extendida**:
   - `OpenAIConfig` ahora soporta `base_url` y `provider`
   - Variables de entorno: `LLM_PROVIDER`, `OPENAI_BASE_URL`
 - **Documentación completa**:

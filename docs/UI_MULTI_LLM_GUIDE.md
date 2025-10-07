@@ -48,6 +48,7 @@ En la parte superior verás:
 ```
 
 **Pasos:**
+
 1. Selecciona un proveedor en el dropdown (ej: "DeepSeek")
 2. El dropdown de modelos se actualiza automáticamente
 3. Selecciona un modelo (ej: "deepseek-chat")
@@ -90,11 +91,13 @@ Evaluación: 8.5/10
 **Ejemplo: Comparar OpenAI vs DeepSeek**
 
 1. **Con OpenAI:**
+
    - Selecciona "OpenAI" → "gpt-3.5-turbo"
    - Pregunta: "¿Qué tecnologías domino?"
    - Observa: Tiempo de respuesta, calidad
 
 2. **Cambiar a DeepSeek:**
+
    - Selecciona "DeepSeek" → "deepseek-chat"
    - Haz clic en "🔄 Aplicar"
    - Pregunta lo mismo
@@ -225,6 +228,7 @@ Si solo tienes OpenAI configurado:
 ### Problema: "❌ Proveedor no configurado"
 
 **Solución:**
+
 ```bash
 # Ver qué falta
 python quickstart_multi_llm.py
@@ -238,6 +242,7 @@ DEEPSEEK_API_KEY=sk-xxxxx
 ### Problema: Ollama no disponible
 
 **Solución:**
+
 ```bash
 # Iniciar Ollama
 ollama serve
@@ -252,6 +257,7 @@ ollama pull llama3.1
 ### Problema: Cambio no se aplica
 
 **Solución:**
+
 1. Verifica que hiciste clic en "🔄 Aplicar"
 2. Mira el mensaje de estado
 3. Si hay error, revisa los logs en la terminal
@@ -260,28 +266,31 @@ ollama pull llama3.1
 
 ## 📈 Beneficios de la UI
 
-| Funcionalidad | Beneficio |
-|---------------|-----------|
-| **Cambio en tiempo real** | No reiniciar aplicación |
-| **Comparación A/B** | Elegir mejor proveedor por caso |
-| **Estado visual** | Ver qué está configurado |
-| **Metadata detallada** | Debugging y optimización |
-| **Evaluación opcional** | Métricas de calidad |
+| Funcionalidad             | Beneficio                       |
+| ------------------------- | ------------------------------- |
+| **Cambio en tiempo real** | No reiniciar aplicación         |
+| **Comparación A/B**       | Elegir mejor proveedor por caso |
+| **Estado visual**         | Ver qué está configurado        |
+| **Metadata detallada**    | Debugging y optimización        |
+| **Evaluación opcional**   | Métricas de calidad             |
 
 ---
 
 ## 🎯 Próximos Pasos
 
 1. **Prueba la interfaz:**
+
    ```bash
    python run_multi_llm_ui.py
    ```
 
 2. **Configura más proveedores:**
+
    - Añade GROQ_API_KEY para ultra velocidad
    - Añade DEEPSEEK_API_KEY para bajo costo
 
 3. **Compara resultados:**
+
    - Misma pregunta, diferentes proveedores
    - Documenta cuál funciona mejor para tu caso
 

@@ -15,14 +15,14 @@ Sistema unificado para invocar múltiples proveedores LLM (Large Language Models
 
 ## 📦 Proveedores Soportados
 
-| Proveedor | Modelos | Base URL | Notas |
-|-----------|---------|----------|-------|
-| **OpenAI** | GPT-4, GPT-3.5-turbo, GPT-4o | `https://api.openai.com/v1` | Provider por defecto |
-| **DeepSeek** | deepseek-chat, deepseek-coder | `https://api.deepseek.com/v1` | Alternativa económica |
-| **Groq** | Mixtral-8x7b, Llama 3.x, Gemma | `https://api.groq.com/openai/v1` | Ultra rápido |
-| **Ollama** | Llama, Mistral, CodeLlama | `http://localhost:11434/v1` | Local, sin API key |
-| **Gemini** | gemini-pro, gemini-1.5-pro | Vía adaptador | Requiere configuración |
-| **Anthropic** | Claude 3 Opus/Sonnet | Vía adaptador | Requiere configuración |
+| Proveedor     | Modelos                        | Base URL                         | Notas                  |
+| ------------- | ------------------------------ | -------------------------------- | ---------------------- |
+| **OpenAI**    | GPT-4, GPT-3.5-turbo, GPT-4o   | `https://api.openai.com/v1`      | Provider por defecto   |
+| **DeepSeek**  | deepseek-chat, deepseek-coder  | `https://api.deepseek.com/v1`    | Alternativa económica  |
+| **Groq**      | Mixtral-8x7b, Llama 3.x, Gemma | `https://api.groq.com/openai/v1` | Ultra rápido           |
+| **Ollama**    | Llama, Mistral, CodeLlama      | `http://localhost:11434/v1`      | Local, sin API key     |
+| **Gemini**    | gemini-pro, gemini-1.5-pro     | Vía adaptador                    | Requiere configuración |
+| **Anthropic** | Claude 3 Opus/Sonnet           | Vía adaptador                    | Requiere configuración |
 
 ---
 
@@ -153,18 +153,18 @@ async def compare_models():
         {"role": "system", "content": "Eres un experto en IA."},
         {"role": "user", "content": "Explica qué es un transformer"}
     ]
-    
+
     # Generar respuestas de todos los modelos
     responses = await ensemble.generate_ensemble(messages)
-    
+
     # Ver todas las respuestas
     for response in responses:
         print(f"{response.provider}: {response.content[:100]}...")
-    
+
     # Seleccionar la mejor (por longitud)
     best = ensemble.select_best_response(responses, criteria="length")
     print(f"Mejor: {best.provider}")
-    
+
     # Combinar todas en una respuesta
     combined = ensemble.combine_responses(responses)
     print(f"Combinada: {combined[:200]}...")
@@ -202,14 +202,14 @@ result = orchestrator.process_query("¿Cuáles son mis proyectos?")
 
 ### Performance
 
-| Proveedor | Velocidad | Costo | Calidad | Use Case |
-|-----------|-----------|-------|---------|----------|
-| **OpenAI GPT-4** | ⭐⭐⭐ | 💰💰💰 | ⭐⭐⭐⭐⭐ | Máxima calidad |
-| **OpenAI GPT-3.5** | ⭐⭐⭐⭐ | 💰 | ⭐⭐⭐⭐ | Balance precio/calidad |
-| **DeepSeek** | ⭐⭐⭐⭐ | 💰 | ⭐⭐⭐⭐ | Económico, muy bueno |
-| **Groq Mixtral** | ⭐⭐⭐⭐⭐ | 💰 | ⭐⭐⭐⭐ | Ultra rápido |
-| **Groq Llama 3.1** | ⭐⭐⭐⭐⭐ | 💰 | ⭐⭐⭐⭐ | Open source, rápido |
-| **Ollama** | ⭐⭐⭐ | 🆓 | ⭐⭐⭐ | Local, privacidad |
+| Proveedor          | Velocidad  | Costo  | Calidad    | Use Case               |
+| ------------------ | ---------- | ------ | ---------- | ---------------------- |
+| **OpenAI GPT-4**   | ⭐⭐⭐     | 💰💰💰 | ⭐⭐⭐⭐⭐ | Máxima calidad         |
+| **OpenAI GPT-3.5** | ⭐⭐⭐⭐   | 💰     | ⭐⭐⭐⭐   | Balance precio/calidad |
+| **DeepSeek**       | ⭐⭐⭐⭐   | 💰     | ⭐⭐⭐⭐   | Económico, muy bueno   |
+| **Groq Mixtral**   | ⭐⭐⭐⭐⭐ | 💰     | ⭐⭐⭐⭐   | Ultra rápido           |
+| **Groq Llama 3.1** | ⭐⭐⭐⭐⭐ | 💰     | ⭐⭐⭐⭐   | Open source, rápido    |
+| **Ollama**         | ⭐⭐⭐     | 🆓     | ⭐⭐⭐     | Local, privacidad      |
 
 ### Precios Aproximados (por 1M tokens)
 
@@ -224,6 +224,7 @@ result = orchestrator.process_query("¿Cuáles son mis proyectos?")
 ## 🎯 Casos de Uso
 
 ### 1. Desarrollo: Ollama local
+
 ```env
 LLM_PROVIDER=ollama
 OPENAI_API_KEY=ollama
@@ -232,6 +233,7 @@ OPENAI_BASE_URL=http://localhost:11434/v1
 ```
 
 ### 2. Producción económica: DeepSeek
+
 ```env
 LLM_PROVIDER=deepseek
 OPENAI_API_KEY=sk-deepseek-xxxxx
@@ -240,6 +242,7 @@ OPENAI_BASE_URL=https://api.deepseek.com/v1
 ```
 
 ### 3. Máxima velocidad: Groq
+
 ```env
 LLM_PROVIDER=groq
 OPENAI_API_KEY=gsk-xxxxx
@@ -248,6 +251,7 @@ OPENAI_BASE_URL=https://api.groq.com/openai/v1
 ```
 
 ### 4. Máxima calidad: GPT-4
+
 ```env
 LLM_PROVIDER=openai
 OPENAI_API_KEY=sk-proj-xxxxx
@@ -279,11 +283,13 @@ print(response.content)
 ## 🔍 Troubleshooting
 
 ### Error: "Invalid API key"
+
 - Verifica que la API key sea correcta para el proveedor
 - DeepSeek keys empiezan con `sk-`
 - Groq keys empiezan con `gsk_`
 
 ### Error: "Connection refused" (Ollama)
+
 ```bash
 # Iniciar Ollama
 ollama serve
@@ -293,6 +299,7 @@ curl http://localhost:11434/api/tags
 ```
 
 ### Error: "Model not found"
+
 ```bash
 # Listar modelos disponibles según proveedor
 # OpenAI: gpt-4, gpt-3.5-turbo, gpt-4o
